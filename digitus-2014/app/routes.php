@@ -12,3 +12,13 @@
 */
 
 Route::get('/', 'HomeController@getHome');
+
+Route::resource('admin', 'HomeController');
+
+Route::get('login', 'AuthController@getLogin');
+Route::post('users/signin', 'AuthController@postLogin');
+
+Route::get('logout', 'AuthController@getLogout');
+
+Route::get('register', 'AuthController@getRegister');
+Route::post('users/signup', 'AuthController@postRegister');

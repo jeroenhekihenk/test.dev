@@ -22,4 +22,33 @@ class HomeController extends BaseController {
 		$this->layout->content = View::make('home.index');
 	}
 
+	public function index()
+	{
+		return 'Hey!';
+	}
+	public function create()
+	{
+
+	}
+	public function store()
+	{
+
+	}
+	public function show()
+	{
+
+	}
+	public function edit()
+	{
+
+	}
+	public function update()
+	{
+
+	}
+	public function destroy()
+	{
+		
+	}
+
 }

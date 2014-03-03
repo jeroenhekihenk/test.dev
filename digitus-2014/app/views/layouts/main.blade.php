@@ -16,8 +16,8 @@
 @yield('notification')
 
 	@if(Session::has('message'))
-		<div class="container">
-			<p class="alert">{{ Session::get('message') }}</p>
+		<div class="container session-alert">
+			<p class="alert alert-info">{{ Session::get('message') }}</p>
 		</div>
 	@endif
 
