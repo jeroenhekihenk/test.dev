@@ -14,8 +14,8 @@
 				</div>
 			@endif
 			<div class="form-group">
-				{{ Form::label('email', 'Email Address') }}
-				{{ Form::text('email', '', array('class'=>'form-control','placeholder'=>'Email Address')) }}
+				{{ Form::label('email_or_username', 'Email Address or Username') }}
+				{{ Form::text('email_or_username', '', array('class'=>'form-control','placeholder'=>'Please enter your Email Address or Username to login')) }}
 			</div>
 			<div class="form-group">
 				{{ Form::label('password', 'Password') }}
@@ -24,6 +24,11 @@
 			<div class="form-group">
 				{{ Form::submit('Login', array('class'=>'btn btn-success')) }}
 				{{ HTML::link('/', 'Cancel', array('class'=>'btn btn-danger')) }}
+			</div>
+			<hr>
+			<div class="form-group">
+				<h2>Don't have an account?</h2>
+				{{ HTML::link('register', 'Please register here', array('class'=>'btn btn-primary btn-xs'))}}
 			</div>
 			{{ Form::close() }}
 		</div>

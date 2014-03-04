@@ -35,6 +35,7 @@ class HomeController extends BaseController {
 		try
 		{
 			$user = Sentry::createUser(array(
+				'username' => Input::get('username'),
 				'first_name' => Input::get('firstname'),
 				'last_name' => Input::get('lastname'),
 				'email' => Input::get('email'),
@@ -45,17 +46,18 @@ class HomeController extends BaseController {
 		}
 		catch (Cartalyst\Sentry\Users\UserExistsException $e)
 		{
-			echo 'This user already excists';
+			echo 'This user already exists';
 		}
+		return Redirect::to('login')->with('message', 'You have been registered! You can now login using your account details.');
 	}
 
 	public function postLogin()
 	{
+		$user = User::where('username', Input::get('email_or_username'))->orWhere('email', Input::get('email_or_username'))->first();
 		$credentials = array(
-			'email' => Input::get('email'),
+			'email' => $user->username ? $user->email : null,
 			'password' => Input::get('password'),
 		);
-
 		try {
 			$user = Sentry::authenticate($credentials, false);
 
@@ -66,7 +68,7 @@ class HomeController extends BaseController {
 		}
 		catch (\Exception $e)
 		{
-			return Redirect::to('login')->withErrors(array('Login'=> $e->getMessages()));
+			return Redirect::to('login')->withErrors(array('login'=> $e->getMessage()));
 		}
 	}
 

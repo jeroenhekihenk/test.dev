@@ -14,6 +14,10 @@
                 </div>
             @endif
             <div class="form-group">
+                {{ Form::label('uname', 'Username') }}
+                {{ Form::text('username', '', array('class'=>'form-control','placeholder'=>'Username')) }}
+            </div>
+            <div class="form-group">
                 {{ Form::label('fname', 'First Name') }}
                 {{ Form::text('first_name', '', array('class' => 'form-control', 'placeholder' => 'First Name')) }}
             </div>
@@ -32,6 +36,11 @@
             <div class="form-group">
                 {{ Form::submit('Register', array('class' => 'btn btn-success')) }}
                 {{ HTML::link('/', 'Cancel', array('class' => 'btn btn-danger')) }}
+            </div>
+            <hr>
+            <div class="form-group">
+                <h2>Already have an account?</h2>
+                {{ HTML::link('login', 'Login here', array('class'=>'btn btn-primary btn-xs')) }}
             </div>
             {{ Form::close() }}
         </div>
