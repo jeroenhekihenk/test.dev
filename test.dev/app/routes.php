@@ -11,10 +11,7 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
-});
+Route::get('/', 'HomeController@index');
 
 Route::get('register', 'HomeController@getRegister');
 Route::post('register', 'HomeController@postRegister');
@@ -29,3 +26,17 @@ Route::group(array('before'=>'auth'), function(){
 	Route::get('logout', 'HomeController@logout');
 
 });
+
+Route::group(array('before'=>'auth'), function(){
+
+	Route::get('blog', 'BlogController@getBlog');
+	Route::get('blog/create', 'BlogController@getBlogForm');
+	Route::delete('blog/post/(:num)', array('do'=>function($id){
+		$delete_post = Post::with('user')->find($id);
+		$delete_post -> delete();
+		return Redirect::to('blog');
+	}));
+	Route::post('blog/create', 'BlogController@newPost');
+	Route::get('admin/blogposts', 'BlogController@admin');
+});
+

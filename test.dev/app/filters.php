@@ -43,6 +43,13 @@ Route::filter('auth', function()
 	if(!Sentry::check()) return Redirect::route('login');
 });
 
+Route::filter('before', function()
+{
+	if(!Sentry::check() && !URI::is('login'))
+	{
+		return Redirect::to('login');
+	}
+});
 
 Route::filter('auth.basic', function()
 {

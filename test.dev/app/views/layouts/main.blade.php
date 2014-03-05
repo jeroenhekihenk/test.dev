@@ -12,6 +12,8 @@
 </head>
 <body>
 
+	@yield('menu')
+
 	@yield('notification')
 
 	@if(Session::has('message'))

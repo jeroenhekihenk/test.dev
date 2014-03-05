@@ -15,9 +15,9 @@ class HomeController extends BaseController {
 	|
 	*/
 
-	public function showWelcome()
+	public function index()
 	{
-		return View::make('hello');
+		return View::make('home.index');
 	}
 
 	public function getRegister()
@@ -43,6 +43,8 @@ class HomeController extends BaseController {
 				'activated' => true,
 
 				));
+			$member = Sentry::findGroupById(3);
+			$user->addGroup($member);
 		}
 		catch (Cartalyst\Sentry\Users\UserExistsException $e)
 		{
