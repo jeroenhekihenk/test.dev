@@ -15,7 +15,7 @@
 			@endif
 			<div class="form-group">
 				{{ Form::label('email_or_username', 'Email Address or Username') }}
-				{{ Form::text('email_or_username', '', array('class'=>'form-control','placeholder'=>'Please enter your Email Address or Username to login')) }}
+				{{ Form::text('email_or_username', '', array('class'=>'form-control','placeholder'=>'Please enter your Email Address or Username to login', 'autofocus')) }}
 			</div>
 			<div class="form-group">
 				{{ Form::label('password', 'Password') }}

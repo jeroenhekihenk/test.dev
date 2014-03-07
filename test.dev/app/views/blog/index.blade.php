@@ -32,9 +32,9 @@ Blog
 			<span class="label">Posted on {{ $post->updated_at }}</span>
 				<span class="label">By: <a href="{{{ URL::to('users/'.$post->post_author) }}}" target="_blank">{{ $post->post_author }}</a></span>
 				<div class="panel">Tags: @foreach($users as $user)
-					<p class="label label-warning">{{ $user->username }}</p> @endforeach</div>
-				@if(Sentry::check())
-				{{ Form::open(array('url'=>'blog/post/'.$post->id), 'DELETE') }}
+					<a href="tags/{{ $user->username }}"><p class="label tag-label"><span class="glyphicon glyphicon-tag"></span> {{ $user->username }}</p></a> @endforeach</div>
+				@if(Sentry::getUser()->hasAccess('blogpost'))
+				{{ Form::open(array('url'=>'blog/'.$post->id), 'DELETE') }}
 				<p>{{ Form::submit('Delete', array('class'=>'btn-small')) }}</p>
 				{{ Form::close() }}
 			@endif

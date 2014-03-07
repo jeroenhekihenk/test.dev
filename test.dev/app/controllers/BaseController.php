@@ -15,7 +15,7 @@ class BaseController extends Controller {
 		}
 
 		View::share('users', Sentry::findAllUsers());
-		View::share('user', $user);
+		View::share('loggedUser', $user);
 		View::share('SuperAdmin', $sAdmin);
 		View::share('Admin', $admin);
 		View::share('Member', $member);

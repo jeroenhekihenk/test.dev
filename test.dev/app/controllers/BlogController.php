@@ -11,7 +11,7 @@ class BlogController extends BaseController {
 	public function getBlogForm()
 	{
 		$user = Sentry::getUser();
-		return View::make('blog.create')->with('user', $user);
+		return View::make('admin.blog.create')->with('user', $user);
 	}
 
 	public function destroyPost()
@@ -35,7 +35,7 @@ class BlogController extends BaseController {
 		$validation = Validator::make($new_post, $rules);
 		if ( $validation->fails() )
 		{
-			return Redirect::to('blog/create')->with('user', Sentry::getUser())->withErrors($validation)->with_input();
+			return Redirect::to('admin/blog/create')->with('user', Sentry::getUser())->withErrors($validation)->with_input();
 		}
 
 		$post = new Post($new_post);
@@ -47,7 +47,7 @@ class BlogController extends BaseController {
 	public function admin()
 	{
 		$posts = Post::with('user')->orderBy('updated_at', 'desc')->paginate(5);
-		return View::make('admin.blogposts')->with('posts', $posts);
+		return View::make('admin.blog.overview')->with('posts', $posts);
 	}
 
 }

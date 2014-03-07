@@ -19,24 +19,47 @@ Route::post('register', 'HomeController@postRegister');
 Route::get('login', 'HomeController@getLogin');
 Route::post('login', 'HomeController@postLogin');
 
+Route::get('blog', 'BlogController@getBlog');
 
-Route::group(array('before'=>'auth'), function(){
-	
-	Route::get('admin', 'AdminController@index');
-	Route::get('logout', 'HomeController@logout');
-
-});
-
-Route::group(array('before'=>'auth'), function(){
-
-	Route::get('blog', 'BlogController@getBlog');
+Route::group(array('prefix'=>'admin', 'before'=>'auth'), function(){
+	Route::get('', 'AdminController@index');
 	Route::get('blog/create', 'BlogController@getBlogForm');
-	Route::delete('blog/post/(:num)', array('do'=>function($id){
+	Route::post('blog/create', 'BlogController@newPost');
+	Route::get('blogposts', 'BlogController@admin');
+	Route::delete('blog/(num)', array('do'=>function($id){
 		$delete_post = Post::with('user')->find($id);
 		$delete_post -> delete();
 		return Redirect::to('blog');
 	}));
-	Route::post('blog/create', 'BlogController@newPost');
-	Route::get('admin/blogposts', 'BlogController@admin');
 });
 
+Route::group(array('before'=>'auth'), function(){
+
+	Route::get('logout', 'HomeController@logout');
+	Route::get('profile/{username}', 'ProfileController@getIndex');
+	
+});
+
+Route::filter('admin', function()
+{
+	if(!Sentry::check())
+	{
+		return Redirect::to('login');
+	}
+	if(Sentry::getUser()->hasAccess(array('Super Admin', 'Admin')))
+	{
+		return Redirect::to('admin');
+	}
+
+	if (!Sentry::getUser()->hasAccess(array('Super Admin', 'Admin')))
+	{
+		return Redirect::to('login');
+	}
+
+});
+
+
+// App::missing(function($exception)
+// {
+// 	return Response::view('error', array(), 404);
+// });

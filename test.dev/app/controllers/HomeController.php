@@ -63,9 +63,11 @@ class HomeController extends BaseController {
 		try {
 			$user = Sentry::authenticate($credentials, false);
 
-			if($user)
+			if(Sentry::check())
 			{
 				return Redirect::to('admin');
+			} else {
+				return Redirect::to('');
 			}
 		}
 		catch (\Exception $e)
@@ -77,7 +79,7 @@ class HomeController extends BaseController {
 	public function logout()
 	{
 		Sentry::logout();
-		return Redirect::to('/');
+		return Redirect::to('login');
 	}
 
 }

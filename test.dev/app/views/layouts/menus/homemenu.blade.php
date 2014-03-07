@@ -1,5 +1,4 @@
-<div id="mainmenu" class="navbar-fixed-top row" role="navigation">
-	<div class="navbar navbar-fixed-top navbar-default row">
+	<div class="navbar navbar-top navbar-default row">
 		<div class="navbar-inner">
 			<div class="container">
 				<div class="collapse navbar-collapse">
@@ -21,11 +20,11 @@
 							<li class="dropdown">
 								<a class="dropdown-toggle" data-toggle="dropdown" href="#">
 									<span class="glyphicon glyphicon-user"></span>  
-									{{ $user->username }} <span class="caret"></span>
+									{{ $loggedUser->username }} <span class="caret"></span>
 								</a>
 								<ul class="dropdown-menu">
 									<li>
-										{{ HTML::link("profile/".$user->username, 'My Profile') }}
+										{{ HTML::link("profile/".$loggedUser->username, 'My Profile') }}
 									</li>
 									<li>
 										{{ HTML::link("profile/dashboard", 'Dashboard')}}
@@ -51,4 +50,3 @@
 			</div>
 		</div>
 	</div>
-</div>
