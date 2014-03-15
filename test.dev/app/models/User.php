@@ -52,7 +52,7 @@ class User extends Suser implements UserInterface, RemindableInterface {
 
 	public function posts()
 	{
-		return $this->has_many('Post');
+		return $this->hasMany('Post');
 	}
 
 }

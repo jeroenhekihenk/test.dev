@@ -2,7 +2,15 @@
 
 class BaseController extends Controller {
 
-	public function __construct() {
+	public function __construct(Post $posts, View $view, Sentry $sentry) {
+
+		$this->posts	= $posts;
+		$this->view 	= $view;
+		$this->sentry 	= $sentry;
+
+		$facebook = 'https://www.facebook.com/DigitusMarketing';
+		$email = '../&#109;&#x61;&#105;&#108;&#x74;&#x6f;&#x3a;&#105;&#110;&#102;&#111;&#x40;&#100;&#105;&#x67;&#105;&#116;&#x75;&#115;&#x6d;&#x61;&#x72;&#x6b;&#x65;&#x74;&#x69;&#110;&#103;&#46;&#x6e;&#108;';
+		$tel = 'tel:+850030256';
 
 		$sAdmin = Sentry::findGroupById(1);
 		$admin = Sentry::findGroupById(2);
@@ -21,6 +29,9 @@ class BaseController extends Controller {
 		View::share('Member', $member);
 		View::share('Groups', Sentry::findAllGroups());
 		View::share('gpermissions', $sAdmin->getPermissions());
+		View::share('facebook', $facebook);
+		View::share('email', $email);
+		View::share('tel', $tel);
 	}
 
 	/**

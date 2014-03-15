@@ -26,11 +26,12 @@
 					<td>{{ $post->id }}</td>
 					<td>{{ $post->post_title }}</td>
 					<td>{{ $post->post_body }}</td>
-					<td></td>
+					<td>
+						@foreach($post->tags as $tag) {{ $tag->name }} @endforeach</td>
 				</tr>
 				@endforeach
 			</table>
-		
+		{{ $posts->links() }}
 		</div>
 	</div>
 

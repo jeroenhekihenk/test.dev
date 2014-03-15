@@ -2,11 +2,13 @@
 
 class Tag extends Eloquent{
 
-	protected $fillable = [ 'title' ]
+	protected $table = 'tags';
+	protected $guarded = ['id'];
+	protected $fillable = ['name'];
 
 	public function posts()
 	{
-		$this->belongsToMany('Post', 'tags');
+		$this->belongsToMany('Post');
 	}
 
 }

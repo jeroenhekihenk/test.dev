@@ -27,27 +27,18 @@
 	<div class="panel panel-info">
 		<div class="panel-heading"><h2>Groups</h2></div>
 		<div class="panel-body">
-		@if($user->inGroup($SuperAdmin))	
+		@if($loggedUser->inGroup($SuperAdmin,$Admin))	
 			<table class="table table-hover">
 				<tr>
 					<td>ID:</td>
 					<td>Name:</td>
 				</tr>
+				@foreach($Groups as $group)
 				<tr>
-					<td>{{ $SuperAdmin->id }}</td>
-					<td>{{ $SuperAdmin->name }}</td>
-					@foreach($SuperAdmin->permissions as $permission)
-					<td>{{ $permission }}</td>
-					@endforeach
+					<td>{{ $group->id }}</td>
+					<td>{{ $group->name }}</td>
 				</tr>
-				<tr>
-					<td>Permissions</td>
-					@foreach(Sentry::getUser()->permissions as $permission)
-					<td>
-						{{ $permission }}
-					</td>
-					@endforeach
-				</tr>
+				@endforeach
 			</table>
 		@endif
 		@if($user->inGroup($Admin))
@@ -67,7 +58,7 @@
 	</div>
 
 	<div class="panel panel-info">
-		<div class="panel-heading"><h2>Users</h2></div>
+		<div class="panel-heading"><h2>Users<button type="button" class="btn btn-sm btn-success pull-right"><span class="glyphicon glyphicon-plus"></span> Add user</button></h2>  </div>
 		<div class="panel-body">
 			<table class="table table-hover table-bordered table-striped">
 				<tr>
@@ -77,6 +68,7 @@
 					<th>First Name</th>
 					<th>Last Name</th>
 					<th>Email Address</th>
+					<th>In Group</th>
 					<th>Edit, Remove, Ban</th>
 				</tr>
 				@foreach($users as $user)
@@ -87,6 +79,11 @@
 						<td>{{ $user->first_name }}</td>
 						<td>{{ $user->last_name }}</td>
 						<td>{{ $user->email }}</td>
+						<td>
+							@foreach($user->groups()->get() as $group)
+							{{ $group->name }}
+							@endforeach
+						</td>
 						<td><button id="" type="button" class="btn btn-primary btn-xs form-control-feedback">
 			<span class="glyphicon glyphicon-cog"></span> 
 		</button><button type="button" class="btn btn-warning btn-xs form-control-feedback col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">

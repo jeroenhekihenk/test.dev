@@ -2,7 +2,7 @@
 
 class Post extends Eloquent {
 
-	protected $fillable = array('post_title','post_body');
+	protected $fillable = array('post_title','post_body', 'post_author','post_slug');
 
 	public function user()
 	{
@@ -11,7 +11,27 @@ class Post extends Eloquent {
 
 	public function tags()
 	{
-		return $this->hasMany('Tag');
+		return $this->belongsToMany('Tag');
+	}
+
+	public function categories()
+	{
+		return $this->belongsToMany('Categorie');
+	}
+
+	public function getCreatedAt()
+	{
+	return $this->created_at->format('d-m-Y | H:i:s');
+	}
+	 
+	public function getUpdatedAt()
+	{
+	return $this->updated_at->format('d-m-Y \o\m\ G:i');
+	} 
+
+	public function getUpdatedAtDay()
+	{
+		return $this->updated_at->format('d-m-Y');
 	}
 
 }
