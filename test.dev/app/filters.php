@@ -38,10 +38,51 @@ App::after(function($request, $response)
 // 	if (Auth::guest()) return Redirect::guest('login');
 // });
 
-Route::filter('auth', function()
-{
-	if(!Sentry::check()) return Redirect::to('login');
-});
+// Route::filter('Sentry', function()
+// {
+// 	if ( ! Sentry::check() && !URI::is('login')){
+// 		return Redirect::route('login');
+// 	}
+// });
+
+// Route::filter('hasAccess', function($route, $request, $value)
+// {
+// 	try
+// 	{
+// 		$user = Sentry::getUser();
+
+// 		if(!$user->hasAccess($value))
+// 		{
+// 			return Redirect::route('login')->withErrors(array(Lang::get('user.noaccess')));
+// 		}
+// 	}
+// 	catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
+// 	{
+// 		return Redirect::route('login')->withErrors(array(Lang::get('user.notfound')));
+// 	}
+// });
+
+// Route::filter('inGroup', function($route, $request, $value) {
+// 	try
+// 	{
+// 		$user = Sentry::getUser();
+// 		$group = Sentry::findGroupByName($value);
+
+// 		if(!$user->inGroup($group))
+// 		{
+// 			return Redirect::route('login')->withErrors(array(Lang::get('user.noaccess')));
+// 		}
+// 	}
+// 	catch(Cartalyst\Sentry\Users\UserNotFoundException $e)
+// 	{
+// 		return Redirect::route('login')->withErrors(array(Lang::get('user.notfound')));
+// 	}
+// 	catch(Cartalyst\Groups\GroupNotFoundException $e)
+// 	{
+// 		return Redirect::route('login')->withErrors(array(Lang::get('group.notfound')));
+// 	}
+// });
+
 
 Route::filter('before', function()
 {

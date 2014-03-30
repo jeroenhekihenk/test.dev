@@ -17,6 +17,7 @@ ClassLoader::addDirectories(array(
 	app_path().'/controllers',
 	app_path().'/models',
 	app_path().'/database/seeds',
+	app_path().'/Digitus'
 
 ));
 
@@ -77,5 +78,14 @@ App::down(function()
 | definitions instead of putting them all in the main routes file.
 |
 */
+
+/*
+|-----------------------------------------------------------------------
+| Add new View Locations
+|-----------------------------------------------------------------------
+*/
+
+View::addLocation('Digitus/View');
+View::addNamespace('Digitus', 'Digitus/View');
 
 require app_path().'/filters.php';

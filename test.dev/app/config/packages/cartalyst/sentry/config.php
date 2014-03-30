@@ -133,7 +133,7 @@ return array(
 		|
 		*/
 
-		'login_attribute' => 'email',
+		'login_attribute' => 'username',
 
 	),
 
@@ -174,7 +174,7 @@ return array(
 		|
 		*/
 
-		'enabled' => true,
+		'enabled' => false,
 
 		/*
 		|--------------------------------------------------------------------------

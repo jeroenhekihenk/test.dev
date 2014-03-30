@@ -5,13 +5,8 @@
 @stop
 
 @section('notification')
-<?php
-	$userGroups = $user->groups()->lists('name');
-?>	
-<div id="notification" class="notification notification-success">
-	<p><span class="glyphicon glyphicon-warning-sign"></span> 
-	Je bent een @foreach($userGroups as $usergroup){{ $usergroup }} @endforeach</p>
-</div>
+	
+
 @stop
 
 @section('menu')
@@ -27,30 +22,16 @@
 	<div class="panel panel-info">
 		<div class="panel-heading"><h2>Groups</h2></div>
 		<div class="panel-body">
-		@if($loggedUser->inGroup($SuperAdmin,$Admin))	
+		@if($loggedUser)	
 			<table class="table table-hover">
 				<tr>
 					<td>ID:</td>
 					<td>Name:</td>
 				</tr>
-				@foreach($Groups as $group)
-				<tr>
-					<td>{{ $group->id }}</td>
-					<td>{{ $group->name }}</td>
-				</tr>
-				@endforeach
 			</table>
 		@endif
-		@if($user->inGroup($Admin))
-			@foreach($Groups as $group)
-				{{ $group }}
-			@endforeach
-			@foreach($users as $user)
-				{{$user->id}}{{$user->username}}
-			@endforeach
-		@endif
 
-		@if($user->inGroup($Member))
+		@if($user)
 			Laat dit maar zien dan, je bent waardeloos..
 		@endif
 

@@ -2,11 +2,7 @@
 
 class BaseController extends Controller {
 
-	public function __construct(Post $posts, View $view, Sentry $sentry) {
-
-		$this->posts	= $posts;
-		$this->view 	= $view;
-		$this->sentry 	= $sentry;
+	public function __construct() {
 
 		$facebook = 'https://www.facebook.com/DigitusMarketing';
 		$email = '../&#109;&#x61;&#105;&#108;&#x74;&#x6f;&#x3a;&#105;&#110;&#102;&#111;&#x40;&#100;&#105;&#x67;&#105;&#116;&#x75;&#115;&#x6d;&#x61;&#x72;&#x6b;&#x65;&#x74;&#x69;&#110;&#103;&#46;&#x6e;&#108;';
@@ -19,7 +15,7 @@ class BaseController extends Controller {
 		if(Sentry::check()) {
 			$user = Sentry::getUser();
 		} else {
-			$user = false;
+			$user = null;
 		}
 
 		View::share('users', Sentry::findAllUsers());

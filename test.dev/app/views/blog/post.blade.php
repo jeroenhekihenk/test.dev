@@ -22,10 +22,11 @@
 
 	
 
-		<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 pull-left col-xs-offset-1 col-md-offset-1 col-sm-offset-1 col-lg-offset-1 panel panel-info post-{{$post->id}}">
+		<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 pull-left col-xs-offset-1 col-md-offset-1 col-sm-offset-1 col-lg-offset-1 panel panel-info post-{{$post->id}}">
 			<h1>{{ $post->post_title }}</h1>
 			<p class="postinfo">Geplaatst op {{ $post->getUpdatedAt() }} door <a href="{{{ URL::to('users/'.$post->post_author) }}}" target="_blank">{{ $post->post_author }}</a>
 			</p>
+			<p>{{ $post->image }}</p>
 			<p>{{ $post->post_body }}</p>
 			<hr>
 			<div class="blogbottom">
@@ -37,13 +38,8 @@
 					@foreach($post->categories as $categorie)
 						<a href='categories/{{$categorie->name}}'>{{ $categorie->name }}</a> 
 					@endforeach
-				| {{ HTML::link('blog/'.$post->post_slug, 'leave a comment') }}
 			</div>
-<!-- 			@if($loggedUser->hasAccess('blogpost.delete'))
-			{{ Form::open(array('url'=>'blog/'.$post->post_slug), 'DELETE') }}
-			<p>{{ Form::submit('Delete', array('class'=>'btn btn-small btn-danger')) }}</p>
-			{{ Form::close() }}<hr>
-			@endif -->
+
 			
 		</div>
 
