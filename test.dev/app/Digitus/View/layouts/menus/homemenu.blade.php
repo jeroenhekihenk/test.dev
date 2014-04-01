@@ -24,7 +24,7 @@
 								</a>
 								<ul class="dropdown-menu">
 									<li>
-										{{ HTML::link("user/".$loggedUser->username."/profile", 'My Profile') }}
+										{{ HTML::link("user/".$loggedUser->username, 'My Profile') }}
 									</li>
 									<li>
 										{{ HTML::link("user/".$loggedUser->username."/dashboard", 'Dashboard')}}

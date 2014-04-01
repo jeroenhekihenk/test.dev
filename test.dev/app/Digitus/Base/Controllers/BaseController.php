@@ -9,6 +9,8 @@ use Digitus\Base\Model\post;
 use Digitus\Base\Model\User;
 use Digitus\Base\Model\tag;
 use Digitus\Base\Model\categorie;
+use Illuminate\Support\Str as Str;
+use Illuminate\Validation\Factory as Validator;
 
 class BaseController extends \Controller{
 
@@ -22,8 +24,10 @@ class BaseController extends \Controller{
     protected $loggedUser;
     protected $tag;
     protected $categorie;
+    protected $str;
+    protected $validator;
 
-	public function __construct(View $view, Sentry $sentry, Input $input, Redirect $redirect, Hash $hash, User $user, Post $posts, Tag $tag, Categorie $categorie) {
+	public function __construct(View $view, Sentry $sentry, Input $input, Redirect $redirect, Hash $hash, User $user, Post $posts, Tag $tag, Categorie $categorie, Str $str, Validator $validator) {
 		$this->view 	= $view;
 		$this->sentry 	= $sentry;
 		$this->input	= $input;
@@ -33,6 +37,8 @@ class BaseController extends \Controller{
 		$this->user 	= $this->sentry->getUser();
 		$this->tag 		= $tag;
 		$this->categorie= $categorie;
+		$this->str 		= $str;
+		$this->validator= $validator;
 		$member 		= $this->sentry->findGroupByName('member');
 		$admin 			= $this->sentry->findGroupByName('admin');
 		$superadmin 	= $this->sentry->findGroupByName('super admin');

@@ -29,7 +29,8 @@ Blog
 				<h1>{{ $post->post_title }}</h1>
 			</a>
 			<hr>
-			<p class="postinfo">Geplaatst op {{ $post->getUpdatedAtDay() }} door <a href="{{{ URL::to('users/'.$post->post_author) }}}" target="_blank">{{ $post->post_author }}</a>
+
+			<p class="postinfo">Geplaatst op {{ $post->getUpdatedAtDay() }} door <a href="{{{ URL::to('user/'.$post->getAuthorUsername()) }}}" target="_blank">{{ $post->getAuthor() }}</a>
 			</p>
 			<p>{{ $post->post_body }}</p>
 			<hr>
@@ -42,7 +43,7 @@ Blog
 						@foreach($post->categories as $categorie)
 							<a href='categories/{{$categorie->name}}'>{{ $categorie->name }}</a> 
 						@endforeach
-					| {{ HTML::link('blog/'.$post->post_slug, 'leave a comment') }}
+					| <a href="{{ URL::route('blog.show', $post->post_slug) }}" title="">leave a comment</a>
 			</div>
 			
 		</div>

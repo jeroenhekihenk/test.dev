@@ -1,6 +1,6 @@
 <?php namespace Digitus\Base\Model;
 
-class Post extends \Eloquent{
+class Post extends \Eloquent {
 
 	protected $fillable = array('post_title','post_body', 'post_author','post_slug');
 
@@ -37,6 +37,21 @@ class Post extends \Eloquent{
 	public function byslug($slug)
 	{
 		return $this->where('post_slug', '=', $slug)->first();
+	}
+
+	public function getAuthor()
+	{
+		$author = $this->post_author;
+		$user = User::where('id', '=', $author)->first();
+		
+		// $postauthor = $user->first_name . ' ' . $user->last_name;
+		return $user->first_name . ' ' . $user->last_name;
+	}
+	public function getAuthorUsername()
+	{
+		$author = $this->post_author;
+		$user = User::where('id', '=', $author)->first();
+		return $user->username;
 	}
 
 }

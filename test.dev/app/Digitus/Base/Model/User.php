@@ -2,7 +2,7 @@
 
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableInterface;
-use \Cartalyst\Sentry\Users\Eloquent\User as Suser;
+use Cartalyst\Sentry\Users\Eloquent\User as Suser;
 
 class User extends Suser implements UserInterface, RemindableInterface {
 

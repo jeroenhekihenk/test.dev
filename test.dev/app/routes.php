@@ -27,60 +27,130 @@ Route::get('kennismaken', 'PagesController@index');
 
 Route::group(array('namespace'=>'Digitus\Blog\Controllers'), function()
 {
-	Route::resource('blog','BlogController', array('only' => array('index','show')));
+	Route::resource('blog','BlogController');
 	Route::delete('blog/{slug}', ['uses'=>'BlogController@destroy','as'=>'delete.post']);
 });
 
 
 Route::group(array('namespace'=>'Digitus\Auth\Controllers'), function()
 {
-	Route::get('login', 'LoginController@index');
-	Route::post('login', 'LoginController@login');
-	Route::get('logout', 'LogoutController@logout');
+	Route::get('login', ['uses'=>'UserController@index','as'=>'login']);
+	Route::post('login', 'UserController@postLogin');
+	Route::get('logout', 'UserController@getLogout');
 	Route::get('register', 'RegisterController@index');
 	Route::post('register', 'RegisterController@store');
 });
 
-// Route::group(array('as'=>'login'), function()
-// {
-// 	Route::get('login', 'HomeController@getLogin');
-// 	Route::post('login', 'HomeController@postLogin');
-// });
 
-// Route::get('blog', 'BlogController@getBlog');
-// Route::delete('blog/{slug}', array('do'=>function($slug){
-// 	$delete_post = Post::with('user')->find($slug);
-// 	$delete_post -> delete();
-// 	return Redirect::to('blog');
-// }));
-// Route::delete('blog/{post_slug}', array('as'=>'delete.post.slug', 'uses'=>'BlogController@destroyPost'));
-// Route::get('blog/{post_slug}', 'BlogController@getBlogPost');
+Route::group(array('prefix'=>'admin', 'namespace'=>'Digitus\Admin\Controllers'), function(){
+	
+		Route::get('/', array('uses'=>'AdminController@index', 'as'=>'admin.index')
+		);
+		// (index)get overview, (create,store)create admin, (show)show admin, (edit,update)update admin, (destroy)delete admin
 
-Route::group(array('prefix'=>'admin'), function(){
-	Route::group(array('namespace'=>'Digitus\Admin\Controllers'), function()
-	{
-		Route::resource('', 'AdminController');
-	});
-	Route::group(array('namespace'=>'Digitus\Blog\Controllers'), function()
-	{
-		Route::get('blog/create', 'BlogController@getBlogForm');
-		Route::post('blog/create', 'BlogController@newPost');
-		Route::get('blogposts', 'BlogController@admin');
-		Route::get('blog/{slug}/edit', ['uses'=>'BlogController@editPost','as'=>'edit.post']);
-		Route::post('blog/{slug}/edit', ['uses'=>'BlogController@updatePost','as'=>'update.post']);
-		Route::get('blog/tag/create', 'BlogController@getTag');
-		Route::post('blog/tag/create', 'BlogController@postTag');
-	});
+		Route::resource('users', 'AdminUserController',
+			array('names' =>
+				array(
+					'index'=>'admin.users.index',
+					'create'=>'admin.users.create',
+					'store'=>'admin.users.store',
+					'show'=>'admin.users.show',
+					'edit'=>'admin.users.edit',
+					'update'=>'admin.users.update',
+					'destroy'=>'admin.users.destroy'
+				)
+			)
+		);
+		// (index)get users, (create,store)create user, (edit,update)update user, (destroy)delete user
+
+		Route::resource('register', 'AdminRegisterController',
+			array('names' =>
+				array(
+					'index'=>'admin.register.index',
+					'create'=>'admin.register.create',
+					'store'=>'admin.register.store',
+					'show'=>'admin.register.show',
+					'edit'=>'admin.register.edit',
+					'update'=>'admin.register.update',
+					'destroy'=>'admin.register.destroy'
+				)
+			)
+		);
+		// (index)get register form, (create,store)register user
+		Route::resource('blog', 'AdminBlogController',
+			array('names' =>
+				array(
+					'index'=>'admin.blog.index',
+					'create'=>'admin.blog.create',
+					'store'=>'admin.blog.store',
+					// 'show'=>'admin.blog.show',
+					'edit'=>'admin.blog.edit',
+					'update'=>'admin.blog.update',
+					'destroy'=>'admin.blog.destroy'
+				)
+			)
+		);
+		// (index)Get all blogposts, (create,store)Create post, (edit)Update blogpost, (destroy)Delete post
+
+		Route::resource('tag', 'AdminBlogTagController',
+			array('names' =>
+				array(
+					'index'=>'admin.tag.index',
+					'create'=>'admin.tag.create',
+					'store'=>'admin.tag.store',
+					'show'=>'admin.tag.show',
+					'edit'=>'admin.tag.edit',
+					'update'=>'admin.tag.update',
+					'destroy'=>'admin.tag.destroy'
+				)
+			)
+		);
+		// (index)Get all tags, (create,store)Create tags, (update)update tags, (destroy)delete tags
+
+		Route::resource('categorie', 'AdminBlogCategorieController',
+			array('names' =>
+				array(
+					'index'=>'admin.categorie.index',
+					'create'=>'admin.categorie.create',
+					'store'=>'admin.categorie.store',
+					'show'=>'admin.categorie.show',
+					'edit'=>'admin.categorie.edit',
+					'update'=>'admin.categorie.update',
+					'destroy'=>'admin.categorie.destroy'
+				)
+			)
+		);
+		// (index)Get all categories, (create,store)Create categories, (update)update categories, (destroy)delete categories
+	
 });
 
-Route::group(array('namespace'=>'Digitus\Profile\Controllers'), function(){
+Route::group(array('namespace'=>'Digitus\Profile\Controllers'), function()
+{
 
-	// Route::resource('profile', 'ProfileController', array('only'=>array('show','edit', 'update')));
-	Route::get('user/{username}/profile', ['uses'=>'ProfileController@show', 'as'=>'user.profile']);
-	Route::get('user/{username}/profile/edit', ['uses'=>'ProfileController@edit', 'as'=>'user.profile.edit']);
-	Route::post('user/{username}/profile/edit', ['uses'=>'ProfileController@update', 'as'=>'user.profile.postedit']);
-	Route::get('user/{username}/dashboard', ['uses'=>'ProfileController@dashboard', 'as'=>'user.dashboard']);
-	
+	Route::resource('user/dashboard', 'UserProfileDashboardController',
+		array(
+			'names' => array(
+				'index'=>'user.dashboard.index'
+				)
+			)
+		);
+	// (index)Latest activities
+
+	Route::resource('user', 'UserProfileController',
+			array('names' =>
+				array(
+					'index'=>'this.user.index',
+					'create'=>'this.user.create',
+					'store'=>'this.user.store',
+					'show'=>'this.user.show',
+					'edit'=>'this.user.edit',
+					'update'=>'this.user.update',
+					'destroy'=>'this.user.destroy'
+				)
+			)
+		);
+	// (index)show your profile info, (edit,update)Edit and update your profile 
+
 });
 
 Route::group(array('namespace'=>'Digitus\Upload\Controllers'), function()
@@ -89,14 +159,16 @@ Route::group(array('namespace'=>'Digitus\Upload\Controllers'), function()
 	Route::post('user/{username}/picture', ['uses'=>'UploadController@update', 'as'=>'picture.store']);
 });
 
-// Route::group(array('prefix'=>'admin','before'=>'Sentry|inGroup:Admin'), function()
-// {
-// 	Route::get('/', array(
-// 		'as'=>'blogpost.add',
-// 		'before'=>'hasAccess:blogpost.add',
-// 		'uses'=>'AdminController@index'
-// 	));
-// });
+Route::group(array('namespace'=>'Digitus\Blog\Controllers'), function()
+{
+	Route::resource('blog', 'BlogController', array(
+		'names'=>array(
+			'index'=>'blog.index',
+			'show'=>'blog.show'
+			)
+		)
+	);
+});
 
 Route::group(array('namespace'=>'Digitus\Tag\Controllers'), function()
 {
@@ -109,27 +181,6 @@ Route::group(array('namespace'=>'Digitus\Categorie\Controllers'), function()
 	Route::get('categories/{name}', 'CategorieController@getThisCategorie');
 	Route::get('categories', 'CategorieController@getCategories');
 });
-
-
-
-Route::filter('admin', function()
-{
-	if(!Sentry::check())
-	{
-		return Redirect::to('login');
-	}
-	if(Sentry::getUser()->hasAccess(array('Super Admin', 'Admin')))
-	{
-		return Redirect::to('admin');
-	}
-
-	if (!Sentry::getUser()->hasAccess(array('Super Admin', 'Admin')))
-	{
-		return Redirect::to('login');
-	}
-
-});
-
 
 // App::missing(function($exception)
 // {

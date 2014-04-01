@@ -16,8 +16,8 @@
 <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
 	<h2>Create new post</h2>
 	<hr>
-	{{ Form::open(array('url'=>'admin/blog/create','id'=>'newblogpost')) }}
-	{{ Form::hidden('post_author', $loggedUser->username) }}
+	{{ Form::open(array('action'=>'admin.blog.store','id'=>'newblogpost')) }}
+	{{ Form::hidden('post_author', $loggedUser->id) }}
 
 	<p>{{ Form::label('post_title', 'Post Title') }}</p>
 	{{ $errors->first('post_title') }}

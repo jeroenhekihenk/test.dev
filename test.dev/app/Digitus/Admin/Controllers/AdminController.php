@@ -1,23 +1,7 @@
 <?php namespace Digitus\Admin\Controllers;
 
-use Illuminate\View\Environment as View;
-use Cartalyst\Sentry\Sentry as Sentry;
-use Illuminate\Support\Facades\Input;
-use Illuminate\Routing\Redirector as Redirect;
-use Illuminate\Hashing\BcryptHasher as Hash;
-use Digitus\Base\Model\post;
-use Digitus\Base\Model\User;
-use Digitus\Base\Model\Tag;
-use Digitus\Base\Model\Categorie;
-
 class AdminController extends \Digitus\Base\Controllers\BaseController {
 
-	public function __construct(View $view, Sentry $sentry, Input $input, Redirect $redirect, Hash $hash, User $user, Post $posts, Tag $tag, Categorie $categorie){
-		parent::__construct($view, $sentry, $input, $redirect, $hash, $user, $posts, $tag, $categorie);
-
-		$users = $this->sentry->findAllUsers();
-		$this->view->share('users', $users);
-	}
 
 /**
 * Display a listing of the resource.
@@ -26,7 +10,8 @@ class AdminController extends \Digitus\Base\Controllers\BaseController {
 */
 public function index()
 {
-        return $this->view->make('admin.index')->with('user', $this->sentry->getUser());
+	$users = $this->sentry->findAllUsers();
+        return $this->view->make('admin.index')->with('user', $this->sentry->getUser())->with('users', $users);
 }
 
 /**

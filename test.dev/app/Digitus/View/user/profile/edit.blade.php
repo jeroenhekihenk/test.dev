@@ -8,7 +8,7 @@
             {{ $errors->first('login', ':message') }}
         </div>
     @endif
-	{{Form::open(array('method'=>'POST'))}}
+	{{Form::open(array('method'=>'PUT','action'=>array('this.user.update', $user->username)))}}
 	<div class="form-group">
         {{ Form::label('username', 'Username') }}
         {{ Form::text('username', $user->username, array('class'=>'form-control')) }}

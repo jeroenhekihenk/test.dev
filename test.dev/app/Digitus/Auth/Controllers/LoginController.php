@@ -1,44 +1,34 @@
 <?php namespace Digitus\Auth\Controllers;
 
-use Illuminate\View\Environment as View;
-use Cartalyst\Sentry\Sentry as Sentry;
-use Illuminate\Support\Facades\Input;
-use Illuminate\Routing\Redirector as Redirect;
-use Illuminate\Hashing\BcryptHasher as Hash;
-use Digitus\Base\Model\post;
-use Digitus\Base\Model\User;
+class LoginController
+{
 
-class LoginController extends \Digitus\Base\Controllers\BaseController{
-
-	public function index()
-	{
-		return $this->view->make('user.login');
-	}
-
-    public function login()
+    public function index()
     {
-        $user = $this->sentry->getUserProvider()->getEmptyUser();
-
-        $user = $user->where('email', $this->input->get('email_or_username'))
-                            ->orWhere('username', $this->input->get('email_or_username'))
-                            ->first();
-
-        try 
-        {
-            if ($user && $this->hash->check($this->input->get('password'), $user->password)) /// here you check if a user was found
-            {
-                $this->sentry->login($user, false); /// remember = false /// here is the login happening in case of true
-                return $this->redirect->to('admin');
-            }
-            else
-            {
-                return $this->redirect->to('login')->withInput(Input::except('password'));
-            }
-        }
-        catch (\Exception $e)
-        {
-            return $this->redirect->to('login')->withErrors(array('login'=> $e->getMessage()));
-        }
+        return $this->view->make('user.login');
     }
+ 
+    public function postLogin()
+    {
+    // Set login credentials
+        $credentials = array(
+            'email' => $this->input->get('email_or_username'),
+            'password' => $this->input->get('password'),
+        );
+        // Try to authenticate the user
+        $user = $this->sentry->authenticate($credentials, false);
+        if($user)
+        {
+            $this->sentry->login($user,false);
+            return $this->redirect->route('user.dashboard.index');
+        }
+        
 
-}
+    }
+ 
+     public function getLogout()
+    {
+        $this->sentry->logout();
+        return $this->redirect->route('admin.login');
+    }
+} 

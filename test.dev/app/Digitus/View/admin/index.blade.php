@@ -39,7 +39,7 @@
 	</div>
 
 	<div class="panel panel-info">
-		<div class="panel-heading"><h2>Users<a type="button" class="btn btn-sm btn-success pull-right" href="{{{URL::to('admin/users/create')}}}"><span class="glyphicon glyphicon-plus"></span> Add new user</a></h2>  </div>
+		<div class="panel-heading"><h2>Users<a type="button" class="btn btn-sm btn-success pull-right" href="{{{URL::route('admin.users.create')}}}"><span class="glyphicon glyphicon-plus"></span> Add new user</a></h2>  </div>
 		<div class="panel-body">
 			<table class="table table-hover table-bordered table-striped">
 				<tr>
@@ -65,7 +65,7 @@
 							{{ $group->name }}
 							@endforeach
 						</td>
-						<td><a id="" type="button" class="btn btn-primary btn-xs form-control-feedback" href="{{{URL::route('user.profile.edit', [$user->username])}}}">
+						<td><a id="" type="button" class="btn btn-primary btn-xs form-control-feedback" href="{{{URL::route('this.user.edit', [$user->username])}}}">
 			<span class="glyphicon glyphicon-cog"></span> 
 		</a><button type="button" class="btn btn-warning btn-xs form-control-feedback col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
 			<span class="glyphicon glyphicon-trash"></span> 

@@ -22,80 +22,88 @@ App::after(function($request, $response)
 	//
 });
 
-/*
-|--------------------------------------------------------------------------
-| Authentication Filters
-|--------------------------------------------------------------------------
-|
-| The following filters are used to verify that the user of the current
-| session is logged into this application. The "basic" filter easily
-| integrates HTTP Basic authentication for quick, simple checking.
-|
-*/
+// /*
+// |--------------------------------------------------------------------------
+// | Authentication Filters
+// |--------------------------------------------------------------------------
+// |
+// | The following filters are used to verify that the user of the current
+// | session is logged into this application. The "basic" filter easily
+// | integrates HTTP Basic authentication for quick, simple checking.
+// |
+// */
 
-// Route::filter('auth', function()
-// {
-// 	if (Auth::guest()) return Redirect::guest('login');
-// });
+// // Route::filter('auth', function()
+// // {
+// // 	if (Auth::guest()) return Redirect::guest('login');
+// // });
 
-// Route::filter('Sentry', function()
-// {
-// 	if ( ! Sentry::check() && !URI::is('login')){
-// 		return Redirect::route('login');
-// 	}
-// });
+Route::filter('Sentry', function()
+{
+	// dd(Sentry::check());
+	if (!Sentry::check()){
+		return Redirect::route('login');
+	}
+});
 
+
+// /**
+// * hasAcces filter (permissions)
+// *
+// * Check if the user has permission (group/user)
+// */
 // Route::filter('hasAccess', function($route, $request, $value)
 // {
 // 	try
 // 	{
 // 		$user = Sentry::getUser();
-
-// 		if(!$user->hasAccess($value))
+		 
+// 		if( ! $user->hasAccess($value))
 // 		{
-// 			return Redirect::route('login')->withErrors(array(Lang::get('user.noaccess')));
+// 			return Redirect::route('cms.login')->withErrors(array(Lang::get('user.noaccess')));
 // 		}
 // 	}
 // 	catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
 // 	{
-// 		return Redirect::route('login')->withErrors(array(Lang::get('user.notfound')));
+// 		return Redirect::route('cms.login')->withErrors(array(Lang::get('user.notfound')));
 // 	}
-// });
-
-// Route::filter('inGroup', function($route, $request, $value) {
-// 	try
-// 	{
-// 		$user = Sentry::getUser();
-// 		$group = Sentry::findGroupByName($value);
-
-// 		if(!$user->inGroup($group))
-// 		{
-// 			return Redirect::route('login')->withErrors(array(Lang::get('user.noaccess')));
-// 		}
-// 	}
-// 	catch(Cartalyst\Sentry\Users\UserNotFoundException $e)
-// 	{
-// 		return Redirect::route('login')->withErrors(array(Lang::get('user.notfound')));
-// 	}
-// 	catch(Cartalyst\Groups\GroupNotFoundException $e)
-// 	{
-// 		return Redirect::route('login')->withErrors(array(Lang::get('group.notfound')));
-// 	}
+ 
 // });
 
 
-Route::filter('before', function()
-{
-	if(!Sentry::check() && !URI::is('login'))
+// *
+// * InGroup filter
+// *
+// * Check if the user belongs to a group
+
+
+Route::filter('inGroup', function($route, $request, $value)
+{	
+
+	try
 	{
-		return Redirect::to('login');
+		$user = Sentry::getUser();
+		 
+		$group = Sentry::findGroupByName($value);
+		 
+		if( ! $user->inGroup($group))
+			{
+			return Redirect::route('login')->with('message', 'You are not a Super Admin');
+			}
 	}
+	catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
+	{
+		return Redirect::route('login')->withErrors(array('login'=> $e->getMessage()));
+	}
+	catch (Cartalyst\Sentry\Groups\GroupNotFoundException $e)
+	{
+		return Redirect::route('login')->withErrors(array('login'=> $e->getMessage()));
+	}
+	 
 });
 
-Route::filter('auth.basic', function()
-{
-	return Auth::basic();
-});
+
+
 
 /*
 |--------------------------------------------------------------------------

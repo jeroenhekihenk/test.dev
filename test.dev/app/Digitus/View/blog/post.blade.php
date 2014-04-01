@@ -24,7 +24,7 @@
 
 		<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 pull-left col-xs-offset-1 col-md-offset-1 col-sm-offset-1 col-lg-offset-1 panel panel-info post-{{$post->id}}">
 			<h1>{{ $post->post_title }}  </h1>
-			<p class="postinfo">Geplaatst op {{ $post->getUpdatedAt() }} door <a href="{{{ URL::to('users/'.$post->post_author) }}}" target="_blank">{{ $post->post_author }}</a>
+			<p class="postinfo">Geplaatst op {{ $post->getUpdatedAt() }} door <a href="{{{ URL::to('users/'.$user->username) }}}" target="_blank">{{ $author }}</a>
 			</p>
 			<p>{{ $post->image }}</p>
 			<p>{{ $post->post_body }}</p>
@@ -40,12 +40,18 @@
 					@endforeach
 				</p>
 				<p class="pull-right">
-					{{ Form::open(array('method'=>'DELETE','class'=>'pull-right')) }}
+					{{ Form::open(array('method'=>'DELETE','class'=>'pull-right','action'=>array('admin.blog.destroy', $post->post_slug))) }}
 					{{ Form::submit('Delete this post', array('class'=>'btn btn-danger btn-xs'))}}
 					{{ Form::close() }}
 				</p>
 				<p class="pull-right">
-					<a href="{{{ URL::route('edit.post', [$post->post_slug]) }}}" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-cog"></span> Edit this post</a>
+					<a href="{{{ URL::route('admin.blog.edit', [$post->post_slug]) }}}" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-cog"></span> Edit this post</a>
+				</p>
+				<p class="pull-right">
+					<a href="{{{ URL::route('admin.tag.create') }}}" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-tag"></span> Add tag</a>
+				</p>
+				<p class="pull-right">
+					<a href="{{{ URL::route('admin.categorie.create') }}}" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-tag"></span> Add Categorie</a>
 				</p>
 			</div>
 
@@ -55,10 +61,10 @@
 		<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 pull-left col-xs-offset-1 col-md-offset-1 col-sm-offset-1 col-lg-offset-1 panel panel-info">
 			<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 pull-left">
 				<img class="profile-pic" src="{{{ URL::to($user->image) }}}"></img>
-				<h3>{{$post->post_author}}</h3>
+				<h3>{{$author}}</h3>
 			</div>
 			<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 pull-right">
-				{{$user->description}}
+				<p>{{$user->description}}</p>
 			</div>
 		</div>
 

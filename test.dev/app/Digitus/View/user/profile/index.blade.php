@@ -1,7 +1,7 @@
 @extends('layouts.userprofile')
 
 @section('title')
-	{{$loggedUser->username}}'s Profile
+	{{$user->username}}'s Profile
 @stop
 
 @section('notification')
@@ -18,7 +18,7 @@
 @section('content')
 	<div class="col-sm-10 col-md-10 col-xs-10 col-lg-10">
 		<div class="panel panel-info">
-			<div class="panel-heading"><h3>{{ $user->username }}<a type="button" href="{{{URL::route('user.profile.edit', [$user->username])}}}" class="btn btn-md btn-success pull-right"><span class="glyphicon glyphicon-cog"></span> Edit</a></h3> </div>
+			<div class="panel-heading"><h3>{{ $user->username }}<a type="button" href="{{{URL::route('this.user.edit', [$user->username])}}}" class="btn btn-md btn-success pull-right"><span class="glyphicon glyphicon-cog"></span> Edit</a></h3> </div>
 			<div class="panel-body">
 				<table>
 					<tr>
