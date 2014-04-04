@@ -2,36 +2,37 @@
 
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
+use View, Auth, Redirect;
 
 class UploadController extends \Digitus\Base\Controllers\BaseController {
 
 	public function index()
 	{
-		return $this->view->make('user.profile.picture');
+		return View::make('user.profile.picture');
 	}
 
 	public function update()
 	{
-
+		$user = Auth::user();
 		$file = Input::file('file');
 
-	    $destinationPath = 'uploads/images/users/'.$this->user->id;
+	    $destinationPath = 'uploads/images/users/'.$user->id;
 	    $filename = $file->getClientOriginalName();
 	    $upload_success = $file->move($destinationPath, $filename);
 
 	    try
 	    {
-	        $user = $this->user;
+	        $user = $user;
 
 	        $user->image = str_replace('\\', '/', $upload_success);
 
 	        if($user->save())
 	        {
-	            return $this->redirect->to('user/'.$user->username.'/profile');
+	            return $this->redirect->to('user/'.$user->username);
 	        }
 
 	    } catch(\Exception $e) {
-	        return $this->redirect->to('user/'.$user->username.'/profile')->withErrors(array('login'=> $e->getMessage()));
+	        return Redirect::to('user/'.$user->username)->withErrors(array('login'=> $e->getMessage()));
 	    }
 
 

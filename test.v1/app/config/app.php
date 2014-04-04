@@ -106,6 +106,7 @@ return array(
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
+		'Ipunkt\LaravelAnalytics\AnalyticsServiceProvider',
 
 	),
 
@@ -136,6 +137,7 @@ return array(
 	'aliases' => array(
 
 		'App'             => 'Illuminate\Support\Facades\App',
+		'Analytics' 	  => 'Ipunkt\LaravelAnalytics\AnalyticsFacade',
 		'Artisan'         => 'Illuminate\Support\Facades\Artisan',
 		'Auth'            => 'Illuminate\Support\Facades\Auth',
 		'Blade'           => 'Illuminate\Support\Facades\Blade',

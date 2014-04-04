@@ -1,5 +1,7 @@
 <?php namespace Digitus\Admin\Controllers;
 
+use Digitus\Base\Model\Tag;
+
 class AdminBlogController extends \Digitus\Base\Controllers\BaseController {
 
 	public function index()
@@ -11,7 +13,8 @@ class AdminBlogController extends \Digitus\Base\Controllers\BaseController {
 	public function create()
 	{
 		$user = $this->user;
-		return $this->view->make('admin.blog.create')->with('user', $user);
+		$tag = $this->posts->tags()->get();
+		return $this->view->make('admin.blog.create')->with('user', $user)->with('tag',$tag);
 	}
 
 	public function store()
@@ -28,7 +31,7 @@ class AdminBlogController extends \Digitus\Base\Controllers\BaseController {
 			'post_body'		=> 'required|min:10',
 		);
 		// $new_tags = array();
-		// foreach(explode(',', Input::get('tags')) as $tag) {
+		// foreach(explode(',', $this->input->get('tags')) as $tag) {
 		// $tag = Tag::firstOrCreate(array('name' => $tag));
 		// array_push($new_tags, $tag);
 		// }

@@ -28,6 +28,7 @@
     <div class="row">
       @yield('sidebar')
       @yield('content')
+      @yield('comments')
       @yield('pagination')
     </div>
   </div>

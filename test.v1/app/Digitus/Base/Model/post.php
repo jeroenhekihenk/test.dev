@@ -14,6 +14,11 @@ class Post extends \Eloquent {
 		return $this->belongsToMany('Digitus\Base\Model\Tag');
 	}
 
+	public function comments()
+	{
+		return $this->belongsToMany('Digitus\Base\Model\Comment');
+	}
+
 	public function categories()
 	{
 		return $this->belongsToMany('Digitus\Base\Model\Categorie');
@@ -34,9 +39,9 @@ class Post extends \Eloquent {
 		return $this->updated_at->format('d-m-Y');
 	}
 
-	public function byslug($slug)
+	public static function byslug($slug)
 	{
-		return $this->where('post_slug', '=', $slug)->first();
+		return Post::where('post_slug', '=', $slug)->first();
 	}
 
 	public function getAuthor()

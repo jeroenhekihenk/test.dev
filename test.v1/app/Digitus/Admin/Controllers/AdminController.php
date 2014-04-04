@@ -1,6 +1,6 @@
 <?php namespace Digitus\Admin\Controllers;
 
-use Auth, View;
+use Auth, View, Digitus\Base\Model\Role, Digitus\Base\Model\User;
 
 class AdminController extends \Digitus\Base\Controllers\BaseController {
 
@@ -12,8 +12,14 @@ class AdminController extends \Digitus\Base\Controllers\BaseController {
 */
 public function index()
 {
-	$user = Auth::user();
-    return View::make('admin.index')->with('user', $user);
+	if(Auth::check())
+	{
+		$user = Auth::user();
+	}
+	$roles = Role::all();
+	$users = User::all();
+	$rolll = $user->roles->first();
+    return View::make('admin.index')->with('user', $user)->with('roles', $roles)->with('users', $users);
 }
 
 /**

@@ -14,16 +14,20 @@
         {{ Form::text('username', $user->username, array('class'=>'form-control')) }}
     </div>
     <div class="form-group">
-        {{ Form::label('first_name', 'First Name') }}
-        {{ Form::text('first_name', $user->first_name, array('class' => 'form-control')) }}
+        {{ Form::label('firstname', 'First Name') }}
+        {{ Form::text('firstname', $user->firstname, array('class' => 'form-control')) }}
     </div>
     <div class="form-group">
-        {{ Form::label('last_name', 'Last Name') }}
-        {{ Form::text('last_name', $user->last_name, array('class' => 'form-control')) }}
+        {{ Form::label('lastname', 'Last Name') }}
+        {{ Form::text('lastname', $user->lastname, array('class' => 'form-control')) }}
     </div>
     <div class="form-group">
         {{ Form::label('email', 'Email Address') }}
         {{ Form::email('email', $user->email, array('class' => 'form-control')) }}
+    </div>
+    <div class="form-group">
+        {{ Form::label('roles', 'Select role') }}
+        {{ Form::select('select', array('Admin'=>$role_admin, 'User'=>$role_user)) }}
     </div>
     <div class="form-group">
         {{ Form::label('password', 'Password') }}

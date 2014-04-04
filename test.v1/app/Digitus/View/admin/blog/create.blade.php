@@ -30,9 +30,14 @@
 	<p>{{ Form::label('post_body', 'Post Body') }}</p>
 	{{ $errors->first('post_body') }}
 	<p>{{ Form::text('post_body', Input::old('post_body'), array('class'=>'form-control')) }}</p>
-<!-- 	<p>{{ Form::label('tags', 'Tags') }}</p>
+
+	<p>{{ Form::label('tags', 'Tags') }}</p>
 	{{ $errors->first('tags') }}
-	<p>{{ Form::text('tags', Input::old('tags')) }}</p> -->
+	
+	
+	<p>{{ Form::text('tags',  $tag ) }}</p> 
+	
+	
 
 	<p>{{ Form::submit('Create', array('class'=>'btn btn-success')) }}</p>
 	{{ Form::close() }}

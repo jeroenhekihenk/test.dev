@@ -20,8 +20,6 @@
 
 <div class="blogroll container col-sm-offset-2 col-md-offset-2 col-xs-offset-2 col-lg-offset-2">
 
-	
-
 		<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 pull-left col-xs-offset-1 col-md-offset-1 col-sm-offset-1 col-lg-offset-1 panel panel-info post-{{$post->id}}">
 			<h1>{{ $post->post_title }}  </h1>
 			<p class="postinfo">Geplaatst op {{ $post->getUpdatedAt() }} door <a href="{{{ URL::to('users/'.$user->username) }}}" target="_blank">{{ $author }}</a>
@@ -68,6 +66,23 @@
 			</div>
 		</div>
 
+		@foreach($post->comments as $comment)
+		<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 pull-left col-xs-offset-1 col-md-offset-1 col-sm-offset-1 col-lg-offset-1 panel panel-warning">
+			<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 pull-left">
+				<a href="{{URL::to($comment->website)}}" target="_blank"><h3>{{$comment->naam}}</h3></a>
+				<p class="pull-right">Geplaatst op: {{ $comment->created_at }}</p>
+			</div>
+			<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 pull-right">
+				<p>{{$comment->bericht}}</p>
+			</div>
+		</div>
+		@endforeach
+
+		
 </div>
 
+@stop
+
+@section('comments')
+	@include('comments.form')
 @stop

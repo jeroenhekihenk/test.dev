@@ -1,5 +1,7 @@
 <?php namespace Digitus\Blog\Controllers;
 
+use Auth, Digitus\Base\Model\User, Digitus\Base\Model\post, View;
+
 class BlogController extends \Digitus\Base\Controllers\BaseController{
 
 	public function index()
@@ -7,24 +9,25 @@ class BlogController extends \Digitus\Base\Controllers\BaseController{
 
 		
 		
-		$posts = $this->posts->paginate(4);
+		$posts = Post::paginate(4);
 		// $post = $this->posts;
 		// $login = $post->post_author;
 		// $user = $this->sentry->findUserByID($login);
 		// $author = $user->first_name . ' ' . $user->last_name;
 
-		return $this->view->make('blog.index')->with('posts', $posts)->with('user', $this->sentry->getUser());
+		return View::make('blog.index')->with('posts', $posts)->with('user', Auth::user());
 		// return View::make('blog.index')->with('posts', $posts, 'user', Sentry::getUser());
 	}
 	public function show($slug)
 	{
 		
-		$currpost = $this->posts->byslug($slug);
+		$currpost = Post::byslug($slug);
 		$login = $currpost->post_author;
-		$user = $this->sentry->findUserByID($login);
-		$author = $user->first_name . ' ' . $user->last_name;
+		$deUser = User::byid($login);
+		// dd($deUser->username);
+		$author = $deUser->firstname . ' ' . $deUser->lastname;
 
-		return $this->view->make('blog.post')->with('post', $currpost)->with('user',$user)->with('author',$author);
+		return View::make('blog.post')->with('post', $currpost)->with('user',$deUser)->with('author',$author);
 	}
 
 	// public function getBlogForm()

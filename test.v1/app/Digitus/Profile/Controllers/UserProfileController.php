@@ -1,66 +1,79 @@
 <?php namespace Digitus\Profile\Controllers;
 
+use Auth, View, Redirect, Input, Digitus\Base\Model\User, Digitus\Base\Model\Role;
+
 class UserProfileController extends \Digitus\Base\Controllers\BaseController{
 
 	public function index()
 	{
-		return $this->redirect->to('/');
+		return Redirect::to('/');
 	}
 
 	public function show($email)
-	{
-		if($this->sentry->check() && $this->sentry->getUser()->email === $email)
+	{	
+
+		if(Auth::check() && Auth::User()->email === $email)
 		{
-			return $this->view->make('user.profile.index')->with('user', $this->sentry->findUserByLogin($email));
+			// dd($email);
+			return View::make('user.profile.index')->with('user', Auth::user());
 		} else {
-			return $this->view->make('user.profile.index')->with('user', $this->sentry->findUserByLogin($email));
+			// dd($email);
+			return View::make('user.profile.index')->with('user', Auth::user());
 		}
 	}
 
 	public function edit($uname)
 	{	
-		$curruser = $this->sentry->getUser();
+		$curruser = Auth::user();
+		$role = $curruser->roles->first();
 
-		if($curruser->hasAnyAccess(array('super admin','admin')))
+		if($role->name === 'Admin')
 		{
-			$user = $this->sentry->findUserByLogin($uname);
-			return $this->view->make('user.profile.edit')->with('user', $user);
+			// $user = Auth::user();
+			if(Auth::check()){
+				$user = Auth::user();
+			}
+			// $vind = Auth::user()->where('username','=',$uname);
+			$henk = $user->where('username','=',$uname)->first();
+			$role_admin = Role::byAdmin();
+			$role_user = Role::byUser();
+			return View::make('user.profile.edit')->with('user', $henk)->with('role_admin', $role_admin)->with('role_user', $role_user);
 		} 
 
-		if($this->sentry->check() && $curruser->username === $uname)
-		{
-			return $this->view->make('user.profile.edit')->with('user', $curruser);
-		} else {
-			return $this->redirect->back();
-		}
+		// if(Auth::check() && $curruser->username === $uname)
+		// {
+		// 	return View::make('user.profile.edit')->with('user', $curruser);
+		// } else {
+		// 	return Redirect::back();
+		// }
 	}
 
 	public function update($uname)
 	{
 		try{
-			$user = $this->sentry->findUserByLogin($uname);
+			$user = User::where('username','=',$uname)->first();
 
-			$user->username 	= $this->input->get('username');
-			$user->first_name	= $this->input->get('first_name');
-			$user->last_name	= $this->input->get('last_name');
-			$user->email 		= $this->input->get('email');
-			$user->description 	= $this->input->get('description');
+			$user->username 	= Input::get('username');
+			$user->firstname	= Input::get('firstname');
+			$user->lastname	= Input::get('lastname');
+			$user->email 		= Input::get('email');
+			$user->description 	= Input::get('description');
 
-			if ($this->input->get('password'))
+			if (Input::get('password'))
 		    {
-		        $user->password = $this->input->get('password');
+		        $user->password = Input::get('password');
 		    }
 
 			if($user->save())
 			{
-				return $this->redirect->route('admin.index');
+				return Redirect::route('admin.index');
 			} else {
-				return $this->redirect->to('admin/'.$user->username.'/');
+				return Redirect::to('admin/'.$user->username.'/');
 			}
 		}
 		catch (\Exception $e)
 		{
-		    return $this->redirect->route('user.edit')->withErrors(array('login'=> $e->getMessage()));
+		    return Redirect::back()->withErrors(array('login'=> $e->getMessage()));
 		}
 	}
 

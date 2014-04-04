@@ -57,7 +57,17 @@ Route::filter('auth.basic', function()
 
 Route::filter('guest', function()
 {
-	if (!Auth::check()) return Redirect::route('login');
+	if (!Auth::check()) return Redirect::route('home');
+});
+
+
+Route::filter('hasRole', function($value)
+{
+	
+	if (!User::hasRole($value))
+	{
+		return Redirect::to('henk');
+	}
 });
 
 /*

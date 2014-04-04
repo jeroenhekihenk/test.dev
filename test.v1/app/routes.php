@@ -32,6 +32,7 @@ Route::group(array('namespace'=>'Digitus\Blog\Controllers'), function()
 });
 
 
+
 Route::group(array('namespace'=>'Digitus\Auth\Controllers'), function()
 {
 	Route::get('login', ['uses'=>'UserController@getLogin','as'=>'login']);
@@ -42,12 +43,11 @@ Route::group(array('namespace'=>'Digitus\Auth\Controllers'), function()
 });
 
 
-Route::group(array('prefix'=>'admin', 'namespace'=>'Digitus\Admin\Controllers'), function(){
+Route::group(array('prefix'=>'admin', 'namespace'=>'Digitus\Admin\Controllers','before'=>'guest'), function(){
 	
 		Route::get('/', array(
 			'uses'=>'AdminController@index',
-			'as'=>'admin.index',
-			'before'=>'guest'
+			'as'=>'admin.index'
 		));
 		// (index)get overview, (create,store)create admin, (show)show admin, (edit,update)update admin, (destroy)delete admin
 

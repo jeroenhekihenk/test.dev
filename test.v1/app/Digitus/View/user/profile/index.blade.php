@@ -27,11 +27,11 @@
 					</tr>
 					<tr>
 						<td>Firstname:</td>
-						<td>{{$user->first_name}}</td>
+						<td>{{$user->firstname}}</td>
 					</tr>
 					<tr>
 						<td>Lastname:</td>
-						<td>{{$user->last_name}}</td>
+						<td>{{$user->lastname}}</td>
 					</tr>
 					<tr>
 						<td>Email:</td>

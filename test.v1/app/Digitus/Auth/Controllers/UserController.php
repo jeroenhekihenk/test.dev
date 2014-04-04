@@ -1,6 +1,6 @@
 <?php namespace Digitus\Auth\Controllers;
 
-use Auth, Validator, Input, Redirect, View, User, Hash;
+use Auth, Validator, Input, Redirect, View, Digitus\Base\Model\User, Hash, Digitus\Base\Model\Role;
 
 class UserController extends \Digitus\Auth\Controllers\AuthController{
 
@@ -78,6 +78,9 @@ class UserController extends \Digitus\Auth\Controllers\AuthController{
 			$user->username = Input::get('username');
 			$user->email = Input::get('email');
 			$user->password = Hash::make(Input::get('password'));
+
+			$users_roles = Role::where('name','=','User')->first();
+			$user->roles()->attach($users_roles);
 			$user->save();
 
 			return Redirect::route('login')->with('message', 'Thanks for registering! You can now login.');
