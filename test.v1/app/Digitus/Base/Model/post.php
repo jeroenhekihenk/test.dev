@@ -2,11 +2,11 @@
 
 class Post extends \Eloquent {
 
-	protected $fillable = array('post_title','post_body', 'post_author','post_slug');
+	protected $fillable = array('title','body', 'author','slug');
 
 	public function user()
 	{
-		return $this->belongsTo('Digitus\Base\Model\User', 'post_author');
+		return $this->belongsTo('Digitus\Base\Model\User', 'author');
 	}
 
 	public function tags()
@@ -41,20 +41,20 @@ class Post extends \Eloquent {
 
 	public static function byslug($slug)
 	{
-		return Post::where('post_slug', '=', $slug)->first();
+		return Post::where('slug', '=', $slug)->first();
 	}
 
 	public function getAuthor()
 	{
-		$author = $this->post_author;
+		$author = $this->author;
 		$user = User::where('id', '=', $author)->first();
 		
 		// $postauthor = $user->first_name . ' ' . $user->last_name;
-		return $user->first_name . ' ' . $user->last_name;
+		return $user->firstname . ' ' . $user->lastname;
 	}
 	public function getAuthorUsername()
 	{
-		$author = $this->post_author;
+		$author = $this->author;
 		$user = User::where('id', '=', $author)->first();
 		return $user->username;
 	}

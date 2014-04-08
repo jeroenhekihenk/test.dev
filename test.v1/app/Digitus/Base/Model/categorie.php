@@ -9,4 +9,9 @@ class Categorie extends \Eloquent {
 		return $this->belongsToMany('Digitus\Base\Model\Post');
 	}
 
+	public function metatag()
+	{
+		return $this->belongsToMany('Digitus\Base\Model\Metatag');
+	}
+
 }

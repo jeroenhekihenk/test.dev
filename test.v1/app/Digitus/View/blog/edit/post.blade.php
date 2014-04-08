@@ -23,18 +23,18 @@
 			{{ Form::open(array('method'=>'POST')) }}
 
 			<div class="form-group">
-				{{ Form::label('post_title', 'Post Title')}}
-				{{ Form::text('post_title', $post->post_title, array('class'=>'form-control')) }}
+				{{ Form::label('title', 'Post Title')}}
+				{{ Form::text('title', $post->title, array('class'=>'form-control')) }}
 			</div>
 
 			<div class="form-group">
-				{{ Form::label('post_slug', 'Post Slug')}}
-				{{ Form::text('post_slug', $post->post_slug, array('class'=>'form-control')) }}
+				{{ Form::label('slug', 'Post Slug')}}
+				{{ Form::text('slug', $post->slug, array('class'=>'form-control')) }}
 			</div>
 
 			<div class="form-group">
-				{{ Form::label('post_body', 'Post Body')}}
-				{{ Form::text('post_body', $post->post_body, array('class'=>'form-control')) }}
+				{{ Form::label('body', 'Post Body')}}
+				{{ Form::text('body', $post->body, array('class'=>'form-control')) }}
 			</div>
 
 			{{ Form::submit('Save', array('class'=>'btn btn-success')) }}

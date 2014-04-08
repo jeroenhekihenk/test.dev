@@ -4,6 +4,12 @@ use Auth, View, Redirect, Input, Digitus\Base\Model\User, Digitus\Base\Model\Rol
 
 class UserProfileController extends \Digitus\Base\Controllers\BaseController{
 
+	public function __construct()
+	{
+		$bodyid = 'userprofile';
+		View::share('bodyid', $bodyid);
+	}
+
 	public function index()
 	{
 		return Redirect::to('/');

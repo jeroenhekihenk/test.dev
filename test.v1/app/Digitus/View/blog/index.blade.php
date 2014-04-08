@@ -1,11 +1,11 @@
-@extends('layouts.blog')
+@extends('layouts.front.page')
 
 @section('title')
 Blog
 @stop
 
 @section('menu')
-	@include('layouts.menus.homemenu')
+	@include('layouts.front.menus.homemenu')
 @stop
 
 @section('sidebar')
@@ -25,14 +25,14 @@ Blog
 	@foreach($posts as $post)
 		<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 pull-left panel panel-info post-id-{{$post->id}}">
 
-			<a href='{{ URL::to("blog/".$post->post_slug) }}' target="_blank" alt="{{$post->post_title}}" title="{{$post->post_title}}">
-				<h1>{{ $post->post_title }}</h1>
+			<a href='{{ URL::to("blog/".$post->slug) }}' target="_blank" alt="{{$post->title}}" title="{{$post->title}}">
+				<h1>{{ $post->title }}</h1>
 			</a>
 			<hr>
 
 			<p class="postinfo">Geplaatst op {{ $post->getUpdatedAtDay() }} door <a href="{{{ URL::to('user/'.$post->getAuthorUsername()) }}}" target="_blank">{{ $post->getAuthor() }}</a>
 			</p>
-			<p>{{ $post->post_body }}</p>
+			<p>{{ $post->body }}</p>
 			<hr>
 			<div class="blogbottom">
 				<p>Tags: 

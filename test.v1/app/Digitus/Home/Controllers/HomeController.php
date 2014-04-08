@@ -1,12 +1,12 @@
 <?php namespace Digitus\Home\Controllers;
 
-use Digitus\Base\Controllers\BaseController;
+use Digitus\Base\Controllers\BaseController, View;
 
 class HomeController extends BaseController {
 
 	public function index()
 	{
-		return $this->view->make('home.index');
+		return View::make('home.index');
 	}
 
 }

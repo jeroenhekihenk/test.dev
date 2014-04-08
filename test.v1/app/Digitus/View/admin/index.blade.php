@@ -1,8 +1,4 @@
-@extends('layouts.main')
-
-@section('title')
-	
-@stop
+@extends('layouts.back.main')
 
 @section('notification')
 	
@@ -10,11 +6,11 @@
 @stop
 
 @section('menu')
-	@include('layouts.menus.homemenu')
+	@include('layouts.back.menus.homemenu')
 @stop
 
 @section('sidebar')
-	@include('layouts.menus.adminmenu')
+	@include('layouts.back.menus.adminmenu')
 @stop
 
 @section('content')

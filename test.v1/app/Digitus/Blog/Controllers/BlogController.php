@@ -1,6 +1,6 @@
 <?php namespace Digitus\Blog\Controllers;
 
-use Auth, Digitus\Base\Model\User, Digitus\Base\Model\post, View;
+use Auth, Digitus\Base\Model\User, Digitus\Base\Model\Page, Digitus\Base\Model\post, View;
 
 class BlogController extends \Digitus\Base\Controllers\BaseController{
 
@@ -10,12 +10,21 @@ class BlogController extends \Digitus\Base\Controllers\BaseController{
 		
 		
 		$posts = Post::paginate(4);
+		$page = Page::byslug('blog');
+		
+		if(Auth::check())
+			{
+				$user = Auth::user();
+			}else{
+				$user = false;
+			}
+
 		// $post = $this->posts;
 		// $login = $post->post_author;
 		// $user = $this->sentry->findUserByID($login);
 		// $author = $user->first_name . ' ' . $user->last_name;
 
-		return View::make('blog.index')->with('posts', $posts)->with('user', Auth::user());
+		return View::make('blog.index')->with('posts', $posts)->with('user', $user)->with('page', $page);
 		// return View::make('blog.index')->with('posts', $posts, 'user', Sentry::getUser());
 	}
 	public function show($slug)

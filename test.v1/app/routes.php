@@ -10,20 +10,22 @@
 |
 */
 
-Route::group(array('namespace'=>'Digitus\Home\Controllers'), function()
+Route::group(array('namespace'=>'Digitus\Pages\Controllers'), function()
 {
-	Route::get('/', ['uses'=>'HomeController@index', 'as'=>'home']);
+
+	
+	Route::get('/', ['uses'=>'HomeController@index', 'as'=>'home.index']);
+
+	Route::get('ons-bureau', ['uses'=>'BureauController@index','as'=>'bureau.index']);
+
+	Route::get('cases', ['uses'=>'CasesController@index','as'=>'cases.index']);
+
+	Route::get('workshops', ['uses'=>'WorkshopsController@index','as'=>'workshops.index']);
+
+	Route::get('insides', ['uses'=>'InsidesController@index','as'=>'insides.index']);
+
+	Route::get('kennismaken', ['uses'=>'KennismakenController@index','as'=>'kennismaken.index']);
 });
-
-Route::get('ons-bureau', 'PagesController@index');
-
-Route::get('cases', 'PagesController@index');
-
-Route::get('workshops', 'PagesController@index');
-
-Route::get('insides', 'PagesController@index');
-
-Route::get('kennismaken', 'PagesController@index');
 
 Route::group(array('namespace'=>'Digitus\Blog\Controllers'), function()
 {
@@ -45,11 +47,21 @@ Route::group(array('namespace'=>'Digitus\Auth\Controllers'), function()
 
 Route::group(array('prefix'=>'admin', 'namespace'=>'Digitus\Admin\Controllers','before'=>'guest'), function(){
 	
-		Route::get('/', array(
-			'uses'=>'AdminController@index',
-			'as'=>'admin.index'
-		));
+		Route::get('/', ['uses'=>'AdminController@index','as'=>'admin.index']);
 		// (index)get overview, (create,store)create admin, (show)show admin, (edit,update)update admin, (destroy)delete admin
+		Route::resource('pages', 'AdminPageController',
+			array('names'=>
+				array(
+					'index'=>'admin.pages.index',
+					'create'=>'admin.pages.create',
+					'store'=>'admin.pages.store',
+					'show'=>'admin.pages.show',
+					'edit'=>'admin.pages.edit',
+					'update'=>'admin.pages.update',
+					'destroy'=>'admin.pages.destroy'
+				)
+			)
+		);
 
 		Route::resource('users', 'AdminUserController',
 			array('names' =>
@@ -183,6 +195,11 @@ Route::group(array('namespace'=>'Digitus\Categorie\Controllers'), function()
 {
 	Route::get('categories/{name}', 'CategorieController@getThisCategorie');
 	Route::get('categories', 'CategorieController@getCategories');
+});
+
+Route::group(array('namespace'=>'Digitus\Pages\Controllers'), function()
+{
+	Route::get('/{slug}', ['uses'=>'PageController@show','as'=>'show.page']);
 });
 
 // App::missing(function($exception)

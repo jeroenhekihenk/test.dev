@@ -2,6 +2,12 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,900italic,900,700italic,700,500italic,500,400italic,300italic,300,100italic,100);
 @import url(http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic);
 
+/*
+|-----------------------------------------------------------------------
+| FONT STUFF
+|-----------------------------------------------------------------------
+*/
+
 h1,h2,h3,h4,h5,h6,p,b,strong,i,em,u,small,h3.page-heading{
   font-family: 'Roboto Slab', serif;
 }
@@ -34,6 +40,78 @@ input, textarea {
     font-size: 14px;
     height: 30px;
 }
+
+  /*
+  |-----------------------------------------------------------------------
+  | NAV STUFF
+  |-----------------------------------------------------------------------
+  */
+header div#floater {
+    box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.4);
+    left: 6%;
+    width:18%;
+    max-width: 200px;
+    min-width: 160px;
+    position: fixed;
+    z-index:100000;
+}
+header div.logo {
+    background-color: #FFFFFF;
+    padding: 1.5em 1.3em;
+    width: 100%;
+}
+header div.logo img.logo {
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+}
+header nav.nav {
+  background-color: #0F75BD;
+  line-height: 2.13;
+  padding: 1em;
+  text-transform: uppercase;
+  width: 100%;
+}
+header nav ul li:hover > a, header nav ul li.current_page_item > a, header nav ul li.current_page-parent > a, header nav ul li.current_page_ancestor > a {
+    background: url("../images/site/current-menu.png") no-repeat scroll left center rgba(0, 0, 0, 0);
+    color: #231F20;
+    padding-left: 1em;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out 0s;
+}
+header nav ul li > a {
+    background: url("../images/site/menu.png") no-repeat scroll left center rgba(0, 0, 0, 0);
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 30px;
+    text-transform: uppercase;
+    transition: all 0.2s ease-in-out 0s;
+}
+header nav ul li > a {
+    color: #FFFFFF;
+}
+.togglemenu {
+    background-color: #0F75BD;
+    margin: 0;
+    padding: 0.8em;
+}
+.menu-up {
+    border-bottom: 10px solid #FFFFFF;
+    border-left: 10px solid rgba(0, 0, 0, 0);
+    border-right: 10px solid rgba(0, 0, 0, 0);
+    margin: 0 auto;
+    width: 10px;
+}
+.menu-up.down {
+    border-bottom: 0 none;
+    border-top: 10px solid #FFFFFF;
+}
+
+/*
+|-----------------------------------------------------------------------
+| NOTIFICATION STUFF
+|-----------------------------------------------------------------------
+*/
 
 #notification {
     position: absolute;
@@ -73,6 +151,12 @@ input, textarea {
 	margin: 0;
 }
 
+/*
+|-----------------------------------------------------------------------
+| SIDEBAR STUFF
+|-----------------------------------------------------------------------
+*/
+
 .sidebar {
     background-color: #F5F5F5;
     border-right: 1px solid #EEEEEE;
@@ -85,11 +169,12 @@ input, textarea {
     position: fixed;
     z-index: 1000;
 }
-.label.tag-label {
-    background-color: #328AC6;
-    margin: 0;
-    padding: 2px 8px;
-}
+
+  /*
+  |-----------------------------------------------------------------------
+  | KENNISMAKEN STUFF
+  |-----------------------------------------------------------------------
+  */
 
 div.gmap {
     height: 0;
@@ -136,7 +221,11 @@ div.gmap > iframe {
     transition: box-shadow 0.4s ease-in-out 0s;
 }
 
-
+/*
+|-----------------------------------------------------------------------
+| PROFILE STUFF
+|-----------------------------------------------------------------------
+*/
 .profile-pic {
     background: none repeat scroll 0 0 #FFFFFF;
     border-radius: 4px;
@@ -151,4 +240,167 @@ img.profile-pic-thumb{
   margin-right:5px;
   border:1px solid #231f20;
   border-radius:4px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+|-----------------------------------------------------------------------
+| HOME STUFF
+|-----------------------------------------------------------------------
+*/
+
+figure.fluidbg {
+    background-image: url("../images/site/home-bg.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: block;
+    max-height: 930px;
+    min-height: 375px;
+    min-width: 570px;
+    padding-top: 66%;
+}
+
+
+
+/*
+|-----------------------------------------------------------------------
+| FOOTER STUFF
+|-----------------------------------------------------------------------
+*/
+
+footer {
+    bottom: 0;
+    left: 0;
+    position: fixed;
+}
+footer#footer{
+  background-color: #231f20;
+  width:100%;
+  max-height:40px;
+}
+.footer-inner {
+    padding: 5px;
+}
+.footer-info {
+    display: inline-block;
+    float: left;
+    margin: 0;
+    max-height: 30px;
+    padding: 0;
+}
+.footer-info,
+.footer-info ul li > a{
+  color:white;
+}
+.footer-info > ul {
+    display: inline-block;
+    margin-bottom: 0;
+    vertical-align: middle;
+}
+.footer-info ul > li{
+  display: inline;
+  margin-bottom: 0;
+}
+.footer-info ul.copy > li:after{
+  content: " / ";
+}
+.footer-info ul > li:last-child:after{
+  content: "";
+}
+.footer-info ul.social li a span{
+  background-image: url('../images/social/social-icons.png');
+  display: inline-block;
+  width: 21px;
+  height: 21px;
+  margin: 5px 0 0;
+  padding: 0;
+  box-shadow: 0 0 0 0;
+  border-radius:0%;
+  background-color:rgba(0,0,0,0);
+  border:0 none;
+}
+.footer-info ul.social {
+    margin-left: 10px;
+    max-width: 100px;
+    min-width: 99px;
+}
+.footer-info ul.social li a span.facebook{
+  background-position: -29px 0px;
+}
+.footer-info ul.social li a span.facebook:hover{
+  background-position: -29px -23px;
+  box-shadow:0 0 8px 2px rgba(14,118,188,0.9);
+  background-color: rgba(14,118,188,0.5);
+  border-radius:50%;
+}
+.footer-info ul.social li a span.twitter{
+  background-position: -3px 0;
+}
+.footer-info ul.social li a span.twitter:hover{
+  background-position: -3px -23px;
+  box-shadow:0 0 8px 2px rgba(14,118,188,0.9);
+  background-color: rgba(14,118,188,0.5);
+  border-radius:50%;
+}
+.footer-brief {
+    display: inline-block;
+    float: right;
+}
+.footer-brief > form{
+  margin:0;
+  padding:0;
+}
+.footer-brief form > input[type="email"].emailbrief {
+  float:left;
+  min-width: 190px;
+  max-width: 200px;
+  margin-right: 10px;
+  padding:0 10px;
+}
+.footer-brief form > input[type="submit"].emailbrief {
+  float: right;
+  min-width: 190px;
+  max-width: 200px;
+  border-radius: 0px;
+  font-family: 'Roboto Slab', serif;
+  padding: 5px;
+}
+
+
+
+
+
+
+
+
+
+.page-welcome{
+  margin: 10px 0;
+  padding-bottom:10px;
+  padding-top: 50px;
+  border-bottom: 1px solid #f3f3f3;
+}
+
+.col-xs-offset-2-5,
+.col-sm-offset-2-5,
+.col-md-offset-2-5,
+.col-lg-offset-2-5{
+  margin-left: 20.8333%;
+}
+
+body#kennismaken  {
+  background: linear-gradient(to bottom, #FEFEFE 20%, #E6E6E6 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+  height: 100%;
+  padding: 0 0 2%;
 }

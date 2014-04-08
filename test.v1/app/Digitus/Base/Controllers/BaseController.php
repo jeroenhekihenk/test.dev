@@ -12,6 +12,8 @@ class BaseController extends \Controller{
 			$this->loggedUser = null;
 		}
 		View::share('loggedUser', $this->loggedUser);
+
+		
 	}
 
 }

@@ -4,6 +4,17 @@ use Auth, Validator, Input, Redirect, View, Digitus\Base\Model\User, Hash, Digit
 
 class UserController extends \Digitus\Auth\Controllers\AuthController{
 
+	public function __construct()
+	{
+		$facebook = 'https://www.facebook.com/DigitusMarketing';
+		$twitter = 'https://www.twitter.com/_DigiMarketing';
+		$bodyid = 'login';
+
+		View::share('facebook',$facebook);
+		View::share('twitter',$twitter);
+		View::share('bodyid',$bodyid);
+	}
+
 	public function getLogin()
 	{
 		return View::make('user.login');
