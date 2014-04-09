@@ -18,9 +18,7 @@ public function index()
 	}
 	$roles = Role::all();
 	$users = User::all();
-	$page = Page::byslug('admin')->first();
-	// dd($page);
-    return View::make('admin.index')->with('user', $user)->with('roles', $roles)->with('users', $users)->with('page',$page);
+    return View::make('admin.index')->with('user', $user)->with('roles', $roles)->with('users', $users);
 }
 
 /**

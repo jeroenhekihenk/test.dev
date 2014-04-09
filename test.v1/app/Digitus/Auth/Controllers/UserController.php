@@ -51,7 +51,7 @@ class UserController extends \Digitus\Auth\Controllers\AuthController{
 				// redirect them to the secure section or whatever
 				// return Redirect::to('secure');
 				// for now we'll just echo success (even though echoing in a controller is bad)
-				return Redirect::route('user.dashboard.index');
+				return Redirect::route('admin.index');
 
 			} else {	 	
 

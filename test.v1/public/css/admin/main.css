@@ -1,0 +1,140 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700);
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,900italic,900,700italic,700,500italic,500,400italic,300italic,300,100italic,100);
+@import url(http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic);
+
+/*
+|-----------------------------------------------------------------------
+| FONT STUFF
+|-----------------------------------------------------------------------
+*/
+
+h1,h2,h3,h4,h5,h6,p,b,strong,i,em,u,small,h3.page-heading{
+  font-family: 'Roboto Slab', serif;
+}
+h3.page-heading{
+    font-size: 16pt;
+    line-height: 1.3;
+    margin: 0 auto 50px;
+    padding: 0;
+    color: #0d73ba;
+}
+h3.page-heading > a {
+  color: #000000;
+  font-weight: 400;
+  text-decoration: underline;
+}
+input,textarea,address, address > h4, address > p{
+  font-family: 'Roboto', sans-serif;
+}
+address > p {
+  font-size: 9pt;
+}
+ul li > a{
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+input, textarea {
+    border: 0 none;
+    color: #666666;
+    font-family: 'Roboto',sans-serif;
+    font-size: 14px;
+    height: 30px;
+}
+
+/*
+|-----------------------------------------------------------------------
+| PROFILE STUFF
+|-----------------------------------------------------------------------
+*/
+.profile-pic {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-radius: 4px;
+    box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.25);
+    height: auto;
+    max-width: 200px;
+    padding: 5px;
+}
+img.profile-pic-thumb{
+  width:20px;
+  height:20px;
+  margin-right:5px;
+  border:1px solid #231f20;
+  border-radius:4px;
+}
+
+/*
+|-----------------------------------------------------------------------
+| NOTIFICATION STUFF
+|-----------------------------------------------------------------------
+*/
+
+#notification {
+    position: absolute;
+    right: 0;
+    z-index: 10;
+}
+.notification {
+    border: 2px solid rgba(0, 0, 0, 0);
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    padding: 10px;
+}
+.notification-sidebar{
+  /*background-color: #F5F5F5;*/
+  /*border-left: 1px solid #EEEEEE;*/
+  padding:9px;
+  max-width: 230px;
+  top:0;
+}
+.notification-info {
+    background-color: #FFFFFF;
+    border-color: #BCE8F1;
+    color: #31708F;
+}
+.notification-success {
+  color: #3c763d;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+}
+.notification-warning {
+  color: #8a6d3b;
+  background-color: #fcf8e3;
+  border-color: #faebcc;
+}
+.notification-danger {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+}
+.notification > p{
+  margin: 0;
+}
+
+/*
+|-----------------------------------------------------------------------
+| SIDEBAR STUFF
+|-----------------------------------------------------------------------
+*/
+
+.sidebar {
+    background-color: #F5F5F5;
+    border-right: 1px solid #EEEEEE;
+    display: block;
+    max-width:230px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 20px;
+    float:left;
+    z-index: 1000;
+}
+.sidebar2 {
+  background-color: #F5F5F5;
+  border-left: 1px solid #EEEEEE;
+  display: block;
+  max-width: 230px;
+  overflow-x:hidden;
+  overflow-y:auto;
+  padding: 20px;
+  float:right;
+  z-index: 1000;
+}

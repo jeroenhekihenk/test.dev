@@ -3,18 +3,18 @@
 @section('bodyid')
 @stop
 
-@section('menu')
-@stop
-
 @section('notification')
 @stop
 
-@section('sidebar')
-	@include('layouts.back.menus.adminmenu')
+@section('menu')
+	@include('layouts.back.menus.homemenu')
 @stop
 
+@section('sidebar')
+	@include ('layouts.back.menus.adminmenu')
+@stop
 @section('content')
-
+@if($loggedUser->roles->first()->name === 'Admin')
 <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
 <div class="panel panel-danger">
 	<div class="panel-body"><a href="{{{URL::route('admin.pages.create') }}}" class="btn btn-sm btn-success pull-right"><span class="glyphicon glyphicon-plus"></span> Add new page</a></div>
@@ -38,9 +38,9 @@
 				<td>{{$page->title}}</td>
 				<td>{{$page->body}}</td>
 				<td>{{$page->slug}}</td>
-				<td><a href="{{ URL::route('admin.pages.edit',[$page->slug]) }}">Edit</a></td>
-				<td><a href="{{ URL::route('admin.pages.show',[$page->slug]) }}">View</a></td>
-				<td> {{ Form::open(array('method'=>'DESTROY','action'=>array('admin.pages.destroy',$page->slug)))}}
+				<td><a href="{{ URL::route('admin.pages.edit',[$page->slug]) }}" class="btn btn-primary">Edit</a></td>
+				<td><a href="{{ URL::route('admin.pages.show',[$page->slug]) }}" class="btn btn-info">View</a></td>
+				<td> {{ Form::open(array('method'=>'DELETE','action'=>array('admin.pages.destroy',$page->slug)))}}
 					{{ Form::submit('Destroy', array('class'=>'btn btn-danger'))}}
 					{{ Form::close() }}
 				</td>
@@ -48,6 +48,7 @@
 		@endforeach
 	</table>
 </div>
+@endif
 @stop
 
 @section('footer')

@@ -1,7 +1,7 @@
 @extends('layouts.back.admin')
 
 @section('menu')
-	@include('layouts.front.menus.digimenu')
+	@include('layouts.back.menus.homemenu')
 @stop
 
 @section('sidebar')
@@ -13,6 +13,7 @@
 @stop
 
 @section('content')
+@if($loggedUser->roles->first()->name === 'Admin')
 <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
 	<h2>Create new post</h2>
 	<hr>
@@ -38,4 +39,5 @@
 	<p>{{ Form::submit('Create', array('class'=>'btn btn-success')) }}</p>
 	{{ Form::close() }}
 </div>
+@endif
 @stop

@@ -5,15 +5,15 @@
 @stop
 
 @section('menu')
-	
+	@include('layouts.back.menus.homemenu')
 @stop
 
 @section('sidebar')
-
+	@include ('layouts.back.menu.adminmenu')
 @stop
 
 @section('content')
-
+@if($loggedUser->roles->first()->name === 'Admin')
 <div class="blogroll container col-sm-offset-2 col-md-offset-2 col-xs-offset-2 col-lg-offset-2">
 
 		<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 pull-left col-xs-offset-1 col-md-offset-1 col-sm-offset-1 col-lg-offset-1 panel panel-info page-{{$page->id}}">
@@ -42,5 +42,5 @@
 		</div>
 
 </div>
-
+@endif
 @stop

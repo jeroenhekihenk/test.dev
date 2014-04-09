@@ -1,4 +1,4 @@
-@extends('layouts.back.main')
+@extends('layouts.back.admin')
 
 @section('notification')
 	
@@ -14,7 +14,7 @@
 @stop
 
 @section('content')
-@if($user->roles->first()->name == 'Admin')
+@if($loggedUser->roles->first()->name === 'Admin')
 <div class="container col-sm-offset-2 col-md-offset-2 col-xs-offset-2 col-lg-offset-2">
 	<div class="panel panel-info">
 		<div class="panel-heading"><h2>Groups</h2></div>
@@ -78,7 +78,5 @@
 	</div>
 
 </div>
-
-@endif
-			
+@endif			
 @stop

@@ -81,11 +81,9 @@ class AdminPageController extends BaseController {
 
 	public function destroy($slug)
 	{
-		$post = Post::byslug($slug);
-		if ($post) {
-			$post->categories()->detach();
-			$post->tags()->detach();
-			$post->delete();
+		$page = Page::byslug($slug);
+		if ($page) {
+			$page->delete();
 			return Redirect::route('blog.index');
 			}
 		return 'There was a problem...';

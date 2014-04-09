@@ -107,6 +107,15 @@ Route::group(array('prefix'=>'admin', 'namespace'=>'Digitus\Admin\Controllers','
 		);
 		// (index)Get all blogposts, (create,store)Create post, (edit)Update blogpost, (destroy)Delete post
 
+		Route::resource('blog/tag', 'AdminBlogTagController',
+			array('names' =>
+				array(
+					'oldtag'=>'admin.blog.tag.addold',
+					'newtag'=>'admin.blog.tag.addnew'
+				)
+			)
+		);
+
 		Route::resource('tag', 'AdminBlogTagController',
 			array('names' =>
 				array(

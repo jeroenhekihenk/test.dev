@@ -61,7 +61,7 @@ class UserProfileController extends \Digitus\Base\Controllers\BaseController{
 
 			$user->username 	= Input::get('username');
 			$user->firstname	= Input::get('firstname');
-			$user->lastname	= Input::get('lastname');
+			$user->lastname		= Input::get('lastname');
 			$user->email 		= Input::get('email');
 			$user->description 	= Input::get('description');
 

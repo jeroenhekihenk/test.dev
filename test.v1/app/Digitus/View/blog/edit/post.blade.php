@@ -1,11 +1,11 @@
-@extends('layouts.blog')
+@extends('layouts.back.admin')
 
 @section('title')
 	{{ $post->post_title }}
 @stop
 
 @section('menu')
-	@include('layouts.menus.homemenu')
+	@include('layouts.front.menus.homemenu')
 @stop
 
 @section('sidebar')

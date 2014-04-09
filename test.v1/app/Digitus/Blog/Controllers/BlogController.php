@@ -31,7 +31,7 @@ class BlogController extends \Digitus\Base\Controllers\BaseController{
 	{
 		
 		$currpost = Post::byslug($slug);
-		$login = $currpost->post_author;
+		$login = $currpost->author;
 		$deUser = User::byid($login);
 		// dd($deUser->username);
 		$author = $deUser->firstname . ' ' . $deUser->lastname;

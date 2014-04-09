@@ -21,11 +21,11 @@
 <div class="blogroll container col-sm-offset-2 col-md-offset-2 col-xs-offset-2 col-lg-offset-2">
 
 		<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 pull-left col-xs-offset-1 col-md-offset-1 col-sm-offset-1 col-lg-offset-1 panel panel-info post-{{$post->id}}">
-			<h1>{{ $post->post_title }}  </h1>
+			<h1>{{ $post->title }}  </h1>
 			<p class="postinfo">Geplaatst op {{ $post->getUpdatedAt() }} door <a href="{{{ URL::to('users/'.$user->username) }}}" target="_blank">{{ $author }}</a>
 			</p>
 			<p>{{ $post->image }}</p>
-			<p>{{ $post->post_body }}</p>
+			<p>{{ $post->body }}</p>
 			<hr>
 			<div class="blogbottom">
 				<p class="pull-left">Tags: 
@@ -38,12 +38,12 @@
 					@endforeach
 				</p>
 				<p class="pull-right">
-					{{ Form::open(array('method'=>'DELETE','class'=>'pull-right','action'=>array('admin.blog.destroy', $post->post_slug))) }}
+					{{ Form::open(array('method'=>'DELETE','class'=>'pull-right','action'=>array('admin.blog.destroy', $post->slug))) }}
 					{{ Form::submit('Delete this post', array('class'=>'btn btn-danger btn-xs'))}}
 					{{ Form::close() }}
 				</p>
 				<p class="pull-right">
-					<a href="{{{ URL::route('admin.blog.edit', [$post->post_slug]) }}}" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-cog"></span> Edit this post</a>
+					<a href="{{{ URL::route('admin.blog.edit', [$post->slug]) }}}" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-cog"></span> Edit this post</a>
 				</p>
 				<p class="pull-right">
 					<a href="{{{ URL::route('admin.tag.create') }}}" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-tag"></span> Add tag</a>

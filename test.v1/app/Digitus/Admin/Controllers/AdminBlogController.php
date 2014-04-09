@@ -1,6 +1,6 @@
 <?php namespace Digitus\Admin\Controllers;
 
-use Digitus\Base\Model\Tag, Digitus\Base\Model\Post, Auth, View, Input, Redirect, Validator, Str;
+use Digitus\Base\Model\Tag, Digitus\Base\Model\User, Digitus\Base\Model\Post, Digitus\Base\Model\Categorie, Auth, View, Input, Redirect, Validator, Str;
 
 class AdminBlogController extends \Digitus\Base\Controllers\BaseController {
 
@@ -60,17 +60,20 @@ class AdminBlogController extends \Digitus\Base\Controllers\BaseController {
 	{
 		
 		$currpost = Post::byslug($slug);
-		$login = $currpost->post_author;
+		$login = $currpost->author;
 		$user = User::byid($login);
+		$author = $user->firstname . ' ' . $user->lastname;
 
-		return View::make('blog.post')->with('post', $currpost)->with('user',$user);
+		return View::make('blog.post')->with('post', $currpost)->with('user',$user)->with('author',$author);
 	}
 
 	public function edit($slug)
 	{
 		$post = Post::byslug($slug);
+		$tags = Tag::all();
+		$categories = Categorie::all();
 
-		return View::make('blog.edit.post')->with('post', $post);
+		return View::make('admin.blog.edit')->with('post', $post)->with('tags',$tags)->with('categories',$categories);
 	}
 
 	public function update($slug)
@@ -80,12 +83,49 @@ class AdminBlogController extends \Digitus\Base\Controllers\BaseController {
 		$post->title 	= Input::get('title');
 		$post->slug 	= Str::slug(Input::get('title'));
 		$post->body		= Input::get('body');
+		// $new_tags = array();
+		// foreach(explode(',', Input::get('tag-ex')) as $tag) {
+		// $tag = Tag::firstOrCreate(array('name' => $tag));
+		// array_push($new_tags, $tag);
+		// }
+		// $post->tags()->sync($new_tags); 
+		if(Input::get('addcategorie'))
+		{
+			$addcat = Input::get('addcategorie');
+		    $addcategorie = Categorie::firstOrCreate(array('name'=>$addcat));
+		    $add = $addcategorie->id;
+		    $post->categories()->attach($add);
+		}
+
+	    if(Input::get('delcategorie'))
+	    {
+		    $delcat = Input::get('delcategorie');
+		    $delcategorie = Categorie::where('name','=',$delcat);
+		    $del = $delcategorie->first()->id;
+		    $post->categories()->detach($del);
+		}
+
+		if(Input::get('addtag'))
+		{
+			$addtag = Input::get('addtag');
+		    $addtagg = Tag::firstOrCreate(array('name'=>$addtag));
+		    $add = $addtagg->id;
+		    $post->tags()->attach($add);
+		}
+
+	    if(Input::get('deltag'))
+	    {
+		    $deltag = Input::get('deltag');
+		    $deltagg = Tag::where('name','=',$deltag);
+		    $del = $deltagg->first()->id;
+		    $post->tags()->detach($del);
+		}
 
 		if($post->save())
 		{
-			return Redirect::to('blog/{slug}')->with('post', $post);
+			return Redirect::route('admin.blog.index')->with('post', $post);
 		} else {
-			return Redirect::to('blog/{slug}/edit')->with('post', $post)->withInput();
+			return Redirect::route('admin.blog.edit')->with('post', $post)->withInput();
 		}
 	}
 
