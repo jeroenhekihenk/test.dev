@@ -5,15 +5,11 @@ Blog
 @stop
 
 @section('menu')
-	@include('layouts.front.menus.homemenu')
+
 @stop
 
 @section('sidebar')
-<div id="sidebar" class="sidebar col-sm-2 col-md-2">
-	<ul class="nav nav-sidebar nav-pills nav-stacked">
-		<li><a href="{{{ URL::to('admin/blog/create') }}}" class="btn btn-success btn-xs pull-left"><span class="glyphicon glyphicon-plus"></span> New post</a></li>
-	</ul>
-</div>
+
 @stop
 
 @section('content')
@@ -57,7 +53,7 @@ Blog
 @section('pagination')
 	<div class="row">
 		<div class="span8">
-			{{ $posts->links() }}
+	
 		</div>
 	</div>
 @stop

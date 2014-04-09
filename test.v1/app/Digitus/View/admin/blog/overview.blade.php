@@ -1,4 +1,4 @@
-@extends('layouts.back.main')
+@extends('layouts.back.admin')
 
 @section('title')
 @stop
@@ -7,6 +7,7 @@
 @stop
 
 @section('sidebar')
+	<a href="{{URL::route('admin.blog.create')}}" class="btn btn-success btn-md"><span class="glyphicon glyphicon-plus"></span></a>
 @stop
 
 @section('content')
@@ -17,6 +18,7 @@
 			<table class="table table-hover table-bordered">
 				<tr>
 					<th>ID</th>
+					<th>author</th>
 					<th>Title</th>
 					<th>Body text</th>
 					<th>Tags</th>
@@ -25,8 +27,9 @@
 				@foreach($posts as $post)
 				<tr>
 					<td>{{ $post->id }}</td>
-					<td>{{ $post->post_title }}</td>
-					<td>{{ $post->post_body }}</td>
+					<td>{{ $post->getAuthorUsername() }}</td>
+					<td>{{ $post->title }}</td>
+					<td>{{ $post->body }}</td>
 					<td>
 						@foreach($post->tags as $tag) {{ $tag->name }} @endforeach
 					</td>
@@ -36,7 +39,7 @@
 				</tr>
 				@endforeach
 			</table>
-		{{ $posts->links() }}
+
 		</div>
 	</div>
 

@@ -1,12 +1,12 @@
 <?php namespace Digitus\Admin\Controllers;
 
-use Digitus\Base\Model\Tag, Digitus\Base\Model\Post, View, Input, Redirect, Validator, Str;
+use Digitus\Base\Model\Tag, Digitus\Base\Model\Post, Auth, View, Input, Redirect, Validator, Str;
 
 class AdminBlogController extends \Digitus\Base\Controllers\BaseController {
 
 	public function index()
 	{
-		$posts = Post::all()->orderBy('updated_at', 'desc')->paginate();
+		$posts = Post::all();
 		return View::make('admin.blog.overview')->with('posts', $posts);
 	}
 
@@ -19,8 +19,8 @@ class AdminBlogController extends \Digitus\Base\Controllers\BaseController {
 			$user = false;
 		}
 
-		$tag = $this->posts->tags()->get();
-		return $this->view->make('admin.blog.create')->with('user', $user)->with('tag',$tag);
+	
+		return View::make('admin.blog.create')->with('user', $user);
 	}
 
 	public function store()

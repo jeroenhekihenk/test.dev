@@ -90,9 +90,11 @@ class UserController extends \Digitus\Auth\Controllers\AuthController{
 			$user->email = Input::get('email');
 			$user->password = Hash::make(Input::get('password'));
 
+			$user->save();
+
 			$users_roles = Role::where('name','=','User')->first();
 			$user->roles()->attach($users_roles);
-			$user->save();
+			
 
 			return Redirect::route('login')->with('message', 'Thanks for registering! You can now login.');
 		} else {

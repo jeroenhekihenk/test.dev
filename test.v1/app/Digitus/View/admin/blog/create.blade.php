@@ -1,7 +1,7 @@
-@extends('layouts.blog')
+@extends('layouts.back.admin')
 
 @section('menu')
-	@include('layouts.menus.homemenu')
+	@include('layouts.front.menus.digimenu')
 @stop
 
 @section('sidebar')
@@ -31,11 +31,7 @@
 	{{ $errors->first('body') }}
 	<p>{{ Form::text('body', Input::old('body'), array('class'=>'form-control')) }}</p>
 
-	<p>{{ Form::label('tags', 'Tags') }}</p>
-	{{ $errors->first('tags') }}
-	
-	
-	<p>{{ Form::text('tags',  $tag ) }}</p> 
+
 	
 	
 

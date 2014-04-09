@@ -1,10 +1,12 @@
 <?php namespace Digitus\Profile\Controllers;
 
-class UserProfileDashboardController extends \Digitus\Base\Controllers\BaseController {
+use Digitus\Base\Controllers\BaseController, View;
+
+class UserProfileDashboardController extends BaseController {
 
 	public function index()
 	{
-		return $this->view->make('user.dashboard');
+		return View::make('user.dashboard');
 		
 	}
 
