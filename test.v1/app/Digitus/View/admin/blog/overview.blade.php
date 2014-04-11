@@ -52,7 +52,7 @@
 					<td>
 						<a href="{{URL::route('admin.blog.edit',$post->slug) }}" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-cog"></span> Edit</a> 
 					</td>
-					<td><a href="{{URL::route('blog.show',$post->slug) }}" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-eye-open"></span> Kijk</a>
+					<td><a href="{{URL::route('insides.show',$post->slug) }}" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-eye-open"></span> Kijk</a>
 				</tr>
 				@endforeach
 			</table>

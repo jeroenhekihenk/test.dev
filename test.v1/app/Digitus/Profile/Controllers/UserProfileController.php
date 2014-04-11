@@ -1,14 +1,8 @@
 <?php namespace Digitus\Profile\Controllers;
 
-use Auth, View, Redirect, Input, Digitus\Base\Model\User, Digitus\Base\Model\Role;
+use Digitus\Base\Controllers\BaseController, Auth, View, Redirect, Input, Digitus\Base\Model\User, Digitus\Base\Model\Role;
 
-class UserProfileController extends \Digitus\Base\Controllers\BaseController{
-
-	public function __construct()
-	{
-		$bodyid = 'userprofile';
-		View::share('bodyid', $bodyid);
-	}
+class UserProfileController extends BaseController{
 
 	public function index()
 	{

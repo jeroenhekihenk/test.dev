@@ -1,17 +1,19 @@
 <?php namespace Digitus\Categorie\Controllers;
 
-class CategorieController extends \Digitus\Base\Controllers\BaseController {
+use Digitus\Base\Controllers\BaseController, Digitus\Base\Model\Post, Digitus\Base\Model\Categorie, View, Auth;
+
+class CategorieController extends BaseController {
 
 	public function getCategories()
 	{
-		$posts = $this->posts->all();
-		return $this->view->make('categories.index')->with('posts', $posts, 'user', $this->sentry->getUser());
+		$posts = Post::all();
+		return View::make('categories.index')->with('posts', $posts, 'user', Auth::user());
 	}
 
 	public function getThisCategorie($name)
 	{
-		$currcat = $this->categorie->where('name', '=', $name)->first();
-		return $this->view->make('categories.categorie')->with('categorie', $currcat, 'user', $this->sentry->getUser());
+		$currcat = Categorie::where('name', '=', $name)->first();
+		return View::make('categories.categorie')->with('categorie', $currcat, 'user', Auth::user());
 	}
 
 }

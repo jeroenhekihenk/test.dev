@@ -9,7 +9,7 @@
 @stop
 
 @section('sidebar')
-	@include ('layouts.back.menu.adminmenu')
+	@include ('layouts.back.menus.adminmenu')
 @stop
 
 @section('content')
@@ -32,7 +32,28 @@
 
 			<div class="form-group">
 				{{ Form::label('body', 'Page Body')}}
-				{{ Form::text('body', $page->body, array('class'=>'form-control')) }}
+				{{ Form::textarea('body', $page->body, array('class'=>'form-control')) }}
+			</div>
+			<div class="form-group">
+				<img src="{{URL::to(''.'/'),$page->image}}" alt=""><br />
+				{{ Form::label('file', 'Page Image') }}
+				{{ $errors->first('file') }}
+				{{ Form::file('file', '', array('class'=>'form-control')) }}
+			</div>
+			<div class="form-group">
+				{{ Form::label('type', 'Select OG:type') }}
+				{{ $errors->first('type') }}
+				{{ Form::select('type', array('Article'=>'article', 'Website'=>'website')) }}
+			</div>
+			<div class="form-group">
+				{{ Form::label('robots', 'Selecteer robot') }}
+				{{ $errors->first('robots') }}
+				{{ Form::select('robots', array('noindex, nofollow'=>'noindex, nofollow', 'index, nofollow'=>'index, nofollow','noindex, follow'=>'noindex, follow', 'index, follow'=>'index, follow')) }}
+			</div>
+			<div class="form-group">
+				{{ Form::label('ogurl', 'OG:url') }}
+				{{ $errors->first('ogurl') }}
+				{{ Form::url('ogurl', $page->ogurl, array('class'=>'form-control')) }}
 			</div>
 
 			{{ Form::submit('Save', array('class'=>'btn btn-success')) }}

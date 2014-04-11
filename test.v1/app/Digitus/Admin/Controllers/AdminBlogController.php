@@ -91,34 +91,42 @@ class AdminBlogController extends \Digitus\Base\Controllers\BaseController {
 		// $post->tags()->sync($new_tags); 
 		if(Input::get('addcategorie'))
 		{
-			$addcat = Input::get('addcategorie');
-		    $addcategorie = Categorie::firstOrCreate(array('name'=>$addcat));
-		    $add = $addcategorie->id;
-		    $post->categories()->attach($add);
+			$new_cats = array();
+			foreach(explode(',', Input::get('addcategorie')) as $categorie) {
+			$categorie = Categorie::firstOrCreate(array('name' => $categorie));
+			array_push($new_cats, $categorie->id);
+			}
+			$post->categories()->attach($new_cats); 
 		}
 
 	    if(Input::get('delcategorie'))
 	    {
-		    $delcat = Input::get('delcategorie');
-		    $delcategorie = Categorie::where('name','=',$delcat);
-		    $del = $delcategorie->first()->id;
-		    $post->categories()->detach($del);
+	    	$old_cats = array();
+			foreach(explode(',', Input::get('delcategorie')) as $categorie) {
+			$categorie = Categorie::where('name','=',$categorie);
+			array_push($old_cats, $categorie->first()->id);
+			}
+			$post->categories()->detach($old_cats); 
 		}
 
 		if(Input::get('addtag'))
 		{
-			$addtag = Input::get('addtag');
-		    $addtagg = Tag::firstOrCreate(array('name'=>$addtag));
-		    $add = $addtagg->id;
-		    $post->tags()->attach($add);
+			$new_tags = array();
+			foreach(explode(',', Input::get('addtag')) as $tag) {
+			$tag = Tag::firstOrCreate(array('name' => $tag));
+			array_push($new_tags, $tag->id);
+			}
+			$post->tags()->attach($new_tags); 
 		}
 
 	    if(Input::get('deltag'))
 	    {
-		    $deltag = Input::get('deltag');
-		    $deltagg = Tag::where('name','=',$deltag);
-		    $del = $deltagg->first()->id;
-		    $post->tags()->detach($del);
+		    $old_tags = array();
+			foreach(explode(',', Input::get('deltag')) as $tag) {
+			$tag = Tag::where('name','=',$tag);
+			array_push($old_tags, $tag->first()->id);
+			}
+			$post->tags()->detach($old_tags); 
 		}
 
 		if($post->save())

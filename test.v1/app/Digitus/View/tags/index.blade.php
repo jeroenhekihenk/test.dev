@@ -1,42 +1,28 @@
-@extends('layouts.blog')
+@extends('layouts.front.main')
 
 @section('title')
-Blog
+	Tag overzicht
 @stop
 
 @section('menu')
-	@include('layouts.menus.homemenu')
-@stop
-
-@section('sidebar')
-<div id="sidebar" class="sidebar col-sm-2 col-md-2">
-	<!-- @if($loggedUser->hasAccess('blogpost.add'))
-	 <ul class="nav nav-sidebar nav-pills nav-stacked">
-		<li><a href="{{{ URL::to('admin/blog/create') }}}" class="btn btn-success btn-xs pull-left"><span class="glyphicon glyphicon-plus"></span> New post</a></li>
-	</ul>
-	@endif -->
-</div>
+	@include('layouts.front.menus.digimenu')
 @stop
 
 @section('content')
-
-<div class="blogroll container col-sm-offset-2 col-md-offset-2 col-xs-offset-2 col-lg-offset-2">
-
-@foreach($posts as $post)	
-	@foreach($post->tags as $tag)
-		<div class="panel panel-info">
-			<div class="panel-heading"><a href="{{URL::to('tags/'.$tag->name)}}" title="{{$tag->name}}" alt="{{$tag->name}}">{{$tag->name}}</a></div>
-			<div class="panel panel-body panel-warning">
-				<div class="panel-heading">{{$post->post_title}}</div>
-				<div class="panel-body">{{ $post->post_body}}</div>
+<div class="blogroll container">
+	@foreach($posts as $post)	
+		@foreach($post->tags as $tag)
+			<div class="panel panel-info">
+				<div class="panel-heading"><a href="{{URL::to('tags/'.$tag->name)}}" title="{{$tag->name}}" alt="{{$tag->name}}">{{$tag->name}}</a></div>
+				<div class="panel panel-body panel-warning">
+					<div class="panel-heading">{{$post->title}}</div>
+					<div class="panel-body">{{ $post->body}}</div>
+					<a href="{{URL::to('blog/'.$post->slug) }}" class="btn btn-info btn-md">bekijk post</a>
+				</div>
 			</div>
-		</div>
+		@endforeach
 	@endforeach
-@endforeach
-
-
 </div>
-
 @stop
 
 @section('pagination')

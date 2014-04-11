@@ -11,7 +11,7 @@
 @stop
 
 @section('sidebar')
-	@include ('layouts.back.menu.adminmenu')
+	@include ('layouts.back.menus.adminmenu')
 @stop
 
 @section('content')

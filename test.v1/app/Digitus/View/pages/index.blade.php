@@ -3,7 +3,7 @@
 @section('title')
 @stop
 
-@section('bodyid')123456789
+@section('bodyid')
 @stop
 
 @section('menu')
@@ -17,9 +17,13 @@
 @stop
 
 @section('content')
-
+<div class="container">
+	<figure class="page-header" style="background-image:url('{{ URL::to($page->image) }}');"></figure>
+	<h2>{{$page->title}}</h2>
+	<p>{{$page->body}}</p>
+</div>
 @stop
 
 @section('footer')
-	
+	@include('layouts.front.footer.main')
 @stop

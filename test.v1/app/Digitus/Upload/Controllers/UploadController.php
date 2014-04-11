@@ -3,8 +3,9 @@
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
 use View, Auth, Redirect;
+use Digitus\Base\Controllers\BaseController;
 
-class UploadController extends \Digitus\Base\Controllers\BaseController {
+class UploadController extends BaseController {
 
 	public function index()
 	{
@@ -37,6 +38,22 @@ class UploadController extends \Digitus\Base\Controllers\BaseController {
 
 
 
+	}
+
+	public function addPageImage($slug)
+	{
+		$page = Page::where('slug','=',$slug);
+		$file = Input::file('file');
+
+	    $destinationPath = 'uploads/images/pages/'.$page->id;
+	    $filename = str_random(12);
+	    $upload_success = $file->move($destinationPath, $filename);
+
+	    if( $upload_success ) {
+	    	return Redirect::back();
+	    } else {
+	    	return Redirect::to('home.index');
+	    }
 	}
 
 }

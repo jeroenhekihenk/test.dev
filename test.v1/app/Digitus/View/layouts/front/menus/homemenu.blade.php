@@ -8,7 +8,7 @@
 						<li>{{ HTML::link('ons-bureau', 'Ons Bureau') }}</li>
 						<li>{{ HTML::link('cases', 'Cases') }}</li>
 						<li>{{ HTML::link('workshops', 'Workshops') }}</li>
-						<li>{{ HTML::link('blog', 'Insides') }}</li>
+						<li>{{ HTML::link('insides', 'Insides') }}</li>
 						<li>{{ HTML::link('kennismaken', 'Kennismaken') }}</li>
 					</ul>
 					<ul class="nav navbar-nav pull-right">

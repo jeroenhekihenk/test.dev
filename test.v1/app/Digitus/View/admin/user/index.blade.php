@@ -34,7 +34,7 @@
 	
 		@foreach($users as $user)
 			<tr>
-				<td><img src="{{URL::to($user->image)}}" class="profile-pic-thumb"></td>
+				<td><figure class="profile-pic-thumb" style="background-image: url('{{{ URL::to($user->image) }}}');"></figure></td>
 				<td>{{$user->id}}</td>
 				<td>{{$user->username}}</td>
 				<td>{{$user->firstname}}</td>

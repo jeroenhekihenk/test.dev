@@ -1,4 +1,4 @@
-@extends('layouts.back.main')
+@extends('layouts.back.admin')
 
 @section('title')
 	{{$user->username}}'s Profile
@@ -11,9 +11,7 @@
 	@include('layouts.back.menus.homemenu')
 @stop
 
-@section('sidebar')
-	@include('layouts.back.menus.profilemenu')
-@stop
+
 
 @section('content')
 	<div class="col-sm-10 col-md-10 col-xs-10 col-lg-10">
@@ -50,9 +48,9 @@
 		</div>
 	</div>
 
-	<div class="col-sm-10 col-md-10 col-xs-10 col-lg-10 col-xs-offset-2 col-md-offset-2 col-sm-offset-2 col-lg-offset-2">
+	<div class="col-sm-10 col-md-10 col-xs-10 col-lg-10">
 		<div class="panel panel-info">
-			<div class="panel-heading"><h3>Social Media<a type="button" href="" class="btn btn-md btn-success pull-right"><span class="glyphicon glyphicon-plus"></span> Add</a></h3> </div>
+			<div class="panel-heading"><h3>Social Media<a type="button" href="{{{ URL::route('this.user.social.show',$user->username) }}}" class="btn btn-md btn-success pull-right"><span class="glyphicon glyphicon-plus"></span> Add</a></h3> </div>
 			<div class="panel-body">
 				<table>
 					<tr>

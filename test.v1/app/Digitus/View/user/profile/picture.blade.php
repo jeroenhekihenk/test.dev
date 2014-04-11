@@ -1,4 +1,4 @@
-@extends('layouts.userprofile')
+@extends('layouts.front.main')
 
 @section('title')
 	{{$loggedUser->username}}'s Profile
@@ -8,11 +8,11 @@
 @stop
 
 @section('menu')
-	@include('layouts.menus.homemenu')
+	@include('layouts.front.menus.homemenu')
 @stop
 
 @section('sidebar')
-	@include('layouts.menus.profilemenu')
+	@include('layouts.back.menus.profilemenu')
 @stop
 
 @section('content')

@@ -2,7 +2,7 @@
 
 class Page extends \Eloquent {
 
-	protected $fillable = array('title', 'body', 'slug', 'author', 'image');
+	protected $fillable = array('title','body','author','slug','image','metatitle','metadescription','robots','ogtitle','ogdescription','ogsitename','ogurl','ogimage','ogtype');
 	protected $table = 'pages';
 
 	public function user()

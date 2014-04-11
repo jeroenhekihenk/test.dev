@@ -54,6 +54,11 @@ class User extends \Eloquent implements UserInterface, RemindableInterface {
 		return User::where('id', '=', $id)->first();
 	}
 
+    public static function byusername($uname)
+    {
+        return User::where('username', '=', $uname)->first();
+    }
+
 	public function posts()
 	{
 		return $this->hasMany('Digitus\Base\Model\Post');

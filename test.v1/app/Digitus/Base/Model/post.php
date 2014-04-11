@@ -48,8 +48,6 @@ class Post extends \Eloquent {
 	{
 		$author = $this->author;
 		$user = User::where('id', '=', $author)->first();
-		
-		// $postauthor = $user->first_name . ' ' . $user->last_name;
 		return $user->firstname . ' ' . $user->lastname;
 	}
 	public function getAuthorUsername()

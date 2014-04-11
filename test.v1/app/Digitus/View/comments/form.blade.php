@@ -1,18 +1,18 @@
-{{ Form::open(array()) }}
+{{ Form::open(array('action'=>array('comment.create',$post->slug))) }}
 
 <div class="form-group">
 	{{ Form::label('naam', 'Naam') }}
-	{{ Form::text('naam', '', array('class'=>'form-control','placeholder'=>'Uw naam..')) }}
+	{{ Form::text('naam', $loggedUser->firstname.' '.$loggedUser->lastname, array('class'=>'form-control','placeholder'=>'Uw naam..')) }}
 </div>
 
 <div class="form-group">
 	{{ Form::label('email', 'Email') }}
-	{{ Form::email('email', '', array('class'=>'form-control','placeholder'=>'Uw email adres..')) }}
+	{{ Form::email('email', $loggedUser->email, array('class'=>'form-control','placeholder'=>'Uw email adres..')) }}
 </div>
 
 <div class="form-group">
 	{{ Form::label('website', 'Website') }}
-	{{ Form::url('website', '', array('class'=>'form-control', 'placeholder'=>'http://')) }}
+	{{ Form::url('website', $loggedUser->facebook, array('class'=>'form-control', 'placeholder'=>'http://..')) }}
 </div>
 
 <div class="form-group">

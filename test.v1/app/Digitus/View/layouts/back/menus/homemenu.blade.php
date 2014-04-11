@@ -8,7 +8,7 @@
 						<li>{{ HTML::link('ons-bureau', 'Ons Bureau') }}</li>
 						<li>{{ HTML::link('cases', 'Cases') }}</li>
 						<li>{{ HTML::link('workshops', 'Workshops') }}</li>
-						<li>{{ HTML::link('blog', 'Insides') }}</li>
+						<li>{{ HTML::link('insides', 'Insides') }}</li>
 						<li>{{ HTML::link('kennismaken', 'Kennismaken') }}</li>
 					</ul>
 					<ul class="nav navbar-nav pull-right">
@@ -19,7 +19,7 @@
 						@else
 							<li class="dropdown">
 								<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-									<img class="profile-pic-thumb" src="{{{ URL::to($loggedUser->image) }}}">
+									<figure class="profile-pic-thumb" style="background-image: url('{{{ URL::to($loggedUser->image) }}}');"></figure>
 									{{ $loggedUser->username }} <span class="caret"></span>
 								</a>
 								<ul class="dropdown-menu">

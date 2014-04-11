@@ -10,7 +10,7 @@
 	{{ HTML::style('/css/main.css') }}
 	{{ HTML::style('//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css') }}
 </head>
-<body id="{{$bodyid}}">
+<body>
 
 	@yield('menu')
 

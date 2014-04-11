@@ -8,12 +8,7 @@ class Tag extends \Eloquent{
 
 	public function posts()
 	{
-		$this->belongsToMany('Digitus\Base\Model\Post');
-	}
-
-	public function metatag()
-	{
-		return $this->belongsToMany('Digitus\Base\Model\Metatag');
+		return $this->belongsToMany('Digitus\Base\Model\Post');
 	}
 
 }

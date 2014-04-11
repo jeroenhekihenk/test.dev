@@ -8,11 +8,12 @@ class PageController extends BaseController {
 
 	public function show($slug)
 	{
-		
+		$facebook = 'https://www.facebook.com/DigitusMarketing';
+		$twitter = 'https://www.twitter.com/_DigiMarketing';
 		$currpage = Page::byslug($slug);
 		
 
-		return View::make('pages.index')->with('page', $currpage);
+		return View::make('pages.index')->with('page', $currpage)->with('facebook',$facebook)->with('twitter',$twitter);
 	}
 
 }

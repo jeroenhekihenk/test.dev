@@ -3,7 +3,7 @@
 		<div class="toggler">
 			<div class="logo">
 				<a href="{{ URL::to('/') }}" title="">
-					<img src="images/site/logo-header.png" alt="" class="logo">
+					<img src="{{ URL::to('/') }}/images/site/logo-header.png" alt="" class="logo">
 				</a>
 			</div><!-- /logo -->
 			<nav class="nav">

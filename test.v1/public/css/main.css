@@ -41,11 +41,11 @@ input, textarea {
     height: 30px;
 }
 
-  /*
-  |-----------------------------------------------------------------------
-  | NAV STUFF
-  |-----------------------------------------------------------------------
-  */
+/*
+|-----------------------------------------------------------------------
+| NAV STUFF
+|-----------------------------------------------------------------------
+*/
 header div#floater {
     box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.4);
     left: 6%;
@@ -107,6 +107,25 @@ header nav ul li > a {
     border-top: 10px solid #FFFFFF;
 }
 
+/*
+|-----------------------------------------------------------------------
+| BLOG STUFF
+|-----------------------------------------------------------------------
+*/
+
+div.blogbottom {
+  padding: 0 15px 15px;
+}
+
+/*
+|-----------------------------------------------------------------------
+| COMMENTS STUFF
+|-----------------------------------------------------------------------
+*/
+.nieuw-comment{
+  padding:15px;
+  background-color: #FAFAFA;
+}
 /*
 |-----------------------------------------------------------------------
 | NOTIFICATION STUFF
@@ -226,19 +245,25 @@ div.gmap > iframe {
 |-----------------------------------------------------------------------
 */
 .profile-pic {
-    background: none repeat scroll 0 0 #FFFFFF;
+    background-position: center center;
+    background-size: cover;
+    border: 2px solid #FFFFFF;
     border-radius: 4px;
     box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.25);
-    height: auto;
-    max-width: 200px;
-    padding: 5px;
+    max-height: 200px;
+    max-width: 150px;
+    min-height: 150px;
+    min-width: 125px;
 }
-img.profile-pic-thumb{
+.profile-pic-thumb{
   width:20px;
   height:20px;
   margin-right:5px;
   border:1px solid #231f20;
   border-radius:4px;
+  background-size: cover;
+  background-position: center center;
+  float:left;
 }
 
 
@@ -376,10 +401,29 @@ footer#footer{
   padding: 5px;
 }
 
+/*
+|-----------------------------------------------------------------------
+| PAGE STUFF
+|-----------------------------------------------------------------------
+*/
 
+figure.page-header {
+    background-position: center center;
+    background-size: cover;
+    border: 1px solid #231f20;
+    max-height: 300px;
+    max-width: 1170px;
+    min-height: 200px;
+    padding-top:270px;
+    padding-bottom:30px;
+    width: 100%;
+    margin-top:5px;
+    background-repeat: no-repeat;
+}
 
-
-
+/*
+|------------------------------------------------------------------------
+*/
 
 
 

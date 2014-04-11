@@ -27,10 +27,10 @@ Route::group(array('namespace'=>'Digitus\Pages\Controllers'), function()
 	Route::get('kennismaken', ['uses'=>'KennismakenController@index','as'=>'kennismaken.index']);
 });
 
-Route::group(array('namespace'=>'Digitus\Blog\Controllers'), function()
+Route::group(array('namespace'=>'Digitus\Insides\Controllers'), function()
 {
-	Route::resource('blog','BlogController');
-	Route::delete('blog/{slug}', ['uses'=>'BlogController@destroy','as'=>'delete.post']);
+	Route::resource('insides','InsidesController');
+	Route::delete('insides/{slug}', ['uses'=>'InsidesController@destroy','as'=>'delete.post']);
 });
 
 
@@ -175,6 +175,9 @@ Route::group(array('namespace'=>'Digitus\Profile\Controllers'), function()
 		);
 	// (index)show your profile info, (edit,update)Edit and update your profile 
 
+	Route::get('user/{username}/social', ['uses'=>'ProfileSocialMediaController@show','as'=>'this.user.social.show']);
+	Route::post('user/{username}/social', ['uses'=>'ProfileSocialMediaController@update','as'=>'this.user.social.update']);
+
 });
 
 Route::group(array('namespace'=>'Digitus\Upload\Controllers'), function()
@@ -183,27 +186,36 @@ Route::group(array('namespace'=>'Digitus\Upload\Controllers'), function()
 	Route::post('user/{username}/picture', ['uses'=>'UploadController@update', 'as'=>'picture.store']);
 });
 
-Route::group(array('namespace'=>'Digitus\Blog\Controllers'), function()
+Route::group(array('namespace'=>'Digitus\Insides\Controllers'), function()
 {
-	Route::resource('blog', 'BlogController', array(
+	Route::resource('insides', 'InsidesController', array(
 		'names'=>array(
-			'index'=>'blog.index',
-			'show'=>'blog.show'
+			'index'=>'insides.index',
+			'show'=>'insides.show'
 			)
 		)
 	);
 });
+Route::group(array('namespace'=>'Digitus\Comments\Controllers'), function()
+{
+
+	Route::post('insides/{slug}', ['uses'=>'CommentsController@store','as'=>'comment.create']);
+	Route::get('comment/{id}', ['uses'=>'CommentsController@show','as'=>'comment.show']);
+	Route::get('comment/{id}/edit', ['uses'=>'CommentsController@edit', 'as'=>'comment.edit']);
+	Route::put('comment/{id}', ['uses'=>'CommentsController@update','as'=>'comment.update']);
+	Route::delete('comment/{id}', ['uses'=>'CommentsController@destroy','as'=>'comment.destroy']);
+});
 
 Route::group(array('namespace'=>'Digitus\Tag\Controllers'), function()
 {
-	Route::get('tags/{name}', 'TagController@getThisTag');
-	Route::get('tags', 'TagController@getTags');
+	Route::get('tags/{name}', ['uses'=>'TagController@getThisTag','as'=>'tags.show']);
+	Route::get('tags', ['uses'=>'TagController@getTags','as'=>'tags.index']);
 });
 
 Route::group(array('namespace'=>'Digitus\Categorie\Controllers'), function()
 {
-	Route::get('categories/{name}', 'CategorieController@getThisCategorie');
-	Route::get('categories', 'CategorieController@getCategories');
+	Route::get('categories/{name}', ['uses'=>'CategorieController@getThisCategorie','as'=>'categories.show']);
+	Route::get('categories', ['uses'=>'CategorieController@getCategories','as'=>'categories.index']);
 });
 
 Route::group(array('namespace'=>'Digitus\Pages\Controllers'), function()
