@@ -30,8 +30,8 @@ ClassLoader::addDirectories(array(
 | build a basic log file setup which creates a single file for logs.
 |
 */
-
-Log::useFiles(storage_path().'/logs/laravel.log');
+$logFile = 'logfile.log';
+Log::useDailyFiles(storage_path().'/logs/'.$logFile);
 
 /*
 |--------------------------------------------------------------------------
@@ -50,6 +50,12 @@ App::error(function(Exception $exception, $code)
 {
 	Log::error($exception);
 });
+
+App::missing(function($exception)
+	{
+		return Response::view('errors.404', array(), 404);
+	});
+
 
 /*
 |--------------------------------------------------------------------------

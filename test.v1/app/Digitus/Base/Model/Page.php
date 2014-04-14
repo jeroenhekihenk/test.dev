@@ -2,17 +2,12 @@
 
 class Page extends \Eloquent {
 
-	protected $fillable = array('title','body','author','slug','image','metatitle','metadescription','robots','ogtitle','ogdescription','ogsitename','ogurl','ogimage','ogtype');
+	protected $fillable = array('title','body','author','slug','image','metatitle','metadescription','robots','ogtitle','ogdescription','ogsitename','ogurl','ogimage','ogtype','layout','menu','footer');
 	protected $table = 'pages';
 
 	public function user()
 	{
 		return $this->belongsTo('Digitus\Base\Model\User', 'author');
-	}
-
-	public function metatag()
-	{
-		return $this->belongsToMany('Digitus\Base\Model\Metatag');
 	}
 
 	public function tags()
@@ -49,9 +44,7 @@ class Page extends \Eloquent {
 	{
 		$author = $this->author;
 		$user = User::where('id', '=', $author)->first();
-		
-		// $postauthor = $user->first_name . ' ' . $user->last_name;
-		return $user->first_name . ' ' . $user->last_name;
+		return $user->firstname . ' ' . $user->lastname;
 	}
 	public function getAuthorUsername()
 	{

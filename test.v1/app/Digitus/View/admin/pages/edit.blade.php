@@ -19,15 +19,18 @@
 		<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 pull-left col-xs-offset-1 col-md-offset-1 col-sm-offset-1 col-lg-offset-1 panel panel-info page-{{$page->id}}">
 			
 			{{ Form::open(array('method'=>'PUT','action'=>array('admin.pages.update',$page->slug))) }}
-
+{{ Form::label('layout', 'Selecteer layout:') }}
+	{{ $errors->first('layout') }}
+	{{ Form::select('layout', array('front.pagesidebar'=>'Pagina met sidebar','front.page'=>'Full-width','front.main'=>'Geen menu')) }}
+	{{ Form::label('menu', 'Selecteerd menu:') }}
+	{{ $errors->first('menu') }}
+	{{ Form::select('menu', array('front.menus.digimenu'=>'Digi-menu', 'front.menus.homemenu'=>'Plat menu', 'front.menus.nomenu'=>'Geen menu')) }}
+	{{ Form::label('footer', 'Gebruik footer:') }}
+	{{ $errors->first('footer') }}
+	{{ Form::select('footer', array('front.footer.main'=>'Ja','front.footer.geen'=>'Nee')) }}
 			<div class="form-group">
 				{{ Form::label('title', 'Page Title')}}
 				{{ Form::text('title', $page->title, array('class'=>'form-control')) }}
-			</div>
-
-			<div class="form-group">
-				{{ Form::label('slug', 'Page Slug')}}
-				{{ Form::text('slug', $page->slug, array('class'=>'form-control')) }}
 			</div>
 
 			<div class="form-group">

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 11, 2014 at 05:44 PM
+-- Generation Time: Apr 14, 2014 at 08:36 PM
 -- Server version: 5.5.24-log
 -- PHP Version: 5.4.24
 
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `categories`
@@ -166,6 +166,9 @@ INSERT INTO `migrations` (`migration`, `batch`) VALUES
 
 CREATE TABLE IF NOT EXISTS `pages` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `layout` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `menu` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `footer` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `body` varchar(10000) COLLATE utf8_unicode_ci NOT NULL,
   `author` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
@@ -189,16 +192,9 @@ CREATE TABLE IF NOT EXISTS `pages` (
 -- Dumping data for table `pages`
 --
 
-INSERT INTO `pages` (`id`, `title`, `body`, `author`, `slug`, `image`, `metatitle`, `metadescription`, `robots`, `ogtitle`, `ogdescription`, `ogsitename`, `ogurl`, `ogimage`, `ogtype`, `created_at`, `updated_at`) VALUES
-(1, 'Eerste page', 'De bodytekst van de Eerste Page', '1', 'eerste_page', '', '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(3, 'Blog', '', '1', 'blog', '', 'Blog', '', 'noindex, nofollow', 'Blog', '', '', '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(5, 'Een pagina titel met ngo iet sderbij', 'Met een pagina body waar dus uitgebreide tekst in staat!', '1', 'een-pagina-titel-met-ngo-iet-sderbij', '', '', '', '', '', '', '', '', '', '', '2014-04-08 13:06:44', '2014-04-08 13:29:10'),
-(6, 'Een pagina titel', 'Met een pagina body waar dus uitgebreide tekst in staat!', '1', 'een-pagina-titel', '', '', '', '', '', '', '', '', '', '', '2014-04-08 13:06:53', '2014-04-08 13:06:53'),
-(7, 'Pagina', 'Pagina tekst met bla bla en bladiebla', '1', 'pagina', '555490_231040370371193_390446681_n.jpg', '', '', '', '', '', '', '', '', '', '2014-04-11 11:27:30', '2014-04-11 11:27:30'),
-(8, 'paaage', 'sdasdddddddddddddddddddddddddddddddddddddddddddddddddds\r\ndas\r\nfs\r\ngf\r\nsdg\r\ndfg\r\ndf\r\nghdfhdfahdfhjfhjfgjgfjgf\r\nkjghkjghkghkhgkhj\r\n\r\n\r\n', '1', 'paaage', 'presentation.png', 'paaage', '', '', '', '', '', '', '', '', '2014-04-11 11:50:09', '2014-04-11 11:50:09'),
-(9, 'henkiii', 'hekdkasfaskfskjahfsaklfhaskfjasfs\r\nfsdklfjdsfjsdjfshjdfsjakfhjskjdklasjdl;\r\nFAS\r\nFSAFKASJFKLASJKFHJASKLJFKLASHFKLASJFKSHkjsdfsfd\r\njjjj', '1', 'henkiii', '/uploads/images/pages/php80E5.tmp', '', '', '', '', '', '', '', '', '', '2014-04-11 12:43:20', '2014-04-11 12:43:20'),
-(10, 'de volgende test', 'met een test body natuurlijk', '1', 'de-volgende-test', '/uploads/images/pages/test idee offer foto.png', '', '', '', '', '', '', '', '', '', '2014-04-11 12:44:32', '2014-04-11 12:44:32'),
-(11, 'Remco''s salespage', 'met remco''s lijpe sale dingen er bij enzovoort snap je', '1', 'remcos-salespage', '/uploads/images/pages/Facebook melding aanbieding.png', 'Remco''s salespage', 'met remco''s lijpe sale dingen er bij enzovoort snap je', 'noindex, nofollow', 'Remco''s salespage', 'met remco''s lijpe sale dingen er bij enzovoort snap je', 'Digitus Marketing', '', 'uploads/images/pages/Facebook melding aanbieding.png', 'Article', '2014-04-11 13:08:09', '2014-04-11 13:08:09');
+INSERT INTO `pages` (`id`, `layout`, `menu`, `footer`, `title`, `body`, `author`, `slug`, `image`, `metatitle`, `metadescription`, `robots`, `ogtitle`, `ogdescription`, `ogsitename`, `ogurl`, `ogimage`, `ogtype`, `created_at`, `updated_at`) VALUES
+(1, 'front.page', '', '', 'Eerste page', 'De bodytekst van de Eerste Page', '1', 'eerste_page', '', '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(3, '', '', '', 'Blog', '', '1', 'blog', '', 'Blog', '', 'noindex, nofollow', 'Blog', '', '', '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 

@@ -1,4 +1,4 @@
-@extends('layouts.front.page')
+@extends('layouts.'.$layout)
 
 @section('title')
 @stop
@@ -7,7 +7,7 @@
 @stop
 
 @section('menu')
-	@include('layouts.front.menus.digimenu')
+	@include('layouts.'.$menu)
 @stop
 
 @section('notification')
@@ -25,5 +25,5 @@
 @stop
 
 @section('footer')
-	@include('layouts.front.footer.main')
+	@include('layouts.'.$footer)
 @stop

@@ -56,7 +56,7 @@ class UserController extends \Digitus\Auth\Controllers\AuthController{
 			} else {	 	
 
 				// validation not successful, send back to form	
-				return Redirect::to('login');
+				return Redirect::route('login');
 
 			}
 

@@ -37,11 +37,11 @@ Route::group(array('namespace'=>'Digitus\Insides\Controllers'), function()
 
 Route::group(array('namespace'=>'Digitus\Auth\Controllers'), function()
 {
-	Route::get('login', ['uses'=>'UserController@getLogin','as'=>'login']);
-	Route::post('login', ['uses'=>'UserController@postLogin','as'=>'post.login']);
+	Route::get('in/loggen', ['uses'=>'UserController@getLogin','as'=>'login']);
+	Route::post('in/loggen', ['uses'=>'UserController@postLogin','as'=>'post.login']);
 	Route::get('logout', ['uses'=>'UserController@getLogout', 'as'=>'logout']);
-	Route::get('register', ['uses'=>'UserController@getRegister','as'=>'register']);
-	Route::post('register', ['uses'=>'UserController@postRegister', 'as'=>'post.register']);
+	// Route::get('register', ['uses'=>'UserController@getRegister','as'=>'register']);
+	// Route::post('register', ['uses'=>'UserController@postRegister', 'as'=>'post.register']);
 });
 
 
@@ -204,6 +204,7 @@ Route::group(array('namespace'=>'Digitus\Comments\Controllers'), function()
 	Route::get('comment/{id}/edit', ['uses'=>'CommentsController@edit', 'as'=>'comment.edit']);
 	Route::put('comment/{id}', ['uses'=>'CommentsController@update','as'=>'comment.update']);
 	Route::delete('comment/{id}', ['uses'=>'CommentsController@destroy','as'=>'comment.destroy']);
+	Route::get('comment', function(){ return Redirect::route('home.index'); });
 });
 
 Route::group(array('namespace'=>'Digitus\Tag\Controllers'), function()
@@ -222,8 +223,3 @@ Route::group(array('namespace'=>'Digitus\Pages\Controllers'), function()
 {
 	Route::get('/{slug}', ['uses'=>'PageController@show','as'=>'show.page']);
 });
-
-// App::missing(function($exception)
-// {
-// 	return Response::view('error', array(), 404);
-// });

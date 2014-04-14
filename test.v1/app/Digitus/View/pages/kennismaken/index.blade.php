@@ -1,4 +1,4 @@
-@extends('layouts.front.main')
+@extends('layouts.front.page')
 
 @section('title')
 @stop
