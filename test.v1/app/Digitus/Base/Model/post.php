@@ -2,7 +2,7 @@
 
 class Post extends \Eloquent {
 
-	protected $fillable = array('title','body', 'author','slug');
+	protected $fillable = array('title','body', 'author','slug','image','metatitle','metadescription','robots','ogtitle','ogdescription','ogsitename','ogurl','ogimage','ogtype');
 
 	public function user()
 	{

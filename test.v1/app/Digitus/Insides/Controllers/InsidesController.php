@@ -1,49 +1,46 @@
 <?php namespace Digitus\Insides\Controllers;
 
-use Auth, Digitus\Base\Model\User, Digitus\Base\Model\Categorie, Digitus\Base\Model\Page, Digitus\Base\Model\post, Digitus\Base\Model\Tag, View;
+use Digitus\Base\Controllers\BaseController,
+Digitus\Base\Model\User,
+Digitus\Base\Model\Categorie,
+Digitus\Base\Model\Page,
+Digitus\Base\Model\post,
+Digitus\Base\Model\Tag,
+Auth,
+View;
 
-class InsidesController extends \Digitus\Base\Controllers\BaseController{
+class InsidesController extends BaseController{
 
 	public function index()
 	{
-
-		
-		
 		$posts = Post::paginate(4);
 		$page = Page::byslug('blog');
-		
 		if(Auth::check())
 			{
 				$user = Auth::user();
 			}else{
 				$user = false;
 			}
-
-		// $post = $this->posts;
-		// $login = $post->post_author;
-		// $user = $this->sentry->findUserByID($login);
-		// $author = $user->first_name . ' ' . $user->last_name;
-
-		return View::make('blog.index')->with('posts', $posts)->with('user', $user)->with('page', $page);
-		// return View::make('blog.index')->with('posts', $posts, 'user', Sentry::getUser());
+		return View::make('blog.index')
+		->with('posts', $posts)
+		->with('user', $user)
+		->with('page', $page);
 	}
 	public function show($slug)
 	{
-		
 		$currpost = Post::byslug($slug);
 		$categories = $currpost->categories;
 		foreach($categories as $categorie);
 		$henk = Categorie::where('name','=',$categorie->name)->first();
-		$jan = $henk->posts;
-		// foreach($jan as $ja);
-		// dd($ja->title);
-		$login = $currpost->author;
-		$deUser = User::byid($login);
-		// $id = $currpost->id;
-		// $posts = Post::with('categories.posts')->get();
-		$author = $deUser->firstname . ' ' . $deUser->lastname;
+		$posts = $henk->posts;
+		$deUser = User::byid($currpost->author);
+		$author = $currpost->getAuthor();
 
-		return View::make('blog.post')->with('post', $currpost)->with('user',$deUser)->with('author',$author)->with('posts',$jan);
+		return View::make('blog.post')
+		->with('post', $currpost)
+		->with('user',$deUser)
+		->with('author',$author)
+		->with('posts',$posts);
 	}
 
 	// public function getBlogForm()

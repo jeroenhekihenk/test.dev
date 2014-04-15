@@ -30,14 +30,13 @@
     </div>
   @endif
 
-    <div class="container-fluid">
-    <div class="row">
+    <div class="container">
       @yield('sidebar')
       @yield('content')
       @yield('comments')
       @yield('pagination')
     </div>
-  </div>
+
  
   @yield('footer')
   {{ HTML::script('//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js') }}

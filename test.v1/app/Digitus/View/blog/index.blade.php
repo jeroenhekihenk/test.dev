@@ -45,15 +45,15 @@ Blog
 		</div>
 	@endforeach
 
-
+	<div class="row">
+		<div class="container">
+			{{$posts->links()}}
+		</div>
+	</div>
 </div>
 
 @stop
 
 @section('pagination')
-	<div class="row">
-		<div class="span8">
-	
-		</div>
-	</div>
+
 @stop

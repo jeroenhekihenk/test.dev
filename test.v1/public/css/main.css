@@ -112,9 +112,97 @@ header nav ul li > a {
 | BLOG STUFF
 |-----------------------------------------------------------------------
 */
+div.blogroll {
+  padding: 25px 0;
+}
+div.post{
+  position: relative;
+  padding:15px;
+}
+div.post-top,
+div.post-bottom{
+  background-color: #F8F8F8;
+  border: 1px solid rgba(25, 25, 25, 0.1);
+  border-radius: 2px;
+  margin: 0.5em auto 0;
+  padding: 1%;
+}
+div.post > div.post-top{
+  margin: 0 auto 1em;
+}
+div.post > div.post-info{
+  width:100%;
+}
+div.post div.post-info > p.post-date,
+div.post div.post-info > p.post-author,
+div.post div.post-info p.post-date > span.date,
+div.post div.post-info p.post-author > a.post-author,
+div.post div.post-info p.post-categorie,
+div.post div.post-info p.post-categorie > a,
+div.post div.post-info p.post-tags,
+div.post div.post-info p.post-tags > a{
+  font-size: 11pt;
+  font-weight: 300;
+  margin: 0 3px 0 0;
+}
+a.post-author, p.post-author {
+    font-size: 11pt;
+}
+p.post-author {
+    float: left;
+}
+p.post-date {
+    float: left;
+    font-size: 11pt;
+}
 
-div.blogbottom {
-  padding: 0 15px 15px;
+/* Post image */
+div.post img.post-image {
+    border: 4px solid #FFFFFF;
+    float: left;
+    margin: 0 1em 1em 0;
+    padding: 0;
+    width: 50%;
+}
+
+/* Post title */
+div.post h2.post-title{
+    font-size: 25pt;
+    margin: 0 0 0.5em;
+    text-align: left;
+    width: 100%;
+}
+
+/* Post body */
+div.post div.post-body > p {
+    font-size: 1em;
+    padding: 0.5em;
+    text-align: justify;
+}
+
+/* Post related Stuff */
+div.post-related {
+    float: left;
+    margin: 10px;
+    max-width: 220px;
+    padding: 0;
+    position: relative;
+}
+div.post-related figure.post-pic {
+    background-position: center center;
+    background-size: cover;
+    border: 2px solid #FFFFFF;
+    border-radius: 4px;
+    box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.25);
+    max-height: 200px;
+    max-width: 100%;
+    min-height: 150px;
+    min-width: 125px;
+}
+div.post-related > p {
+    margin: 0;
+    padding: 0;
+    word-wrap: break-word;
 }
 
 /*

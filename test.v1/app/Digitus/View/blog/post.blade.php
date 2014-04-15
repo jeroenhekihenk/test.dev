@@ -10,44 +10,67 @@
 
 @section('content')
 
-<div class="blogroll col-xs-10 col-sm-10 col-md-10 col-lg-10">
+<div class="blogroll col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
 		<!-- Blogpost blok -->
 
-		<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 pull-left panel panel-info post-{{$post->id}}">
-			<h1>{{ $post->title }}  </h1>
-			<p class="postinfo">Geplaatst op {{ $post->getUpdatedAt() }} door <a href="{{{ URL::to('user/'.$user->username) }}}" target="_blank">{{ $author }}</a>
-			</p>
-			<p>{{ $post->image }}</p>
-			<p>{{ $post->body }}</p>
-			<hr>
-			<div class="blogbottom col-xs-12 col-sm-12 col-md-12 col-lg-12">
-				<div class="pull-left col-xs-7 col-sm-7 col-md-7 col-lg-7">
-					Tags: 
-					@foreach($post->tags as $tag)
-						<a href="{{ URL::to('tags/'.$tag->name) }}" title="{{$tag->name}}" alt="{{$tag->name}}">{{ $tag->name }}</a>,  
-					@endforeach<br />
-					Posted in 
-					@foreach($post->categories as $categorie)
-						<a href='categories/{{$categorie->name}}'>{{ $categorie->name }}</a> 
-					@endforeach
+		<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2 pull-left panel panel-info post post-{{$post->id}}">
+			
+			<div class="post-top">
+				<div class="post-info">
+					<p class="post-date">Geplaatst op <span class="date">{{ $post->getUpdatedAt() }}</span></p>
+					<p class="post-author">door <a class="post-author" href="{{{ URL::to('user/'.$user->username) }}}" target="_blank">{{ $author }}</a></p>
+					<p class="post-categorie">in 
+						@foreach($post->categories as $categorie)
+							<a href='categories/{{$categorie->name}}'>{{ $categorie->name }}</a> 
+						@endforeach
+					</p>
 				</div>
+				<div style="clear:both"></div>
+			</div>
+			<div class="post-body">
+				<img class="post-image col-xs-6 col-sm-6 col-md-6 col-lg-6" src='{{{ URL::to($post->image) }}}'></img>
+				<h2 class="post-title">{{ $post->title }}</h2>
+				<p>{{ $post->body }}</p>
+			</div>
+			<div style="clear:both"></div>
+			<hr>
+			<div class="post-bottom">
+				<div class="post-info">
+					<p class="post-date">Geplaatst op <span class="date">{{ $post->getUpdatedAt() }}</span></p>
+					<p class="post-author">door <a class="post-author" href="{{{ URL::to('user/'.$user->username) }}}" target="_blank">{{ $author }}</a></p>
+					<p class="post-categorie">in 
+						@foreach($post->categories as $categorie)
+							<a href='categories/{{$categorie->name}}'>{{ $categorie->name }}</a> 
+						@endforeach
+					</p>
+					<p class="post-tags">
+						Tags:
+						@foreach($post->tags as $tag)
+							<a href="{{ URL::to('tags/'.$tag->name) }}" title="{{$tag->name}}" alt="{{$tag->name}}">{{ $tag->name }}</a>,  
+						@endforeach
+					</p>
+				</div>
+				<div style="clear:both"></div>
+				
+
+			</div>
 				@if($loggedUser->roles->first()->name === 'Admin')
 					<div class="pull-right col-xs-5 col-sm-5 col-md-5 col-lg-5">
 						{{ Form::open(array('method'=>'DELETE','class'=>'pull-right','action'=>array('admin.blog.destroy', $post->slug))) }}
-						{{ Form::submit('Delete this post', array('class'=>'btn btn-danger btn-xs'))}}
+						{{ Form::submit('&times;', array('class'=>'btn btn-danger btn-xs'))}}
 						{{ Form::close() }}
 					
 				 
-						<a href="{{{ URL::route('admin.blog.edit', [$post->slug]) }}}" class="btn btn-warning btn-sm pull-right" style="margin-right: 10px;"><span class="glyphicon glyphicon-cog"></span> Edit this post</a>
+						<a href="{{{ URL::route('admin.blog.edit', [$post->slug]) }}}" class="btn btn-warning btn-sm pull-right" style="margin-right: 10px;"><span class="glyphicon glyphicon-cog"></span></a>
 					</div>
 				@endif
-			</div>
+				<div style="clear:both"></div>
 		</div><!-- /Blogpost blok -->
 
 		<!-- Auteur blok -->
 
-		<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 panel panel-info">
+		<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2 panel panel-info">
 			<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 pull-left">
 				<figure class="profile-pic" style="background-image: url('{{{ URL::to($user->image) }}}');"></figure>
 				<h3>{{$author}}</h3>
@@ -64,7 +87,7 @@
 		<!-- Comments blok -->
 
 		@foreach($post->comments as $comment)
-		<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 pull-left panel panel-warning comment-{{$comment->id}}">
+		<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2 pull-left panel panel-warning comment-{{$comment->id}}">
 			@if($loggedUser->roles->first()->name === 'Admin')
 			
 			<a href="{{ URL::route('comment.show',$comment->id) }}">Kijk</a>
@@ -84,7 +107,7 @@
 
 
 <!-- Nieuwe comment blok -->
-<div class="nieuw-comment col-xs-8 col-sm-8 col-md-8 col-lg-8">
+<div class="nieuw-comment col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2 ">
 	<h3>Plaats een reactie:</h3>
 	@include('comments.form')
 </div><!-- /Nieuwe comment blok -->

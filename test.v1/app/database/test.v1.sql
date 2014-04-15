@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 14, 2014 at 08:36 PM
+-- Generation Time: Apr 15, 2014 at 06:08 PM
 -- Server version: 5.5.24-log
 -- PHP Version: 5.4.24
 
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `categories`
@@ -43,7 +43,8 @@ INSERT INTO `categories` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (2, 'Henk', '2014-04-09 15:01:00', '0000-00-00 00:00:00'),
 (3, 'Jan', '2014-04-10 08:19:31', '2014-04-10 08:19:31'),
 (4, ' Willem', '2014-04-10 08:19:31', '2014-04-10 08:19:31'),
-(5, ' Harry', '2014-04-10 08:19:31', '2014-04-10 08:19:31');
+(5, ' Harry', '2014-04-10 08:19:31', '2014-04-10 08:19:31'),
+(6, 'internet', '2014-04-15 10:26:19', '2014-04-15 10:26:19');
 
 -- --------------------------------------------------------
 
@@ -58,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `categorie_post` (
   PRIMARY KEY (`id`),
   KEY `categorie_post_post_id_foreign` (`post_id`),
   KEY `categorie_post_categorie_id_foreign` (`categorie_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=15 ;
 
 --
 -- Dumping data for table `categorie_post`
@@ -67,7 +68,10 @@ CREATE TABLE IF NOT EXISTS `categorie_post` (
 INSERT INTO `categorie_post` (`id`, `post_id`, `categorie_id`) VALUES
 (7, 3, 1),
 (10, 2, 1),
-(11, 1, 2);
+(11, 1, 2),
+(12, 4, 1),
+(13, 5, 6),
+(14, 6, 1);
 
 -- --------------------------------------------------------
 
@@ -85,7 +89,7 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `comments`
@@ -99,7 +103,8 @@ INSERT INTO `comments` (`id`, `naam`, `email`, `website`, `bericht`, `approved`,
 (5, 'Jeroen Venderbosch', 'jeroenvenderbosch@hotmail.com', 'https://www.facebook.com/Jvenderbosch', 'u3r8942e3897tjeh nygniefyguifduiger', 0, '2014-04-11 09:05:43', '2014-04-11 09:05:43'),
 (6, 'Jeroen Venderbosch', 'jeroenvenderbosch@hotmail.com', 'https://www.facebook.com/Jvenderbosch', '68765876586666768768687687687', 0, '2014-04-11 09:09:34', '2014-04-11 09:09:34'),
 (7, 'Jeroen Venderbosch', 'jeroenvenderbosch@hotmail.com', 'https://www.facebook.com/Jvenderbosch', '68765876586666768768687687687', 0, '2014-04-11 09:10:50', '2014-04-11 09:10:50'),
-(9, 'Jeroen Venderbosch', 'jeroenvenderbosch@hotmail.com', 'https://www.facebook.com/Jvenderbosch', 'Maaaaaar. is het ook de eerste post met een comment erbij? met een edit!', 0, '2014-04-11 10:36:51', '2014-04-11 10:44:09');
+(9, 'Jeroen Venderbosch', 'jeroenvenderbosch@hotmail.com', 'https://www.facebook.com/Jvenderbosch', 'Maaaaaar. is het ook de eerste post met een comment erbij? met een edit!', 0, '2014-04-11 10:36:51', '2014-04-11 10:44:09'),
+(10, 'Jeroen Venderbosch', 'jeroenvenderbosch@hotmail.com', 'https://www.facebook.com/Jvenderbosch', 'Hey hallo, werken de comments nog? :) \r\nIk ben bang dat er misschien iets misgaat! :o', 0, '2014-04-15 08:33:16', '2014-04-15 08:33:16');
 
 -- --------------------------------------------------------
 
@@ -114,7 +119,7 @@ CREATE TABLE IF NOT EXISTS `comment_post` (
   PRIMARY KEY (`id`),
   KEY `post_comments_post_id_foreign` (`post_id`),
   KEY `post_comments_comment_id_foreign` (`comment_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `comment_post`
@@ -123,7 +128,8 @@ CREATE TABLE IF NOT EXISTS `comment_post` (
 INSERT INTO `comment_post` (`id`, `post_id`, `comment_id`) VALUES
 (1, 1, 1),
 (2, 3, 7),
-(4, 1, 9);
+(4, 1, 9),
+(5, 1, 10);
 
 -- --------------------------------------------------------
 
@@ -186,7 +192,7 @@ CREATE TABLE IF NOT EXISTS `pages` (
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `pages`
@@ -194,7 +200,8 @@ CREATE TABLE IF NOT EXISTS `pages` (
 
 INSERT INTO `pages` (`id`, `layout`, `menu`, `footer`, `title`, `body`, `author`, `slug`, `image`, `metatitle`, `metadescription`, `robots`, `ogtitle`, `ogdescription`, `ogsitename`, `ogurl`, `ogimage`, `ogtype`, `created_at`, `updated_at`) VALUES
 (1, 'front.page', '', '', 'Eerste page', 'De bodytekst van de Eerste Page', '1', 'eerste_page', '', '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(3, '', '', '', 'Blog', '', '1', 'blog', '', 'Blog', '', 'noindex, nofollow', 'Blog', '', '', '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+(3, '', '', '', 'Blog', '', '1', 'blog', '', 'Blog', '', 'noindex, nofollow', 'Blog', '', '', '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(12, 'front.page', 'front.menus.digimenu', 'front.footer.main', 'TESTEN', 'hey hallo ik wil graag testen of het mogelijk is om een palatje toe te voegen aan deze pagina, waaromd oet hij het hier wel en bij de posts niet?\r\n\r\n', '1', 'testen', '/uploads/images/pages/idee-offer-foto.png', 'TESTEN', 'hey hallo ik wil graag testen of het mogelijk is om een palatje toe te voegen aan deze pagina, waaromd oet hij het hier wel en bij de posts niet?\r\n\r\n', 'noindex, nofollow', 'TESTEN', 'hey hallo ik wil graag testen of het mogelijk is om een palatje toe te voegen aan deze pagina, waaromd oet hij het hier wel en bij de posts niet?\r\n\r\n', 'Digitus Marketing', '', '/uploads/images/pages/idee offer foto.png', 'Article', '2014-04-15 10:47:13', '2014-04-15 10:47:13');
 
 -- --------------------------------------------------------
 
@@ -208,6 +215,7 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `body` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `author` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `slug` varchar(120) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `image` varchar(50) NOT NULL,
   `metatitle` varchar(80) NOT NULL,
   `metadescription` varchar(160) NOT NULL,
   `robots` varchar(50) NOT NULL,
@@ -220,16 +228,19 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `posts`
 --
 
-INSERT INTO `posts` (`id`, `title`, `body`, `author`, `slug`, `metatitle`, `metadescription`, `robots`, `ogtitle`, `ogdescription`, `ogsitename`, `ogurl`, `ogimage`, `ogtype`, `created_at`, `updated_at`) VALUES
-(1, 'de eerste post met bewerking!!', 'de eerste post haha!', '1', 'de-eerste-post-met-bewerking', '', '', '', '', '', '', '', '', '', '2014-04-09 14:40:20', '2014-04-09 12:40:20'),
-(2, 'de tweede post van vandaag', 'met hopelijk een nieuwe tag derbij', '1', 'de-tweede-post-van-vandaag', '', '', '', '', '', '', '', '', '', '2014-04-03 13:34:32', '2014-04-03 13:34:32'),
-(3, 'De eerste post van iemand anders!', 'Met een geweldige bodytekst natuurlijk !!', '2', 'de-eerste-post-van-iemand-anders', '', '', '', '', '', '', '', '', '', '2014-04-10 08:12:19', '2014-04-10 08:12:19');
+INSERT INTO `posts` (`id`, `title`, `body`, `author`, `slug`, `image`, `metatitle`, `metadescription`, `robots`, `ogtitle`, `ogdescription`, `ogsitename`, `ogurl`, `ogimage`, `ogtype`, `created_at`, `updated_at`) VALUES
+(1, 'de eerste post met bewerking!!', 'de eerste post haha!', '1', 'de-eerste-post-met-bewerking', '', '', '', '', '', '', '', '', '', '', '2014-04-09 14:40:20', '2014-04-09 12:40:20'),
+(2, 'de tweede post van vandaag', 'met hopelijk een nieuwe tag derbij', '1', 'de-tweede-post-van-vandaag', '', '', '', '', '', '', '', '', '', '', '2014-04-03 13:34:32', '2014-04-03 13:34:32'),
+(3, 'De eerste post van iemand anders!', 'Met een geweldige bodytekst natuurlijk !!', '2', 'de-eerste-post-van-iemand-anders', '', '', '', '', '', '', '', '', '', '', '2014-04-10 08:12:19', '2014-04-10 08:12:19'),
+(4, 'Idee offer foto!', 'Henkie henk henk henkie henkie kom bie mie', '1', 'idee-offer-foto', '', '', '', '', '', '', '', '', '', '', '2014-04-15 09:53:30', '2014-04-15 09:53:30'),
+(5, 'Hey hallo', 'Funx radio oin the air!', '1', 'hey-hallo', '', '', '', '', '', '', '', '', '', '', '2014-04-15 10:25:55', '2014-04-15 10:25:55'),
+(6, 'ksjdkjasdhaskjhdkjas', 'kjsdhfksdhjgsdgusdgodfijcnvkcnvd\r\nPLAATJE TOEGEOVED?!?!\r\nfjgdsflsdjaklfjxcklvsdfs\r\nef\r\nsdfdgsdgdaghdfghdfghd\r\naghdfgdgdsfasvvbdcxzAFDCSXJaxjczkc xkvsdjfwsdasxsa<br />\r\n\r\nsdasjdfsjfsdkgjdgjsdfkjasdfskfksdgksdgs', '1', 'ksjdkjasdhaskjhdkjas', '/uploads/images/posts/omslagfoto 2014.png', '', '', '', '', '', '', '', '/uploads/images/posts/omslagfoto 2014.png', '', '2014-04-15 15:27:59', '2014-04-15 13:27:59');
 
 -- --------------------------------------------------------
 
@@ -244,7 +255,7 @@ CREATE TABLE IF NOT EXISTS `post_tag` (
   PRIMARY KEY (`id`),
   KEY `post_tags_post_id_foreign` (`post_id`),
   KEY `post_tags_tag_id_foreign` (`tag_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=25 ;
 
 --
 -- Dumping data for table `post_tag`
@@ -256,7 +267,11 @@ INSERT INTO `post_tag` (`id`, `post_id`, `tag_id`) VALUES
 (7, 2, 5),
 (9, 3, 1),
 (10, 3, 8),
-(11, 3, 9);
+(11, 3, 9),
+(12, 4, 4),
+(13, 4, 3),
+(23, 5, 12),
+(24, 6, 1);
 
 -- --------------------------------------------------------
 
@@ -316,7 +331,7 @@ CREATE TABLE IF NOT EXISTS `tags` (
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `tags`
@@ -331,7 +346,10 @@ INSERT INTO `tags` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (6, 'jannnnn', '2014-04-10 08:41:27', '2014-04-10 08:41:27'),
 (7, '1234', '2014-04-10 08:42:57', '2014-04-10 08:42:57'),
 (8, ' nieuw', '2014-04-10 08:44:40', '2014-04-10 08:44:40'),
-(9, ' 1324', '2014-04-10 08:44:40', '2014-04-10 08:44:40');
+(9, ' 1324', '2014-04-10 08:44:40', '2014-04-10 08:44:40'),
+(10, ' test', '2014-04-15 10:23:10', '2014-04-15 10:23:10'),
+(11, ' henk', '2014-04-15 10:23:10', '2014-04-15 10:23:10'),
+(12, 'radio', '2014-04-15 10:25:36', '2014-04-15 10:25:36');
 
 -- --------------------------------------------------------
 
