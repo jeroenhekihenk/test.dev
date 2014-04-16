@@ -30,16 +30,14 @@
     <p class="alert alert-info">{{ Session::get('message') }}</p>
   </div>
   @endif
-
-  <div class="container-fluid">
-    <div class="row">
+  <section id="{{$page->slug}}">
+    <div class="container">
       @yield('sidebar')
       @yield('content')
       @yield('comments')
       @yield('pagination')
     </div>
-  </div>
-
+  </section>
   @yield('footer')
   {{ HTML::script('//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js') }}
   {{ HTML::script('//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js') }}

@@ -14,7 +14,7 @@
 @section('notification')
 @if($loggedUser->roles->first()->name === 'Admin')
 <div id="notification" class="notification notification-sidebar">
-	<a href="{{URL::route('admin.blog.create')}}" class="btn btn-success btn-md"><span class="glyphicon glyphicon-plus"></span> Nieuwe blogpost</a>
+	<a href="{{URL::route('admin.insides.create')}}" class="btn btn-success btn-md"><span class="glyphicon glyphicon-plus"></span> Nieuwe blogpost</a>
 </div>
 @endif
 @stop
@@ -50,7 +50,7 @@
 						@foreach($post->categories as $categorie) {{$categorie->name}}, @endforeach
 					</td>
 					<td>
-						<a href="{{URL::route('admin.blog.edit',$post->slug) }}" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-cog"></span> Edit</a> 
+						<a href="{{URL::route('admin.insides.edit',$post->slug) }}" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-cog"></span> Edit</a> 
 					</td>
 					<td><a href="{{URL::route('insides.show',$post->slug) }}" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-eye-open"></span> Kijk</a>
 				</tr>

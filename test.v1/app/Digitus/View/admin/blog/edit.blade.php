@@ -13,15 +13,12 @@
 @stop
 
 @section('sidebar2')
-@if($loggedUser->roles->first()->name === 'Admin')
-	
-@endif
 @stop
 
 @section('content')
 @if($loggedUser->roles->first()->name === 'Admin')
 <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
-	{{ Form::open(array('method'=>'PUT','files'=>true,'action'=>array('admin.blog.update',$post->slug))) }}
+	{{ Form::open(array('method'=>'PUT','files'=>true,'action'=>array('admin.insides.update',$post->slug))) }}
 	<div class="sidebar2" style="max-width:230px">
 			Uitgelichte afbeelding:<br/>
 		

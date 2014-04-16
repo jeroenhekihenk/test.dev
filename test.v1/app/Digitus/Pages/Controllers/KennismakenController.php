@@ -1,6 +1,8 @@
 <?php namespace Digitus\Pages\Controllers;
 
-use Digitus\Base\Controllers\BaseController, View;
+use Digitus\Base\Controllers\BaseController,
+Digitus\Base\Model\Page,
+View;
 
 class KennismakenController extends BaseController {
 
@@ -22,7 +24,13 @@ class KennismakenController extends BaseController {
 
 	public function index()
 	{
-		return View::make('pages.kennismaken.index');
+		$slug = 'kennismaken';
+		if(! $currpage = Page::byslug($slug))
+		{
+			return Response::view('errors.404');
+		}
+		return View::make('pages.kennismaken.index')
+		->with('page',$currpage);
 	}
 
 }

@@ -9,17 +9,13 @@ class UserProfileController extends BaseController{
 		return Redirect::to('/');
 	}
 
-	public function show($email)
+	public function show($uname)
 	{	
 
-		if(Auth::check() && Auth::User()->email === $email)
-		{
-			// dd($email);
-			return View::make('user.profile.index')->with('user', Auth::user());
-		} else {
-			// dd($email);
-			return View::make('user.profile.index')->with('user', Auth::user());
-		}
+		$user = User::where('username','=',$uname)->first();
+			// dd($user);
+			return View::make('user.profile.index')->with('user', $user);
+		
 	}
 
 	public function edit($uname)

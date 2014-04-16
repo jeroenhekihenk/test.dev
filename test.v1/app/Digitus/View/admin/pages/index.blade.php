@@ -39,7 +39,7 @@
 				<td>{{$page->body}}</td>
 				<td>{{$page->slug}}</td>
 				<td><a href="{{ URL::route('admin.pages.edit',[$page->slug]) }}" class="btn btn-primary">Edit</a></td>
-				<td><a href="{{ URL::route('admin.pages.show',[$page->slug]) }}" class="btn btn-info">View</a></td>
+				<td><a href="{{ URL::route('show.page',[$page->slug]) }}" class="btn btn-info">View</a></td>
 				<td> {{ Form::open(array('method'=>'DELETE','action'=>array('admin.pages.destroy',$page->slug)))}}
 					{{ Form::submit('Destroy', array('class'=>'btn btn-danger'))}}
 					{{ Form::close() }}

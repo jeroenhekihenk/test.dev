@@ -18,7 +18,7 @@
 				<p class="ohoh">
 					<b class="ohoh">Ohoh..</b>
 					Het lijkt er op dat er iets mis is gegaan..<br />
-					De pagina die je probeerde te bezoeken bestaat niet (meer).<br />
+					Ons konijntje is aan het zoeken, maar het lijkt er op dat de pagina die je probeerde te bezoeken niet (meer) bestaat .<br />
 					<br />
 					<a href="{{ URL::previous() }}" title="" class="ohoh"><span class="arrow-right"></span> Keer terug naar de homepagina</a>
 				</p>

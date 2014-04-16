@@ -24,10 +24,17 @@ class AdminPageController extends BaseController {
 
 	public function store()
 	{
-		$file 				= Input::file('file');
-	    $destinationPath 	= '/uploads/images/pages/';
-	    $filename 			= $file->getClientOriginalName();
-	    $upload_success 	= $file->move($destinationPath, $filename);
+		if(Input::get('file'))
+			{
+				$file 				= Input::file('file');
+			    $destinationPath 	= '/uploads/images/pages/';
+			    $filename 			= $file->getClientOriginalName();
+			    $upload_success 	= $file->move($destinationPath, $filename);
+			    $new_page = array(
+			    'image'				=> str_replace('\\', '/', $upload_success),
+			    'ogimage' 			=> str_replace('\\', '/', $upload_success),
+			    );
+			}
 
 	    $new_page = array(
 	    	'layout' 			=> Input::get('layout'),
@@ -37,7 +44,7 @@ class AdminPageController extends BaseController {
 			'body'				=> Input::get('body'),
 			'author'			=> Input::get('author'),
 			'slug'				=> Str::slug(Input::get('title')),
-			'image'				=> str_replace('\\', '/', $upload_success),
+
 			'metatitle' 		=> Input::get('title'),
 			'metadescription'	=> Input::get('body'),
 			'robots' 			=> Input::get('robots'),
@@ -45,7 +52,7 @@ class AdminPageController extends BaseController {
 			'ogdescription'		=> Input::get('body'),
 			'ogsitename' 		=> 'Digitus Marketing',
 			'ogurl' 			=> '',
-			'ogimage' 			=> str_replace('\\', '/', $upload_success),
+
 			'ogtype' 			=> Input::get('type')
 		);
 
@@ -65,7 +72,7 @@ class AdminPageController extends BaseController {
 		$validation = Validator::make($new_page, $rules);
 		if ( $validation->fails() )
 		{
-			return Redirect::route('admin.pages.create')->with('user', $loggedUser)->withErrors($validation)->withInput();
+			return Redirect::route('admin.pages.create')->withErrors($validation)->withInput();
 		}
 
 		$page = new Page($new_page);

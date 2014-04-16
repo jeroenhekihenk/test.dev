@@ -7,24 +7,35 @@ Digitus\Base\Model\Page,
 Digitus\Base\Model\post,
 Digitus\Base\Model\Tag,
 Auth,
-View;
+View,
+Response;
 
 class InsidesController extends BaseController{
 
 	public function index()
 	{
-		$posts = Post::paginate(4);
-		$page = Page::byslug('blog');
-		if(Auth::check())
-			{
-				$user = Auth::user();
-			}else{
-				$user = false;
-			}
-		return View::make('blog.index')
-		->with('posts', $posts)
-		->with('user', $user)
-		->with('page', $page);
+		$slug = 'insides';
+		$posts = Post::all();
+		if(! $currpage = Page::byslug($slug))
+		{
+			return Response::view('errors.404');
+		}
+		return View::make('insides.index')
+		->with('page',$currpage)
+		->with('posts',$posts);
+
+		
+		// $page = Page::byslug('blog');
+		// if(Auth::check())
+		// 	{
+		// 		$user = Auth::user();
+		// 	}else{
+		// 		$user = false;
+		// 	}
+		// return View::make('blog.index')
+		// ->with('posts', $posts)
+		// ->with('user', $user)
+		// ->with('page', $page);
 	}
 	public function show($slug)
 	{
@@ -32,11 +43,11 @@ class InsidesController extends BaseController{
 		$categories = $currpost->categories;
 		foreach($categories as $categorie);
 		$henk = Categorie::where('name','=',$categorie->name)->first();
-		$posts = $henk->posts;
+		$posts = $henk->posts()->paginate(3);
 		$deUser = User::byid($currpost->author);
 		$author = $currpost->getAuthor();
 
-		return View::make('blog.post')
+		return View::make('insides.post')
 		->with('post', $currpost)
 		->with('user',$deUser)
 		->with('author',$author)

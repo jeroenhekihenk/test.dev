@@ -22,16 +22,16 @@ Route::group(array('namespace'=>'Digitus\Pages\Controllers'), function()
 
 	Route::get('workshops', ['uses'=>'WorkshopsController@index','as'=>'workshops.index']);
 
-	Route::get('insides', ['uses'=>'InsidesController@index','as'=>'insides.index']);
+	// Route::get('insides', ['uses'=>'InsidesController@index','as'=>'insides.index']);
 
 	Route::get('kennismaken', ['uses'=>'KennismakenController@index','as'=>'kennismaken.index']);
 });
 
-Route::group(array('namespace'=>'Digitus\Insides\Controllers'), function()
-{
-	Route::resource('insides','InsidesController');
-	Route::delete('insides/{slug}', ['uses'=>'InsidesController@destroy','as'=>'delete.post']);
-});
+// Route::group(array('namespace'=>'Digitus\Insides\Controllers'), function()
+// {
+// 	Route::resource('insides','InsidesController');
+// 	Route::delete('insides/{slug}', ['uses'=>'InsidesController@destroy','as'=>'delete.post']);
+// });
 
 
 
@@ -92,20 +92,35 @@ Route::group(array('prefix'=>'admin', 'namespace'=>'Digitus\Admin\Controllers','
 			)
 		);
 		// (index)get register form, (create,store)register user
-		Route::resource('blog', 'AdminBlogController',
+		Route::resource('insides', 'AdminInsidesController',
 			array('names' =>
 				array(
-					'index'=>'admin.blog.index',
-					'create'=>'admin.blog.create',
-					'store'=>'admin.blog.store',
-					// 'show'=>'admin.blog.show',
-					'edit'=>'admin.blog.edit',
-					'update'=>'admin.blog.update',
-					'destroy'=>'admin.blog.destroy'
+					'index'=>'admin.insides.index',
+					'create'=>'admin.insides.create',
+					'store'=>'admin.insides.store',
+					// 'show'=>'admin.insides.show',
+					'edit'=>'admin.insides.edit',
+					'update'=>'admin.insides.update',
+					'destroy'=>'admin.insides.destroy'
 				)
 			)
 		);
-		// (index)Get all blogposts, (create,store)Create post, (edit)Update blogpost, (destroy)Delete post
+		// (index)-Get all blogposts, (create,store)Create post, (edit)Update blogpost, (destroy)Delete post
+
+		Route::resource('cases', 'AdminCasesController',
+			array('names' =>
+				array(
+					'index'=>'admin.cases.index',
+					'create'=>'admin.cases.create',
+					'store'=>'admin.cases.store',
+					'show'=>'admin.cases.show',
+					'edit'=>'admin.cases.edit',
+					'update'=>'admin.cases.update',
+					'destroy'=>'admin.cases.destroy'
+				)
+			)
+		);
+		// (index) Get all cases, (create,store)Create Case, (show)View Case, (edit,update)Edit/Update Case, (destroy) Delete Case
 
 		Route::resource('blog/tag', 'AdminBlogTagController',
 			array('names' =>

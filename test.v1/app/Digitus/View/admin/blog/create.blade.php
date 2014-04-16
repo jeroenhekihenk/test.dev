@@ -12,7 +12,7 @@
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 	@if($loggedUser->roles->first()->name === 'Admin')
 	
-		{{ Form::open(array('action'=>'admin.blog.store','id'=>'newblogpost', 'files'=>true)) }}
+		{{ Form::open(array('action'=>'admin.insides.store','id'=>'newblogpost', 'files'=>true)) }}
 	<div id="sidebar" class="sidebar col-sm-2 col-md-2">
 		{{ Form::file('file') }}
 	</div>
