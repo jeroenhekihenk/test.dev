@@ -40,8 +40,8 @@ Route::group(array('namespace'=>'Digitus\Auth\Controllers'), function()
 	Route::get('in/loggen', ['uses'=>'UserController@getLogin','as'=>'login']);
 	Route::post('in/loggen', ['uses'=>'UserController@postLogin','as'=>'post.login']);
 	Route::get('logout', ['uses'=>'UserController@getLogout', 'as'=>'logout']);
-	// Route::get('register', ['uses'=>'UserController@getRegister','as'=>'register']);
-	// Route::post('register', ['uses'=>'UserController@postRegister', 'as'=>'post.register']);
+	Route::get('register', ['uses'=>'UserController@getRegister','as'=>'register']);
+	Route::post('register', ['uses'=>'UserController@postRegister', 'as'=>'post.register']);
 });
 
 

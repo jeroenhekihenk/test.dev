@@ -106,16 +106,19 @@ input, textarea {
 .col-12 {
   width: 100%;
 }
-div.container{
-  width:100% !important;
+div.container {
+    max-width: 1200px !important;
+    min-height: 30px;
+    padding: 0;
+    width: 100%;
 }
 div.container div.inner {
   margin: 0 2%;
 }
 div.container div.inner div.feed {
-  margin: 0 auto;
-  padding: 0 4%;
-  position: relative;
+    margin: 0 auto;
+    padding: 0;
+    position: relative;
 }
 div.container div.inner div.feed > div.feed {
   overflow:hidden;
@@ -136,7 +139,6 @@ div.container div.inner div.feed > div.feed {
 */
 header div#floater {
     box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.4);
-    left: 6%;
     width:18%;
     max-width: 200px;
     min-width: 160px;
@@ -253,18 +255,22 @@ p.post-date {
 /* Blogroll */
 
 .b-roll {
-  left:0;
-  position:relative;
-  width:40000px;
+    left: 0;
+    max-height: 500px;
+    overflow: hidden;
+    position: relative;
+    width: 10000px;
 }
-.b-roll > div.blok{
-  box-shadow: 0 2px 1px 1px rgba(0,0,0,0.016);
-  float:left;
-  margin:0 0.75em;
-  max-width: 390px;
-  transform: scale(1);
-  transition: all 0.1s ease-in-out 0s;
-  width: 31%;
+.b-roll > div.blok {
+    box-shadow: 0 2px 1px 1px rgba(0, 0, 0, 0.016);
+    float: left;
+    margin: 0 0.75em;
+    max-height: 490px;
+    max-width: 364px;
+    min-width: 362px;
+    transform: scale(1);
+    transition: all 0.1s ease-in-out 0s;
+    width: 3.63%;
 }
 .b-roll > div.blok:first-child {
     margin: 0 0.75em 0 0.5em;
@@ -276,11 +282,18 @@ p.post-date {
   padding: 1em;
   position: relative;
 }
-div.blogpost > img {
+div.blogpost > figure {
   height: auto;
   margin: 1em 0;
   max-width: 100%;
   padding: 5px;
+}
+div.blogpost > figure.blogpostimg.fluid {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 175px;
+    width: 100%;
 }
 div.blogpost > p.post-body {
   color: #777777;
@@ -297,8 +310,8 @@ div.blogpost div.post-top p > span,
 div.blogpost div.post-bottom > p,
 div.blogpost div.post-bottom p > a,
 div.blogpost div.post-bottom p > span {
-  font-size: 14px;
-  margin:0;
+    font-size: 13px;
+    margin: 0;
 }
 div.blogpost div.post-bottom p.post-categorie{
   float: left;

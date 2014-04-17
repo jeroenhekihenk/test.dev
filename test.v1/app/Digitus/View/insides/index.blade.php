@@ -38,7 +38,7 @@ Blog
 							<p class="post-date">Geplaatst op: <span class="date">{{ $post->getUpdatedAtDay() }}</span></p>
 							<p class="post-author">	&nbsp;door: <a class="post-author" href="{{URL::route('this.user.show',$post->getAuthor()) }}">{{$post->getAuthor()}}</a></p>
 						</div>
-						<img class="blogpostimg fluid" src="{{ URL::to(''.$post->image) }}">
+						<figure class="blogpostimg fluid" style="background-image: url('{{ URL::to(''.$post->image) }}'); "></figure>
 						<p class="post-body">{{ $post->body }}</p>
 						<hr>
 						<div class="post-bottom">
