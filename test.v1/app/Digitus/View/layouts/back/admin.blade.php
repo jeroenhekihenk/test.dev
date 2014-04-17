@@ -8,6 +8,7 @@
 	<title>Digitus Marketing | @yield('title')</title>
 	{{ HTML::style('/css/reset.css') }}
 	{{ HTML::style('/css/admin/main.css') }}
+	{{ HTML::style('/css/main.css') }}
 	{{ HTML::style('//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css') }}
 </head>
 <body id="@yield('bodyid')  ">

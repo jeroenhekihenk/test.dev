@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 16, 2014 at 05:59 PM
+-- Generation Time: Apr 17, 2014 at 06:06 PM
 -- Server version: 5.5.24-log
 -- PHP Version: 5.4.24
 
@@ -72,6 +72,29 @@ INSERT INTO `categorie_post` (`id`, `post_id`, `categorie_id`) VALUES
 (12, 4, 1),
 (13, 5, 6),
 (14, 6, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `categorie_project`
+--
+
+CREATE TABLE IF NOT EXISTS `categorie_project` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `categorie_id` int(10) unsigned NOT NULL,
+  `project_id` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `categorie_project_categorie_id_foreign` (`categorie_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `categorie_project`
+--
+
+INSERT INTO `categorie_project` (`id`, `categorie_id`, `project_id`) VALUES
+(1, 1, 2),
+(2, 2, 3),
+(3, 3, 4);
 
 -- --------------------------------------------------------
 
@@ -164,7 +187,8 @@ INSERT INTO `migrations` (`migration`, `batch`) VALUES
 ('2014_04_08_102638_create_post_metatags_table', 12),
 ('2014_04_08_103616_create_page_metatags_table', 12),
 ('2014_04_08_103629_create_tag_metatags_table', 12),
-('2014_04_08_103646_create_categorie_metatags_table', 12);
+('2014_04_08_103646_create_categorie_metatags_table', 12),
+('2014_04_17_081301_create_cases_table', 13);
 
 -- --------------------------------------------------------
 
@@ -219,7 +243,7 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `body` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `author` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `slug` varchar(120) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `image` varchar(50) NOT NULL,
+  `image` varchar(100) NOT NULL,
   `metatitle` varchar(80) NOT NULL,
   `metadescription` varchar(160) NOT NULL,
   `robots` varchar(50) NOT NULL,
@@ -239,9 +263,9 @@ CREATE TABLE IF NOT EXISTS `posts` (
 --
 
 INSERT INTO `posts` (`id`, `title`, `body`, `author`, `slug`, `image`, `metatitle`, `metadescription`, `robots`, `ogtitle`, `ogdescription`, `ogsitename`, `ogurl`, `ogimage`, `ogtype`, `created_at`, `updated_at`) VALUES
-(1, 'de eerste post met bewerking!!', 'de eerste post haha!', '1', 'de-eerste-post-met-bewerking', '', '', '', '', '', '', '', '', '', '', '2014-04-09 14:40:20', '2014-04-09 12:40:20'),
-(2, 'de tweede post van vandaag', 'met hopelijk een nieuwe tag derbij', '1', 'de-tweede-post-van-vandaag', '/uploads/images/postsssssss/1185567_44298567581527', '', '', '', '', '', '', '', '/uploads/images/postsssssss/1185567_442985675815275_990006802_n.', '', '2014-04-16 15:36:06', '2014-04-16 13:36:06'),
-(3, 'De eerste post van iemand anders!', 'Met een geweldige bodytekst natuurlijk !!', '2', 'de-eerste-post-van-iemand-anders', '', '', '', '', '', '', '', '', '', '', '2014-04-10 08:12:19', '2014-04-10 08:12:19'),
+(1, 'de eerste post met bewerking!!', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '1', 'de-eerste-post-met-bewerking', 'uploads/images/posts/BZY17fMIQAADvBl.jpg', '', '', '', '', '', '', '', 'uploads/images/posts/BZY17fMIQAADvBl.jpg medium.jpg', '', '2014-04-17 15:23:06', '2014-04-17 13:06:55'),
+(2, 'de tweede post van vandaag', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?', '1', 'de-tweede-post-van-vandaag', 'uploads/images/posts/1380409_10151726464262956_1981156502_n.jpg', '', '', '', '', '', '', '', 'uploads/images/posts/1380409_10151726464262956_1981156502_n.jpg', '', '2014-04-17 15:43:09', '2014-04-17 13:15:06'),
+(3, 'De eerste post van iemand anders!', 'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.', '2', 'de-eerste-post-van-iemand-anders', 'uploads/images/posts/64372c3ceb5192ae7693a244c8ca98f3.JPG', '', '', '', '', '', '', '', 'uploads/images/posts/64372c3ceb5192ae7693a244c8ca98f3.JPG', '', '2014-04-17 15:43:13', '2014-04-17 13:15:31'),
 (4, 'Idee offer foto!', 'Henkie henk henk henkie henkie kom bie mie', '1', 'idee-offer-foto', '', '', '', '', '', '', '', '', '', '', '2014-04-15 09:53:30', '2014-04-15 09:53:30'),
 (5, 'Hey hallo', 'Funx radio oin the air!', '1', 'hey-hallo', '/uploads/images/posts/0ddontime01.jpg', '', '', '', '', '', '', '', '/uploads/images/posts/0ddontime01.jpg', '', '2014-04-16 14:43:22', '2014-04-16 12:43:22'),
 (6, 'ksjdkjasdhaskjhdkjas', 'kjsdhfksdhjgsdgusdgodfijcnvkcnvd\r\nPLAATJE TOEGEOVED?!?!\r\nfjgdsflsdjaklfjxcklvsdfs\r\nef\r\nsdfdgsdgdaghdfghdfghd\r\naghdfgdgdsfasvvbdcxzAFDCSXJaxjczkc xkvsdjfwsdasxsa<br />\r\n\r\nsdasjdfsjfsdkgjdgjsdfkjasdfskfksdgksdgs', '1', 'ksjdkjasdhaskjhdkjas', '/uploads/images/posts/omslagfoto 2014.png', '', '', '', '', '', '', '', '/uploads/images/posts/omslagfoto 2014.png', '', '2014-04-15 15:27:59', '2014-04-15 13:27:59');
@@ -280,6 +304,60 @@ INSERT INTO `post_tag` (`id`, `post_id`, `tag_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `projecten`
+--
+
+CREATE TABLE IF NOT EXISTS `projecten` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `body` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `slug` varchar(120) COLLATE utf8_unicode_ci NOT NULL,
+  `image` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `klant` varchar(120) COLLATE utf8_unicode_ci NOT NULL,
+  `klant_link` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
+  `link` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  `author` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `slug` (`slug`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `projecten`
+--
+
+INSERT INTO `projecten` (`id`, `title`, `body`, `slug`, `image`, `klant`, `klant_link`, `link`, `author`, `created_at`, `updated_at`) VALUES
+(1, 'Membership Machine', 'Als eerst moesten we een tab-app ontwerpen en bedenken die zou zorgen voor leden van deze nieuwe fitness club. - Facebook tab-app, - Facebook promoties', 'anytime-fitness', '/uploads/images/cases/AF-TAB.jpg', 'Anytime Fitness', '', 'https://www.facebook.com/AnytimeFitnessGoor/app_684197371613061', '1', '2014-04-17 08:42:23', '2014-04-17 08:42:23'),
+(3, 'Luchtballon Vaart Twente', 'Een luchtballonvaart beschikbaar voor iedereen!', 'luchtballon', 'uploads/images/cases/7c0d5c6ab4ddecf474b928e661d8e394.png', 'Ballooning Twente', 'http://www.twenteballooning.nl', 'http://www.wirelab.nl/work', '1', '2014-04-17 09:02:46', '2014-04-17 09:02:46'),
+(4, 'Online Bestellen', 'Voor Chinthai moesten we samen met Buro Selium een webshop bouwen zodat chinthai van thuisbezorgd af kon. Dit is natuurlijk gelukt!', 'online-bestellen', 'uploads/images/cases/1798695_10153988973455413_60662921_n.jpg', 'Chinthai', '', 'http://digitusweb.nl/nieuw/#', '1', '2014-04-17 12:21:40', '2014-04-17 12:21:40');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `project_tag`
+--
+
+CREATE TABLE IF NOT EXISTS `project_tag` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `tag_id` int(10) unsigned NOT NULL,
+  `project_id` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `project_tag_tag_id_foreign` (`tag_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `project_tag`
+--
+
+INSERT INTO `project_tag` (`id`, `tag_id`, `project_id`) VALUES
+(1, 4, 2),
+(2, 2, 3),
+(3, 12, 4);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `roles`
 --
 
@@ -313,7 +391,7 @@ CREATE TABLE IF NOT EXISTS `role_user` (
   PRIMARY KEY (`id`),
   KEY `users_roles_user_id_foreign` (`user_id`),
   KEY `users_roles_role_id_foreign` (`role_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `role_user`
@@ -321,7 +399,8 @@ CREATE TABLE IF NOT EXISTS `role_user` (
 
 INSERT INTO `role_user` (`id`, `user_id`, `role_id`) VALUES
 (1, 1, 1),
-(2, 2, 1);
+(2, 2, 1),
+(3, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -379,7 +458,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_username_unique` (`username`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `users`
@@ -387,7 +466,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`id`, `image`, `username`, `firstname`, `lastname`, `email`, `description`, `password`, `facebook`, `twitter`, `linkedin`, `youtube`, `created_at`, `updated_at`) VALUES
 (1, 'uploads/images/users/1/2222IMG_2259.jpg', 'Jeroen Venderbosch', 'Jeroen', 'Venderbosch', 'jeroenvenderbosch@hotmail.com', '', '$2y$10$motIdEUg/z/3IMNy3eDHDupT4wwpHN6eBtHwntMlx4LGl7P1c5yQq', 'https://www.facebook.com/Jvenderbosch', '', '', '', '2014-04-02 13:42:49', '2014-04-16 13:26:35'),
-(2, 'uploads/images/users/2/1184883_661248110554360_1218715576_n.png', 'Parsifal Tritsch', 'Parsifal', 'Tritsch', 'p.tritsch@gmail.com', '', '$2y$10$Iz8MpylH922DLxQEe5PGwOrZwmaZ8gATdnWQGo05FCWMV9TEnQxHy', '', '', '', '', '2014-04-10 08:02:31', '2014-04-16 11:51:57');
+(2, 'uploads/images/users/2/1184883_661248110554360_1218715576_n.png', 'Parsifal Tritsch', 'Parsifal', 'Tritsch', 'p.tritsch@gmail.com', '', '$2y$10$Iz8MpylH922DLxQEe5PGwOrZwmaZ8gATdnWQGo05FCWMV9TEnQxHy', '', '', '', '', '2014-04-10 08:02:31', '2014-04-16 11:51:57'),
+(3, 'uploads/images/users/3/Stefan.jpg', 'Stefan', 'Stefan', 'Mol', 'mol@knal.nl', '', '$2y$10$osiQ4FNdELrWRf7PZwXSU.f4tcpAQ3op2N1nENO5Yy7Rk1DLuP6Eu', '', '', '', '', '2014-04-17 07:05:28', '2014-04-17 07:05:28');
 
 --
 -- Constraints for dumped tables
@@ -399,6 +479,12 @@ INSERT INTO `users` (`id`, `image`, `username`, `firstname`, `lastname`, `email`
 ALTER TABLE `categorie_post`
   ADD CONSTRAINT `categorie_post_categorie_id_foreign` FOREIGN KEY (`categorie_id`) REFERENCES `categories` (`id`),
   ADD CONSTRAINT `categorie_post_post_id_foreign` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`);
+
+--
+-- Constraints for table `categorie_project`
+--
+ALTER TABLE `categorie_project`
+  ADD CONSTRAINT `categorie_project_categorie_id_foreign` FOREIGN KEY (`categorie_id`) REFERENCES `categories` (`id`);
 
 --
 -- Constraints for table `comment_post`
@@ -413,6 +499,12 @@ ALTER TABLE `comment_post`
 ALTER TABLE `post_tag`
   ADD CONSTRAINT `post_tags_post_id_foreign` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`),
   ADD CONSTRAINT `post_tags_tag_id_foreign` FOREIGN KEY (`tag_id`) REFERENCES `tags` (`id`);
+
+--
+-- Constraints for table `project_tag`
+--
+ALTER TABLE `project_tag`
+  ADD CONSTRAINT `project_tag_tag_id_foreign` FOREIGN KEY (`tag_id`) REFERENCES `tags` (`id`);
 
 --
 -- Constraints for table `role_user`

@@ -1,28 +1,37 @@
 <?php namespace Digitus\Admin\Controllers;
 
-use Digitus\Base\Model\Tag, Digitus\Base\Model\User, Digitus\Base\Model\Post, Digitus\Base\Model\Categorie, Auth, View, Input, Redirect, Validator, Str;
+use Digitus\Base\Controllers\BaseController,
+Digitus\Base\Model\Project,
+Digitus\Base\Model\Tag,
+Digitus\Base\Model\Categorie,
+Auth,
+Redirect,
+View,
+Input,
+Str,
+Validator;
 
-class AdminInsidesController extends \Digitus\Base\Controllers\BaseController {
+class AdminCasesController extends BaseController {
 
 	public function index()
 	{
-		$posts = Post::all();
-		return View::make('admin.blog.overview')
-		->with('posts', $posts);
+		$cases = Project::all();
+		return View::make('admin.cases.index')
+		->with('cases',$cases);
 	}
 
 	public function create()
 	{
-		$tags 		= Tag::all();
-		$categories = Categorie::all();
+		$tags		= Tag::all();
+		$categories	= Categorie::all();
 
-		if(Auth::check())
+		 if(Auth::check())
 		{
 			$user = Auth::user();
 		} else {
 			$user = false;
 		}
-		return View::make('admin.blog.create')
+		return View::make('admin.cases.create')
 		->with('user', $user)
 		->with('tags',$tags)
 		->with('categories',$categories);
@@ -30,24 +39,26 @@ class AdminInsidesController extends \Digitus\Base\Controllers\BaseController {
 
 	public function store()
 	{
-		
-				$file 				= Input::file('file');
-			    $destinationPath 	= 'uploads/images/posts/';
-			    $filename 			= $file->getClientOriginalName();
-			    $upload_success 	= $file->move($destinationPath, $filename);
+		$file 				= Input::file('file');
+		$destinationPath 	= 'uploads/images/cases/';
+		$filename 			= $file->getClientOriginalName();
+		$upload_success 	= $file->move($destinationPath, $filename);
 			
 
-		$new_post = array(
+		$new_case = array(
 			'title'		=> Input::get('title'),
 			'body'		=> Input::get('body'),
 			'author'	=> Input::get('author'),
 			'slug'		=> Str::slug(Input::get('title')),
 			'image'		=> str_replace('\\', '/', $upload_success),
-			'ogimage'	=> str_replace('\\', '/', $upload_success),
+			'link'		=> Input::get('link'),
+			'klant'		=> Input::get('klant'),
+			'klant_link'=> Input::get('klant_link'),
 		);
 		$rules = array(
 			'title'		=> 'required|min:3|max:255',
 			'body'		=> 'required|min:10',
+			'author'	=> 'required',
 		);
 
 		// $new_tags = array();
@@ -56,13 +67,13 @@ class AdminInsidesController extends \Digitus\Base\Controllers\BaseController {
 		// array_push($new_tags, $tag);
 		// }
 		// $post->tags()->sync($new_tags); 
-		$validation = Validator::make($new_post, $rules);
+		$validation = Validator::make($new_case, $rules);
 		if ( $validation->fails() )
 		{
-			return Redirect::to('admin/blog/create')->withErrors($validation)->withInput();
+			return Redirect::route('admin.cases.create')->withErrors($validation)->withInput();
 		}
-		$post = new Post($new_post);
-		$post->save(); 
+		$case = new Project($new_case);
+		$case->save(); 
 		if(Input::get('addcategorie'))
 		{
 			$new_cats = array();
@@ -73,7 +84,7 @@ class AdminInsidesController extends \Digitus\Base\Controllers\BaseController {
 				$categorie = Categorie::firstOrCreate(array('name' => $categorie));
 				array_push($new_cats, $categorie->id);
 			}
-			$post->categories()->attach($new_cats); 
+			$case->categories()->attach($new_cats); 
 		}
 		if(Input::get('addtag'))
 		{
@@ -85,47 +96,46 @@ class AdminInsidesController extends \Digitus\Base\Controllers\BaseController {
 				$tag = Tag::firstOrCreate(array('name' => $tag));
 				array_push($new_tags, $tag->id);
 			}
-			$post->tags()->attach($new_tags); 
+			$case->tags()->attach($new_tags); 
 		}
-		return Redirect::route('admin.insides.index');
+		return Redirect::route('admin.cases.index');
 	}
 
 	public function show($slug)
 	{
-		$currpost = Post::byslug($slug);
+		$currcase = Project::byslug($slug);
 		$user = User::byid($currpost->author);
 		$author = $currpost->getAuthor();
-		return View::make('blog.post')
-		->with('post', $currpost)
+		return View::make('pages.cases.case')
+		->with('case', $currcase)
 		->with('user',$user)
 		->with('author',$author);
 	}
 
 	public function edit($slug)
 	{
-		$post = Post::byslug($slug);
+		$case = Project::byslug($slug);
 		$tags = Tag::all();
 		$categories = Categorie::all();
-		return View::make('admin.blog.edit')
-		->with('post', $post)
+		return View::make('admin.cases.edit')
+		->with('case', $case)
 		->with('tags',$tags)
 		->with('categories',$categories);
 	}
 
 	public function update($slug)
 	{
-		$post 				= Post::byslug($slug);
-		$post->title 		= Input::get('title');
-		$post->slug 		= Str::slug(Input::get('title'));
-		$post->body			= Input::get('body');
+		$case 				= Project::byslug($slug);
+		$case->title 		= Input::get('title');
+		$case->slug 		= Str::slug(Input::get('title'));
+		$case->body			= Input::get('body');
 		
 			$file 				= Input::file('file');
-		    $destinationPath 	= 'uploads/images/posts/';
+		    $destinationPath 	= 'uploads/images/cases/';
 		    $filename 			= $file->getClientOriginalName();
 		    $upload_success 	= $file->move($destinationPath, $filename);
 		    // dd($upload_success);
 			$post->image 		= str_replace('\\', '/', $upload_success);
-			$post->ogimage 		= str_replace('\\', '/', $upload_success);
 		
 	
 		// $new_tags = array();
@@ -144,7 +154,7 @@ class AdminInsidesController extends \Digitus\Base\Controllers\BaseController {
 				$categorie = Categorie::firstOrCreate(array('name' => $categorie));
 				array_push($new_cats, $categorie->id);
 			}
-			$post->categories()->attach($new_cats); 
+			$case->categories()->attach($new_cats); 
 		}
 	    if(Input::get('delcategorie'))
 	    {
@@ -156,7 +166,7 @@ class AdminInsidesController extends \Digitus\Base\Controllers\BaseController {
 				$categorie = Categorie::where('name','=',$categorie);
 				array_push($old_cats, $categorie->first()->id);
 			}
-			$post->categories()->detach($old_cats); 
+			$case->categories()->detach($old_cats); 
 		}
 		if(Input::get('addtag'))
 		{
@@ -168,7 +178,7 @@ class AdminInsidesController extends \Digitus\Base\Controllers\BaseController {
 				$tag = Tag::firstOrCreate(array('name' => $tag));
 				array_push($new_tags, $tag->id);
 			}
-			$post->tags()->attach($new_tags); 
+			$case->tags()->attach($new_tags); 
 		}
 	    if(Input::get('deltag'))
 	    {
@@ -180,27 +190,27 @@ class AdminInsidesController extends \Digitus\Base\Controllers\BaseController {
 				$tag = Tag::where('name','=',$tag);
 				array_push($old_tags, $tag->first()->id);
 			}
-			$post->tags()->detach($old_tags); 
+			$case->tags()->detach($old_tags); 
 		}
-		if($post->save())
+		if($case->save())
 		{
-			return Redirect::route('admin.insides.index')
-			->with('post', $post);
+			return Redirect::route('admin.cases.index')
+			->with('case', $case);
 		} else {
-			return Redirect::route('admin.insides.edit')
-			->with('post', $post)
+			return Redirect::route('admin.cases.edit')
+			->with('case', $case)
 			->withInput();
 		}
 	}
 
 	public function destroy($slug)
 	{
-		$post = Post::byslug($slug);
-		if ($post) {
-			$post->categories()->detach();
-			$post->tags()->detach();
-			$post->delete();
-			return Redirect::route('insides.index');
+		$case = Project::byslug($slug);
+		if ($case) {
+			$case->categories()->detach();
+			$case->tags()->detach();
+			$case->delete();
+			return Redirect::route('pages.cases.index');
 			}
 		return 'There was a problem...';
 	}

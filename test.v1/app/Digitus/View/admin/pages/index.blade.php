@@ -1,8 +1,5 @@
 @extends('layouts.back.main')
 
-@section('bodyid')
-@stop
-
 @section('notification')
 @stop
 
@@ -15,7 +12,7 @@
 @stop
 @section('content')
 @if($loggedUser->roles->first()->name === 'Admin')
-<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+<div class="col-9">
 <div class="panel panel-danger">
 	<div class="panel-body"><a href="{{{URL::route('admin.pages.create') }}}" class="btn btn-sm btn-success pull-right"><span class="glyphicon glyphicon-plus"></span> Add new page</a></div>
 </div>

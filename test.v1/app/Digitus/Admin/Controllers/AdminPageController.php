@@ -27,7 +27,7 @@ class AdminPageController extends BaseController {
 		if(Input::get('file'))
 			{
 				$file 				= Input::file('file');
-			    $destinationPath 	= '/uploads/images/pages/';
+			    $destinationPath 	= 'uploads/images/pages/';
 			    $filename 			= $file->getClientOriginalName();
 			    $upload_success 	= $file->move($destinationPath, $filename);
 			    $new_page = array(
@@ -123,7 +123,7 @@ class AdminPageController extends BaseController {
 		if(Input::get('file'))
 		{
 			$file 				= Input::file('file');
-		    $destinationPath 	= '/uploads/images/pages/';
+		    $destinationPath 	= 'uploads/images/pages/';
 		    $filename 			= $file->getClientOriginalName();
 		    $upload_success 	= $file->move($destinationPath, $filename);
 			$page->image 		= str_replace('\\', '/', $upload_success);

@@ -9,4 +9,9 @@ class Categorie extends \Eloquent {
 		return $this->belongsToMany('Digitus\Base\Model\Post');
 	}
 
+	public function projecten()
+	{
+		return $this->belongToMany('Digitus\Base\Model\Project');
+	}
+
 }

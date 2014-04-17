@@ -19,13 +19,26 @@ Route::group(array('namespace'=>'Digitus\Pages\Controllers'), function()
 	Route::get('ons-bureau', ['uses'=>'BureauController@index','as'=>'bureau.index']);
 
 	Route::get('cases', ['uses'=>'CasesController@index','as'=>'cases.index']);
+	Route::get('cases/{slug}', ['uses'=>'CasesController@show','as'=>'cases.show']);
 
 	Route::get('workshops', ['uses'=>'WorkshopsController@index','as'=>'workshops.index']);
+	Route::get('workshops/{slug}', ['uses'=>'WorkshopsController@show','as'=>'workshops.show']);
 
-	// Route::get('insides', ['uses'=>'InsidesController@index','as'=>'insides.index']);
+	Route::get('insides', ['uses'=>'InsidesController@index','as'=>'insides.index']);
+	Route::get('insides/{slug}', ['uses'=>'InsidesController@show','as'=>'insides.show']);
 
 	Route::get('kennismaken', ['uses'=>'KennismakenController@index','as'=>'kennismaken.index']);
 });
+// Route::group(array('namespace'=>'Digitus\Insides\Controllers'), function()
+// {
+// 	Route::resource('insides', 'InsidesController', array(
+// 		'names'=>array(
+// 			'index'=>'insides.index',
+// 			'show'=>'insides.show'
+// 			)
+// 		)
+// 	);
+// });
 
 // Route::group(array('namespace'=>'Digitus\Insides\Controllers'), function()
 // {
@@ -201,16 +214,7 @@ Route::group(array('namespace'=>'Digitus\Upload\Controllers'), function()
 	Route::post('user/{username}/picture', ['uses'=>'UploadController@update', 'as'=>'picture.store']);
 });
 
-Route::group(array('namespace'=>'Digitus\Insides\Controllers'), function()
-{
-	Route::resource('insides', 'InsidesController', array(
-		'names'=>array(
-			'index'=>'insides.index',
-			'show'=>'insides.show'
-			)
-		)
-	);
-});
+
 Route::group(array('namespace'=>'Digitus\Comments\Controllers'), function()
 {
 

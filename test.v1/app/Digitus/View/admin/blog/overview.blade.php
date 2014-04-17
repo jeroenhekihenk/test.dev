@@ -21,7 +21,7 @@
 
 @section('content')
 @if($loggedUser->roles->first()->name === 'Admin')
-<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+<div class="col-9">
 	
 	<div class="panel panel-info">
 		<div class="panel-heading"><h2>Blogpost overview</h2></div>

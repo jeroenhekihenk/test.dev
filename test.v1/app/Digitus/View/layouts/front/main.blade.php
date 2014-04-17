@@ -25,9 +25,10 @@
 	@yield('top')
 
 	<div class="container">
-		<div class="row">
+		<div class="inner">
 			@yield('sidebar')
 			@yield('content')
+			@yield('sidebar2')
 		</div>
 	</div>
 
