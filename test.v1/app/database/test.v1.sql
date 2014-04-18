@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 17, 2014 at 06:06 PM
+-- Generation Time: Apr 18, 2014 at 05:51 PM
 -- Server version: 5.5.24-log
 -- PHP Version: 5.4.24
 
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `categories`
@@ -44,7 +44,8 @@ INSERT INTO `categories` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (3, 'Jan', '2014-04-10 08:19:31', '2014-04-10 08:19:31'),
 (4, ' Willem', '2014-04-10 08:19:31', '2014-04-10 08:19:31'),
 (5, ' Harry', '2014-04-10 08:19:31', '2014-04-10 08:19:31'),
-(6, 'internet', '2014-04-15 10:26:19', '2014-04-15 10:26:19');
+(6, 'internet', '2014-04-15 10:26:19', '2014-04-15 10:26:19'),
+(7, 'Harry', '2014-04-18 11:22:23', '2014-04-18 11:22:23');
 
 -- --------------------------------------------------------
 
@@ -85,7 +86,7 @@ CREATE TABLE IF NOT EXISTS `categorie_project` (
   `project_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   KEY `categorie_project_categorie_id_foreign` (`categorie_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `categorie_project`
@@ -94,7 +95,33 @@ CREATE TABLE IF NOT EXISTS `categorie_project` (
 INSERT INTO `categorie_project` (`id`, `categorie_id`, `project_id`) VALUES
 (1, 1, 2),
 (2, 2, 3),
-(3, 3, 4);
+(3, 3, 4),
+(4, 7, 5);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `categorie_workshop`
+--
+
+CREATE TABLE IF NOT EXISTS `categorie_workshop` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `categorie_id` int(10) unsigned NOT NULL,
+  `workshop_id` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `categorie_workshop_categorie_id_foreign` (`categorie_id`),
+  KEY `categorie_workshop_workshop_id_foreign` (`workshop_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `categorie_workshop`
+--
+
+INSERT INTO `categorie_workshop` (`id`, `categorie_id`, `workshop_id`) VALUES
+(2, 1, 3),
+(3, 1, 4),
+(4, 1, 5),
+(5, 1, 6);
 
 -- --------------------------------------------------------
 
@@ -188,7 +215,10 @@ INSERT INTO `migrations` (`migration`, `batch`) VALUES
 ('2014_04_08_103616_create_page_metatags_table', 12),
 ('2014_04_08_103629_create_tag_metatags_table', 12),
 ('2014_04_08_103646_create_categorie_metatags_table', 12),
-('2014_04_17_081301_create_cases_table', 13);
+('2014_04_17_081301_create_cases_table', 13),
+('2014_04_17_145719_create_workshops_table', 14),
+('2014_04_18_151556_create_categorie_workshop_table', 15),
+('2014_04_18_151917_create_tag_workshop_table', 16);
 
 -- --------------------------------------------------------
 
@@ -218,7 +248,7 @@ CREATE TABLE IF NOT EXISTS `pages` (
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=17 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=18 ;
 
 --
 -- Dumping data for table `pages`
@@ -229,7 +259,8 @@ INSERT INTO `pages` (`id`, `layout`, `menu`, `footer`, `title`, `body`, `author`
 (12, 'front.page', 'front.menus.digimenu', 'front.footer.main', 'TESTEN', 'hey hallo ik wil graag testen of het mogelijk is om een palatje toe te voegen aan deze pagina, waaromd oet hij het hier wel en bij de posts niet?\r\n\r\n', '1', 'testen', '/uploads/images/pages/idee-offer-foto.png', 'TESTEN', 'hey hallo ik wil graag testen of het mogelijk is om een palatje toe te voegen aan deze pagina, waaromd oet hij het hier wel en bij de posts niet?\r\n\r\n', 'noindex, nofollow', 'TESTEN', 'hey hallo ik wil graag testen of het mogelijk is om een palatje toe te voegen aan deze pagina, waaromd oet hij het hier wel en bij de posts niet?\r\n\r\n', 'Digitus Marketing', '', '/uploads/images/pages/idee offer foto.png', 'Article', '2014-04-15 10:47:13', '2014-04-15 10:47:13'),
 (13, 'front.page', 'front.menus.digimenu', 'front.footer.main', 'Kennismaken', 'een stukje text erbij dan maar?', '1', 'kennismaken', '', 'Kennismaken', 'een stukje text erbij dan maar?', 'noindex, nofollow', 'Kennismaken', 'een stukje text erbij dan maar?', 'Digitus Marketing', '', '', 'Article', '2014-04-16 08:55:33', '2014-04-16 08:55:33'),
 (15, 'front.page', 'front.menus.digimenu', 'front.footer.main', 'Insides', 'Pagina met blogberichten', '1', 'insides', '', 'Insides', 'Pagina met blogberichten', 'noindex, nofollow', 'Insides', 'Pagina met blogberichten', 'Digitus Marketing', '', '', 'Article', '2014-04-16 09:44:26', '2014-04-16 10:09:34'),
-(16, 'front.page', 'front.menus.digimenu', 'front.footer.main', 'Cases', 'Body tekst voor cases pagina', '1', 'cases', '', 'Cases', 'Body tekst voor cases pagina', 'noindex, nofollow', 'Cases', 'Body tekst voor cases pagina', 'Digitus Marketing', '', '', 'Article', '2014-04-16 13:16:48', '2014-04-16 13:16:48');
+(16, 'front.page', 'front.menus.digimenu', 'front.footer.main', 'Cases', 'Body tekst voor cases pagina', '1', 'cases', '', 'Cases', 'Body tekst voor cases pagina', 'noindex, nofollow', 'Cases', 'Body tekst voor cases pagina', 'Digitus Marketing', '', '', 'Article', '2014-04-16 13:16:48', '2014-04-16 13:16:48'),
+(17, 'front.page', 'front.menus.digimenu', 'front.footer.main', 'Workshops', 'Body text voor workshops', '1', 'workshops', '', 'Workshops', 'Body text voor workshops', 'noindex, nofollow', 'Workshops', 'Body text voor workshops', 'Digitus Marketing', '', '', 'Article', '2014-04-18 12:16:57', '2014-04-18 12:16:57');
 
 -- --------------------------------------------------------
 
@@ -266,7 +297,7 @@ INSERT INTO `posts` (`id`, `title`, `body`, `author`, `slug`, `image`, `metatitl
 (1, 'de eerste post met bewerking!!', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '1', 'de-eerste-post-met-bewerking', 'uploads/images/posts/BZY17fMIQAADvBl.jpg', '', '', '', '', '', '', '', 'uploads/images/posts/BZY17fMIQAADvBl.jpg medium.jpg', '', '2014-04-17 15:23:06', '2014-04-17 13:06:55'),
 (2, 'de tweede post van vandaag', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?', '1', 'de-tweede-post-van-vandaag', 'uploads/images/posts/1380409_10151726464262956_1981156502_n.jpg', '', '', '', '', '', '', '', 'uploads/images/posts/1380409_10151726464262956_1981156502_n.jpg', '', '2014-04-17 15:43:09', '2014-04-17 13:15:06'),
 (3, 'De eerste post van iemand anders!', 'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.', '2', 'de-eerste-post-van-iemand-anders', 'uploads/images/posts/64372c3ceb5192ae7693a244c8ca98f3.JPG', '', '', '', '', '', '', '', 'uploads/images/posts/64372c3ceb5192ae7693a244c8ca98f3.JPG', '', '2014-04-17 15:43:13', '2014-04-17 13:15:31'),
-(4, 'Idee offer foto!', 'Henkie henk henk henkie henkie kom bie mie', '1', 'idee-offer-foto', '', '', '', '', '', '', '', '', '', '', '2014-04-15 09:53:30', '2014-04-15 09:53:30'),
+(4, 'Seizoensgebonden omslagfoto''s', 'Henkie henk henk henkie henkie kom bie mie', '1', 'seizoensgebonden-omslagfotos', 'uploads/images/posts/1011859_713904245290700_1141923045_n.jpg', '', '', '', '', '', '', '', 'uploads/images/posts/1011859_713904245290700_1141923045_n.jpg', '', '2014-04-18 12:35:31', '2014-04-18 10:35:31'),
 (5, 'Hey hallo', 'Funx radio oin the air!', '1', 'hey-hallo', '/uploads/images/posts/0ddontime01.jpg', '', '', '', '', '', '', '', '/uploads/images/posts/0ddontime01.jpg', '', '2014-04-16 14:43:22', '2014-04-16 12:43:22'),
 (6, 'ksjdkjasdhaskjhdkjas', 'kjsdhfksdhjgsdgusdgodfijcnvkcnvd\r\nPLAATJE TOEGEOVED?!?!\r\nfjgdsflsdjaklfjxcklvsdfs\r\nef\r\nsdfdgsdgdaghdfghdfghd\r\naghdfgdgdsfasvvbdcxzAFDCSXJaxjczkc xkvsdjfwsdasxsa<br />\r\n\r\nsdasjdfsjfsdkgjdgjsdfkjasdfskfksdgksdgs', '1', 'ksjdkjasdhaskjhdkjas', '/uploads/images/posts/omslagfoto 2014.png', '', '', '', '', '', '', '', '/uploads/images/posts/omslagfoto 2014.png', '', '2014-04-15 15:27:59', '2014-04-15 13:27:59');
 
@@ -321,16 +352,17 @@ CREATE TABLE IF NOT EXISTS `projecten` (
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`),
   UNIQUE KEY `slug` (`slug`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `projecten`
 --
 
 INSERT INTO `projecten` (`id`, `title`, `body`, `slug`, `image`, `klant`, `klant_link`, `link`, `author`, `created_at`, `updated_at`) VALUES
-(1, 'Membership Machine', 'Als eerst moesten we een tab-app ontwerpen en bedenken die zou zorgen voor leden van deze nieuwe fitness club. - Facebook tab-app, - Facebook promoties', 'anytime-fitness', '/uploads/images/cases/AF-TAB.jpg', 'Anytime Fitness', '', 'https://www.facebook.com/AnytimeFitnessGoor/app_684197371613061', '1', '2014-04-17 08:42:23', '2014-04-17 08:42:23'),
+(1, 'Membership Machine', 'Als eerst moesten we een tab-app ontwerpen en bedenken die zou zorgen voor leden van deze nieuwe fitness club. - Facebook tab-app, - Facebook promoties', 'anytime-fitness', '/uploads/images/cases/AF-TAB.jpg', 'Anytime Fitness', 'http://www.wirelab.nl/work', 'https://www.facebook.com/AnytimeFitnessGoor/app_684197371613061', '1', '2014-04-17 08:42:23', '2014-04-17 08:42:23'),
 (3, 'Luchtballon Vaart Twente', 'Een luchtballonvaart beschikbaar voor iedereen!', 'luchtballon', 'uploads/images/cases/7c0d5c6ab4ddecf474b928e661d8e394.png', 'Ballooning Twente', 'http://www.twenteballooning.nl', 'http://www.wirelab.nl/work', '1', '2014-04-17 09:02:46', '2014-04-17 09:02:46'),
-(4, 'Online Bestellen', 'Voor Chinthai moesten we samen met Buro Selium een webshop bouwen zodat chinthai van thuisbezorgd af kon. Dit is natuurlijk gelukt!', 'online-bestellen', 'uploads/images/cases/1798695_10153988973455413_60662921_n.jpg', 'Chinthai', '', 'http://digitusweb.nl/nieuw/#', '1', '2014-04-17 12:21:40', '2014-04-17 12:21:40');
+(4, 'Online Bestellen', 'Voor Chinthai moesten we samen met Buro Selium een webshop bouwen zodat chinthai van thuisbezorgd af kon. Dit is natuurlijk gelukt!', 'online-bestellen', 'uploads/images/cases/1798695_10153988973455413_60662921_n.jpg', 'Chinthai', 'http://www.chinthai.nl', 'http://digitusweb.nl/nieuw/#', '1', '2014-04-17 12:21:40', '2014-04-17 12:21:40'),
+(5, 'Staak de selfies', 'Selfies, wie kent ze niet. Een selfie nemen is een nieuw begrip overal ter wereld. Deze case moet er voor zorgen dat jongens GEEN selfies meer nemen..', 'staak-de-selfies', 'uploads/images/cases/1604795_656802971050474_206406275_n.png', 'Selfies Nederland', 'http://www.selfies.nl', 'http://www.wirelab.nl/work', '1', '2014-04-18 11:22:23', '2014-04-18 11:22:23');
 
 -- --------------------------------------------------------
 
@@ -344,7 +376,7 @@ CREATE TABLE IF NOT EXISTS `project_tag` (
   `project_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   KEY `project_tag_tag_id_foreign` (`tag_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `project_tag`
@@ -353,7 +385,10 @@ CREATE TABLE IF NOT EXISTS `project_tag` (
 INSERT INTO `project_tag` (`id`, `tag_id`, `project_id`) VALUES
 (1, 4, 2),
 (2, 2, 3),
-(3, 12, 4);
+(3, 12, 4),
+(4, 1, 5),
+(5, 12, 5),
+(6, 7, 5);
 
 -- --------------------------------------------------------
 
@@ -414,7 +449,7 @@ CREATE TABLE IF NOT EXISTS `tags` (
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=18 ;
 
 --
 -- Dumping data for table `tags`
@@ -428,11 +463,42 @@ INSERT INTO `tags` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (5, 'Marketing', '2014-04-09 14:14:57', '2014-04-09 14:14:57'),
 (6, 'jannnnn', '2014-04-10 08:41:27', '2014-04-10 08:41:27'),
 (7, '1234', '2014-04-10 08:42:57', '2014-04-10 08:42:57'),
-(8, ' nieuw', '2014-04-10 08:44:40', '2014-04-10 08:44:40'),
-(9, ' 1324', '2014-04-10 08:44:40', '2014-04-10 08:44:40'),
-(10, ' test', '2014-04-15 10:23:10', '2014-04-15 10:23:10'),
-(11, ' henk', '2014-04-15 10:23:10', '2014-04-15 10:23:10'),
-(12, 'radio', '2014-04-15 10:25:36', '2014-04-15 10:25:36');
+(8, 'nieuw', '2014-04-10 08:44:40', '2014-04-10 08:44:40'),
+(9, '1324', '2014-04-10 08:44:40', '2014-04-10 08:44:40'),
+(10, 'test', '2014-04-15 10:23:10', '2014-04-15 10:23:10'),
+(11, 'henk', '2014-04-15 10:23:10', '2014-04-15 10:23:10'),
+(12, 'radio', '2014-04-15 10:25:36', '2014-04-15 10:25:36'),
+(13, 'interactie', '2014-04-18 13:19:03', '2014-04-18 13:19:03'),
+(14, 'ergernissen', '2014-04-18 13:28:57', '2014-04-18 13:28:57'),
+(15, 'adverteren', '2014-04-18 13:30:31', '2014-04-18 13:30:31'),
+(16, 'basis', '2014-04-18 13:30:31', '2014-04-18 13:30:31'),
+(17, 'succesvol', '2014-04-18 13:31:42', '2014-04-18 13:31:42');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tag_workshop`
+--
+
+CREATE TABLE IF NOT EXISTS `tag_workshop` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `tag_id` int(10) unsigned NOT NULL,
+  `workshop_id` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `tag_workshop_tag_id_foreign` (`tag_id`),
+  KEY `tag_workshop_workshop_id_foreign` (`workshop_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `tag_workshop`
+--
+
+INSERT INTO `tag_workshop` (`id`, `tag_id`, `workshop_id`) VALUES
+(1, 13, 3),
+(2, 14, 4),
+(3, 15, 5),
+(4, 16, 5),
+(5, 17, 6);
 
 -- --------------------------------------------------------
 
@@ -447,12 +513,12 @@ CREATE TABLE IF NOT EXISTS `users` (
   `firstname` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `lastname` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `description` varchar(355) COLLATE utf8_unicode_ci NOT NULL,
+  `description` varchar(900) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `facebook` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `twitter` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `linkedin` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `youtube` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `google` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`),
@@ -464,10 +530,38 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `image`, `username`, `firstname`, `lastname`, `email`, `description`, `password`, `facebook`, `twitter`, `linkedin`, `youtube`, `created_at`, `updated_at`) VALUES
-(1, 'uploads/images/users/1/2222IMG_2259.jpg', 'Jeroen Venderbosch', 'Jeroen', 'Venderbosch', 'jeroenvenderbosch@hotmail.com', '', '$2y$10$motIdEUg/z/3IMNy3eDHDupT4wwpHN6eBtHwntMlx4LGl7P1c5yQq', 'https://www.facebook.com/Jvenderbosch', '', '', '', '2014-04-02 13:42:49', '2014-04-16 13:26:35'),
-(2, 'uploads/images/users/2/1184883_661248110554360_1218715576_n.png', 'Parsifal Tritsch', 'Parsifal', 'Tritsch', 'p.tritsch@gmail.com', '', '$2y$10$Iz8MpylH922DLxQEe5PGwOrZwmaZ8gATdnWQGo05FCWMV9TEnQxHy', '', '', '', '', '2014-04-10 08:02:31', '2014-04-16 11:51:57'),
+INSERT INTO `users` (`id`, `image`, `username`, `firstname`, `lastname`, `email`, `description`, `password`, `facebook`, `twitter`, `linkedin`, `google`, `created_at`, `updated_at`) VALUES
+(1, 'uploads/images/users/1/2222IMG_2259.jpg', 'Jeroen Venderbosch', 'Jeroen', 'Venderbosch', 'jeroenvenderbosch@hotmail.com', 'Jeroen Venderbosch is een leergierige internet marketeer met passie voor techniek. Hij werkt internet marketing concepten uit, meet en optimaliseert de resultaten. Hij vindt het vooral interessant hoe de kleinste wijzigingen op een webpagina het gedrag van bezoekers kan beïnvloeden. Om zijn kennis op pijl te houden discussieert hij over verschillende onderwerpen en ontwikkelingen op het gebied van internet marketing met experts over de hele wereld.', '$2y$10$motIdEUg/z/3IMNy3eDHDupT4wwpHN6eBtHwntMlx4LGl7P1c5yQq', 'https://www.facebook.com/Jvenderbosch', 'https://twitter.com/JeroenVendb', 'http://nl.linkedin.com/in/jeroenvendb/', 'https://plus.google.com/+JeroenVenderbosch/posts', '2014-04-02 13:42:49', '2014-04-18 09:33:05'),
+(2, 'uploads/images/users/2/1184883_661248110554360_1218715576_n.png', 'Parsifal Tritsch', 'Parsifal', 'Tritsch', 'p.tritsch@gmail.com', 'Parsifal Tritsch bedenkt concepten en social media strategieën, hij schrijft dagelijks content voor bedrijven en onderhoudt verschillende Facebook en Google Adwords campagnes. Zijn interesse ligt vooral bij de psychologie achter online communicatie. Hoe, wat, waarom en wanneer communiceren mensen op het internet. Met passie deelt hij zijn kennis met ondernemers om ze zo wegwijs te maken in de snel groeiende internet marketing wereld. Zijn visie op marketing: “Stop met schreeuwen en start met luisteren naar je doelgroep. Ontdek waar je jouw doelgroep kunt helpen en speel hier op in!”.', '$2y$10$Iz8MpylH922DLxQEe5PGwOrZwmaZ8gATdnWQGo05FCWMV9TEnQxHy', '', '', '', '', '2014-04-10 08:02:31', '2014-04-16 11:51:57'),
 (3, 'uploads/images/users/3/Stefan.jpg', 'Stefan', 'Stefan', 'Mol', 'mol@knal.nl', '', '$2y$10$osiQ4FNdELrWRf7PZwXSU.f4tcpAQ3op2N1nENO5Yy7Rk1DLuP6Eu', '', '', '', '', '2014-04-17 07:05:28', '2014-04-17 07:05:28');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `workshops`
+--
+
+CREATE TABLE IF NOT EXISTS `workshops` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `body` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `author` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `image` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data for table `workshops`
+--
+
+INSERT INTO `workshops` (`id`, `title`, `body`, `slug`, `author`, `image`, `created_at`, `updated_at`) VALUES
+(3, 'Interactie met je fans', 'In deze workshop wordt uitgebreid uitgelegd hoe je het beste de interactie aan kan gaan met je fans EN hoe je dit het beste kan onderhouden!', 'interactie-met-je-fans', '1', 'uploads/images/workshops/285246_589106511118565_551419949_n.jpg', '2014-04-18 13:21:49', '2014-04-18 13:21:49'),
+(4, 'Maak je niet dik', 'Maak je niet al te veel zorgen over wat je fans doen.', 'maak-je-niet-dik', '1', 'uploads/images/workshops/1604593_568561753231315_294890017_n.png', '2014-04-18 13:28:57', '2014-04-18 13:28:57'),
+(5, 'Adverteren', 'De basis van het adverteren op Facebook wordt hier uitgelegd. ', 'adverteren', '1', 'uploads/images/workshops/BURN.jpeg', '2014-04-18 13:30:31', '2014-04-18 13:30:31'),
+(6, 'Succesvol op Facebook', 'Yallahland', 'succesvol-op-facebook', '1', 'uploads/images/workshops/smiling mantis.jpg', '2014-04-18 13:31:42', '2014-04-18 13:31:42');
 
 --
 -- Constraints for dumped tables
@@ -485,6 +579,13 @@ ALTER TABLE `categorie_post`
 --
 ALTER TABLE `categorie_project`
   ADD CONSTRAINT `categorie_project_categorie_id_foreign` FOREIGN KEY (`categorie_id`) REFERENCES `categories` (`id`);
+
+--
+-- Constraints for table `categorie_workshop`
+--
+ALTER TABLE `categorie_workshop`
+  ADD CONSTRAINT `categorie_workshop_workshop_id_foreign` FOREIGN KEY (`workshop_id`) REFERENCES `workshops` (`id`),
+  ADD CONSTRAINT `categorie_workshop_categorie_id_foreign` FOREIGN KEY (`categorie_id`) REFERENCES `categories` (`id`);
 
 --
 -- Constraints for table `comment_post`
@@ -512,6 +613,13 @@ ALTER TABLE `project_tag`
 ALTER TABLE `role_user`
   ADD CONSTRAINT `users_roles_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`),
   ADD CONSTRAINT `users_roles_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `tag_workshop`
+--
+ALTER TABLE `tag_workshop`
+  ADD CONSTRAINT `tag_workshop_workshop_id_foreign` FOREIGN KEY (`workshop_id`) REFERENCES `workshops` (`id`),
+  ADD CONSTRAINT `tag_workshop_tag_id_foreign` FOREIGN KEY (`tag_id`) REFERENCES `tags` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

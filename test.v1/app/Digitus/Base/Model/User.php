@@ -69,6 +69,11 @@ class User extends \Eloquent implements UserInterface, RemindableInterface {
         return $this->hasMany('Digitus\Base\Model\Project');
     }
 
+    public function workshops()
+    {
+        return $this->hasMany('Digitus\Base\Model\Workshop');
+    }
+
 ## --------------------------------------------------------------------------- ##
 
 	public function roles()

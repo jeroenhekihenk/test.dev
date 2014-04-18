@@ -135,6 +135,21 @@ Route::group(array('prefix'=>'admin', 'namespace'=>'Digitus\Admin\Controllers','
 		);
 		// (index) Get all cases, (create,store)Create Case, (show)View Case, (edit,update)Edit/Update Case, (destroy) Delete Case
 
+		Route::resource('workshops', 'AdminWorkshopsController',
+			array('names'=>
+				array(
+					'index'=>'admin.workshops.index',
+					'create'=>'admin.workshops.create',
+					'store'=>'admin.workshops.store',
+					'show'=>'admin.workshops.show',
+					'edit'=>'admin.workshops.edit',
+					'update'=>'admin.workshops.update',
+					'destroy'=>'admin.workshops.destroy'
+				)
+			)
+		);
+		// (index) Get all Workshops, (create,store)Create Workshop, (show)View Workshop, (edit,update)Edit/Update Workshop, (destroy) Delete Workshop
+
 		Route::resource('blog/tag', 'AdminBlogTagController',
 			array('names' =>
 				array(

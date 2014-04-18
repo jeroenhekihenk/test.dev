@@ -27,7 +27,7 @@ Blog
 			<div class="b-roll">
 
 				
-
+			
 				@foreach($posts as $post)
 					<div class="blok blogpost post-id-{{$post->id}}">
 
@@ -52,18 +52,33 @@ Blog
 									<a href="{{ URL::route('categories.show',$categorie->name) }}">{{ $categorie->name }}</a> 
 								@endforeach
 							</p>
-							<p class="read-more"><a href="{{ URL::route('insides.show', $post->slug) }}" title="{{ $post->title}} verder lezen">Lees verder ></a></p>
-						</div>
+							<p class="read-more"><a href="{{ URL::route('insides.show', $post->slug) }}" title="{{ $post->title}} verder lezen">Lees verder ></a>
+							</p>
+							<script type="text/javascript">
+						    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+						    var disqus_shortname = 'digitusmarketingnl'; // required: replace example with your forum shortname
+
+						    /* * * DON'T EDIT BELOW THIS LINE * * */
+						    (function () {
+						        var s = document.createElement('script'); s.async = true;
+						        s.type = 'text/javascript';
+						        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+						        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+						    }());
+						    </script>
+						</div><!-- /post-bottom -->
 						
-					</div>
+					</div><!-- /blok.blogpost -->
 				@endforeach
-			</div>
-		</div>
-	</div>
-</div>
+			</div><!-- /b-roll -->
+		</div><!-- /feed -->
+		<div class="prev"></div>
+		<div class="next"></div>
+	</div><!-- /feed -->
+</div><!-- /inner -->
 
 @stop
 
-@section('pagination')
-
+@section('footer')
+	@include('layouts.front.footer.main')
 @stop

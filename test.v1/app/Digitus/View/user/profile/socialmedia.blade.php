@@ -16,8 +16,8 @@
 	{{ Form::url('linkedin', $user->linkedin, array('class'=>'form-control')) }}
 </div>
 <div class="form-group">
-	{{ Form::label('youtube', 'YouTube') }}
-	{{ Form::url('youtube', $user->youtube, array('class'=>'form-control')) }}
+	{{ Form::label('google', 'Google+') }}
+	{{ Form::url('google', $user->google, array('class'=>'form-control')) }}
 </div>
 {{ Form::submit('update', array('class'=>'btn btn-success')) }}
 {{ Form::close() }}

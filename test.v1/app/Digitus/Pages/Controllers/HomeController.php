@@ -4,16 +4,6 @@ use Digitus\Base\Controllers\BaseController, View, Digitus\Base\Model\Page;
 
 class HomeController extends BaseController {
 
-	public function __construct()
-	{
-		$bodyid = 'home';
-		$facebook = 'https://www.facebook.com/DigitusMarketing';
-		$twitter = 'https://www.twitter.com/_DigiMarketing';
-		View::share('facebook', $facebook);
-		View::share('twitter', $twitter);
-		View::share('bodyid', $bodyid);
-	}
-
 	public function index()
 	{
 		$pages = Page::all();

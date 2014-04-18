@@ -16,4 +16,9 @@ class Tag extends \Eloquent{
 		return $this->belongsToMany('Digitus\Base\Model\Project');
 	}
 
+	public function workshops()
+	{
+		return $this->belongsToMany('Digitus\Base\Model\Workshop');
+	}
+
 }

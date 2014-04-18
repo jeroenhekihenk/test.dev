@@ -1,11 +1,11 @@
 <?php namespace Digitus\Base\Model;
 
-class Project extends \Eloquent {
+class Workshop extends \Eloquent {
 
-	protected $table 	= 'projecten';
-	protected $fillable = ['image','title','body','link','author','slug','klant','klant_link'];
+	protected $table = 'workshops';
+	protected $fillable = ['title','body','slug','author','image'];
 
-	public function user()
+	public function users()
 	{
 		return $this->belongsTo('Digitus\Base\Model\User', 'author');
 	}
@@ -22,19 +22,14 @@ class Project extends \Eloquent {
 
 	public static function byslug($slug)
 	{
-		return Project::where('slug', '=', $slug)->first();
+		return Workshop::where('slug','=', $slug)->first();
 	}
 
-	public function getUpdatedAtDay()
-	{
-		return $this->updated_at->format('d-m-Y');
-	}
-
-	public function getAuthorUsername()
+	public function getAuthor()
 	{
 		$author = $this->author;
 		$user = User::where('id', '=', $author)->first();
-		return $user->username;
+		return $user->firstname . ' ' . $user->lastname;
 	}
 
 }

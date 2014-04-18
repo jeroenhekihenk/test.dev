@@ -26,10 +26,12 @@
 							</a>
 						</div>
 					@endforeach
-				</div>
-			</div>
-		</div>
-	</div>
+				</div><!-- /c-roll -->
+			</div><!-- /feed -->
+			<div class="prev"></div>
+			<div class="next"></div>
+		</div><!-- /feed -->
+	</div><!-- /inner -->
 @stop
 
 @section('footer')

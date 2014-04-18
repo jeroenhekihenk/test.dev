@@ -7,6 +7,10 @@
 					<li><a>voorwaarden</a></li>
 				</ul>
 				<ul class="social">
+					<?php
+					$facebook = 'https://www.facebook.com/DigitusMarketing';
+					$twitter = 'https://www.twitter.com/_DigiMarketing'; 
+					?>
 					<li><a href="{{$facebook}}" target="_blank"><span class="facebook"></span></a></li>
 					<li><a href="{{$twitter}}" target="_blank"><span class="twitter"></span></a></li>
 				</ul>

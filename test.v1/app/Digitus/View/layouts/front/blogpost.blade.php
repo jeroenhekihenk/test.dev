@@ -30,14 +30,16 @@
     </div>
   @endif
 
-  <div class="container">
-    <div class="inner">
-      <div class="feed">
-        @yield('sidebar')
-        @yield('content')
-        @yield('sidebar2')
-        @yield('comments')
-        @yield('pagination')
+  <section id="blogpost">
+    <div class="container">
+      <div class="inner">
+        <div class="feed">
+          @yield('sidebar')
+          @yield('content')
+          @yield('sidebar2')
+          @yield('comments')
+          @yield('pagination')
+        </div>
       </div>
     </div>
   </div>

@@ -17,7 +17,7 @@
 @section('content')
 @if($loggedUser->roles->first()->name === 'Admin')
 <div class="col-10">
-	@include('forms.cases.create')
+	@include('forms.workshops.create')
 </div>
 @endif
 @stop

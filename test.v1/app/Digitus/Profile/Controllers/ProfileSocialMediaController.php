@@ -49,9 +49,9 @@ class ProfileSocialMediaController extends BaseController {
 		{
 			$user->linkedin		= Input::get('linkedin');
 		}
-		if(Input::get('youtube'))
+		if(Input::get('google'))
 		{
-			$user->youtube		= Input::get('youtube');
+			$user->google		= Input::get('google');
 		}
 
 		if($user->save())
