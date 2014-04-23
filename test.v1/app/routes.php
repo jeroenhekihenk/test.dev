@@ -150,6 +150,34 @@ Route::group(array('prefix'=>'admin', 'namespace'=>'Digitus\Admin\Controllers','
 		);
 		// (index) Get all Workshops, (create,store)Create Workshop, (show)View Workshop, (edit,update)Edit/Update Workshop, (destroy) Delete Workshop
 
+		Route::resource('ons-bureau', 'AdminBureauController',
+			array('names'=>
+				array(
+					'index'=>'admin.bureau.index',
+					'create'=>'admin.bureau.create',
+					'store'=>'admin.bureau.store',
+					'show'=>'admin.bureau.show',
+					'edit'=>'admin.bureau.edit',
+					'update'=>'admin.bureau.update',
+					'destroy'=>'admin.bureau.destroy'
+				)
+			)
+		);
+
+		Route::resource('media', 'AdminMediaController',
+			array('names'=>
+				array(
+					'index'=>'admin.media.index',
+					'create'=>'admin.media.create',
+					'store'=>'admin.media.store',
+					'show'=>'admin.media.show',
+					'edit'=>'admin.media.edit',
+					'update'=>'admin.media.update',
+					'destroy'=>'admin.media.destroy'
+				)
+			)
+		);
+
 		Route::resource('blog/tag', 'AdminBlogTagController',
 			array('names' =>
 				array(
@@ -230,16 +258,16 @@ Route::group(array('namespace'=>'Digitus\Upload\Controllers'), function()
 });
 
 
-Route::group(array('namespace'=>'Digitus\Comments\Controllers'), function()
-{
+// Route::group(array('namespace'=>'Digitus\Comments\Controllers'), function()
+// {
 
-	Route::post('insides/{slug}', ['uses'=>'CommentsController@store','as'=>'comment.create']);
-	Route::get('comment/{id}', ['uses'=>'CommentsController@show','as'=>'comment.show']);
-	Route::get('comment/{id}/edit', ['uses'=>'CommentsController@edit', 'as'=>'comment.edit']);
-	Route::put('comment/{id}', ['uses'=>'CommentsController@update','as'=>'comment.update']);
-	Route::delete('comment/{id}', ['uses'=>'CommentsController@destroy','as'=>'comment.destroy']);
-	Route::get('comment', function(){ return Redirect::route('home.index'); });
-});
+// 	Route::post('insides/{slug}', ['uses'=>'CommentsController@store','as'=>'comment.create']);
+// 	Route::get('comment/{id}', ['uses'=>'CommentsController@show','as'=>'comment.show']);
+// 	Route::get('comment/{id}/edit', ['uses'=>'CommentsController@edit', 'as'=>'comment.edit']);
+// 	Route::put('comment/{id}', ['uses'=>'CommentsController@update','as'=>'comment.update']);
+// 	Route::delete('comment/{id}', ['uses'=>'CommentsController@destroy','as'=>'comment.destroy']);
+// 	Route::get('comment', function(){ return Redirect::route('home.index'); });
+// });
 
 Route::group(array('namespace'=>'Digitus\Tag\Controllers'), function()
 {

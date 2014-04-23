@@ -10,9 +10,13 @@
 
 @section('sidebar2')
 <!-- Gerelateerde posts blok -->
-	<div id="sidebar" class="sidebar2 col-3">
-		@include('layouts.front.menus.blog.related')
+<div class="aside-block col-3">
+	<div id="sidebar">
+		<div class="sidebar2 col-12">
+			@include('layouts.front.menus.blog.related')
+		</div>
 	</div>
+</div>
 <!-- /Gerelateerde posts blok -->
 @stop
 
@@ -24,7 +28,8 @@
 
 		<div class="col-12 pull-left post post-{{$post->id}}">
 			
-			
+			<h2 class="post-title">{{ $post->title }}</h2>
+			<div style="clear:both"></div>
 			<div class="post-top">
 				@if($loggedUser)
 					<div class="">
@@ -49,7 +54,7 @@
 			</div>
 			<div class="post-body">
 				<img class="post-image col-6" src='{{{ URL::to($post->image) }}}'></img>
-				<h2 class="post-title">{{ $post->title }}</h2>
+				
 				<p>{{ $post->body }}</p>
 			</div>
 			<div style="clear:both"></div>
@@ -105,21 +110,6 @@
 
 		<!-- Comments blok -->
 
-<!-- 		@foreach($post->comments as $comment)
-		<div class="col-12 pull-left comment comment-{{$comment->id}}">
-			@if($loggedUser)
-				<a href="{{ URL::route('comment.show',$comment->id) }}">Kijk</a>
-			@endif
-			<div class="col-5 pull-left">
-				<a href="{{URL::to($comment->website)}}" target="_blank"><h3>{{$comment->naam}}</h3></a>
-				<p class="pull-right">Geplaatst op: {{ $comment->created_at }}</p>
-			</div>
-			<div class="col-7 pull-right">
-				<p>{{$comment->bericht}}</p>
-			</div>
-		</div>
-		@endforeach -->
-
 		<div id="disqus_thread"></div>
 		<script type="text/javascript">
 		/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
@@ -142,11 +132,6 @@
 		<!-- /Comments blok -->
 
 
-<!-- Nieuwe comment blok -->
-<!-- <div class="nieuw-comment col-12">
-	<h3>Plaats een reactie:</h3>
-	@include('comments.form')
-</div> --><!-- /Nieuwe comment blok -->
 	
 </div><!-- /Blogrol.container -->
     <script type="text/javascript">

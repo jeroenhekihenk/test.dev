@@ -526,6 +526,9 @@ div.next {
 }
 /* Blogroll */
 
+section#blogpost div.container div.inner div.feed {
+  padding: 1.5em 0;
+}
 .b-roll {
     left: 0;
     max-height: 500px;
@@ -533,7 +536,7 @@ div.next {
     overflow: hidden;
     padding-top: 15px;
     position: relative;
-    width: 200%;
+    width: 1000%;
 }
 .c-roll{
     left: 0;
@@ -542,7 +545,7 @@ div.next {
     overflow: hidden;
     padding-top: 15px;
     position: relative;
-    width: 200%;
+    width: 1000%;
 }
 .c-roll > div.blok {
     float: left;
@@ -605,7 +608,7 @@ div.blogpost > figure.blogpostimg.fluid {
     height: 175px;
     width: 100%;
 }
-div.blogpost > p.post-body {
+div.blogpost > .post-body {
   color: #777777;
   font-size: 14px;
   font-weight: 300;
@@ -670,12 +673,11 @@ div.post img.post-image {
 
 /* Post title */
 div.post h2.post-title {
-    border-bottom: 1px solid #EEEEEE;
     float: left;
-    font-size: 25pt;
-    margin: 0 0 0.5em;
+    font-size: 22pt;
+    margin: 0.5em 0;
     text-align: left;
-    width: 47%;
+    width: 100%;
 }
 
 /* Post body */
@@ -871,12 +873,31 @@ div.blok.workshop a > figure.workshop-img {
     margin-bottom: 10px;
     position: relative;
 }
+div.blok.workshop a figure.workshop-img > .workshop-label {
+    background-image: url("http://localhost/test.v1/public/images/site/untitled-4.png");
+    background-repeat: no-repeat;
+    float: right;
+    height: 44px;
+    padding: 5px 6px;
+    position: relative;
+    right: 10px;
+    top: -3px;
+    width: 30px;
+}
+div.blok.workshop a figure.workshop-img .workshop-label > img {
+  max-width: 20px;
+  max-height:20px;
+}
+
 .blok.workshop a figure.workshop-img > div.overlay {
     background-color: rgba(0, 0, 0, 0.2);
     bottom: 10px;
     padding: 5px;
     position: absolute;
     right: 0;
+}
+.blok.workshop a figure.workshop-img div.overlay > i {
+  color:white;
 }
 .blok.workshop a figure.workshop-img div.overlay > h3 {
     color: #FFFFFF;
@@ -986,15 +1007,21 @@ div.blok.workshop:hover > a {
   overflow-y:auto;
   padding: 20px;
   z-index: 10;
+  max-width: 228px;
 }
 .sidebar {
     border-right: 1px solid #EEEEEE;
     float:left;
 }
 .sidebar2{
-  border-left: 1px solid #EEEEEE;
   float:right;
   max-width: 275px;
+}
+.fixElementToTop{
+  position:fixed;
+}
+.aside-block.col-2{
+  float: left;
 }
 
   /*
@@ -1251,12 +1278,18 @@ figure.page-header {
 
 
 
-
-.col-xs-offset-2-5,
-.col-sm-offset-2-5,
-.col-md-offset-2-5,
-.col-lg-offset-2-5{
-  margin-left: 20.8333%;
+/*
+|-----------------------------------------------------------------------
+| ADMIN STUFF
+|-----------------------------------------------------------------------
+*/
+td.body {
+    max-width: 425px;
+}
+img.show-off {
+    border: 1px solid #231F20;
+    border-radius: 4px;
+    max-width: 35%;
 }
 
 section#kennismaken,

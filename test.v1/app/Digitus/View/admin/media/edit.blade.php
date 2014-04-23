@@ -1,7 +1,7 @@
 @extends('layouts.back.admin')
 
 @section('title')
-	Editing '{{ $post->title }}'
+	Editing '{{$image->title}}'
 @stop
 
 @section('menu')
@@ -18,7 +18,7 @@
 @section('content')
 @if($loggedUser->roles->first()->name === 'Admin')
 <div class="col-10">
-	@include('forms.blog.edit')
+	@include('forms.media.edit')
 </div>
 @endif
 @stop

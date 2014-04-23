@@ -42,7 +42,7 @@
 					<td>{{ $post->id }}</td>
 					<td>{{ $post->getAuthorUsername() }}</td>
 					<td>{{ $post->title }}</td>
-					<td>{{ $post->body }}</td>
+					<td class='body'>{{ $post->body }}</td>
 					<td>
 						@foreach($post->tags as $tag) {{ $tag->name }}, @endforeach
 					</td>

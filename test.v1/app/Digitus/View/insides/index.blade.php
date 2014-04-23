@@ -39,7 +39,8 @@ Blog
 							<p class="post-author">	&nbsp;door: <a class="post-author" href="{{URL::route('this.user.show',$post->getAuthor()) }}">{{$post->getAuthor()}}</a></p>
 						</div>
 						<figure class="blogpostimg fluid" style="background-image: url('{{ URL::to(''.$post->image) }}'); "></figure>
-						<p class="post-body">{{ $post->body }}</p>
+						<div class="post-body">{{$post->body}}</div>
+						<!-- <p class="post-body">{{ $post->body }}</p> -->
 						<hr>
 						<div class="post-bottom">
 <!-- 							<p class="post-tags">Tags: 

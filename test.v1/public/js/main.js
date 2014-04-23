@@ -5,9 +5,17 @@ jQuery(function($) {
         $('.menu-up').toggleClass('down');
     });
 
-	$('div.blok.blogpost > p.post-body').each(function(){
+	$('div.blok.blogpost > .post-body').each(function(){
 		$(this).text($(this).text().substring(0,135)+'...');
 	});
+
+    $('div.blok.blogpost a > h2').each(function(){
+        $(this).text($(this).text().substring(0,44)+'..');
+    });
+
+    $('td.body').each(function(){
+        $(this).text($(this).text().substring(0,150));
+    });
 
 	$(".prev").on("click", function () {
         $(".prev").animate({
@@ -98,6 +106,20 @@ $(window).load(function(){
         var $targetItem = $(".blok--active").next();
         toGalleryItem($targetItem);
     });
+});
+
+var currentScrollTop = 0;
+var barMenuOriginalTopPos = $('.aside-block').offset().top + 1;
+console.log('original:' + barMenuOriginalTopPos);
+$(window).scroll(function() {
+    currentScrollTop = $(window).scrollTop();
+    console.log(currentScrollTop);
+    if(currentScrollTop >= barMenuOriginalTopPos && $('#sidebar').hasClass('fixElementToTop') == false) {
+        $('#sidebar').addClass('fixElementToTop');
+    }
+    else if(currentScrollTop < barMenuOriginalTopPos && $('#sidebar').hasClass('fixElementToTop') ){
+        $('#sidebar').removeClass('fixElementToTop');
+    }
 });
 
 });

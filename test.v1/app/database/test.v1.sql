@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.4
+-- version 3.5.1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 23, 2014 at 07:55 AM
--- Server version: 5.6.12-log
--- PHP Version: 5.4.12
+-- Generation Time: Apr 23, 2014 at 06:13 PM
+-- Server version: 5.5.24-log
+-- PHP Version: 5.4.24
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -19,8 +19,23 @@ SET time_zone = "+00:00";
 --
 -- Database: `test.v1`
 --
-CREATE DATABASE IF NOT EXISTS `test.v1` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `test.v1`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bureaus`
+--
+
+CREATE TABLE IF NOT EXISTS `bureaus` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `body` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `subbody` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `link` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -42,10 +57,10 @@ CREATE TABLE IF NOT EXISTS `categories` (
 
 INSERT INTO `categories` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (1, 'Facebook', '2014-04-03 13:12:56', '0000-00-00 00:00:00'),
-(2, 'Henk', '2014-04-09 15:01:00', '0000-00-00 00:00:00'),
-(3, 'Jan', '2014-04-10 08:19:31', '2014-04-10 08:19:31'),
-(4, ' Willem', '2014-04-10 08:19:31', '2014-04-10 08:19:31'),
-(5, ' Harry', '2014-04-10 08:19:31', '2014-04-10 08:19:31'),
+(2, 'Twitter', '2014-04-23 15:35:54', '0000-00-00 00:00:00'),
+(3, 'LinkedIn', '2014-04-23 15:36:03', '2014-04-10 08:19:31'),
+(4, 'Youtube', '2014-04-23 15:35:38', '2014-04-10 08:19:31'),
+(5, 'Google', '2014-04-23 15:36:14', '2014-04-10 08:19:31'),
 (6, 'internet', '2014-04-15 10:26:19', '2014-04-15 10:26:19'),
 (7, 'Harry', '2014-04-18 11:22:23', '2014-04-18 11:22:23');
 
@@ -122,9 +137,9 @@ CREATE TABLE IF NOT EXISTS `categorie_workshop` (
 
 INSERT INTO `categorie_workshop` (`id`, `categorie_id`, `workshop_id`) VALUES
 (2, 1, 3),
-(3, 1, 4),
-(4, 1, 5),
-(5, 1, 6);
+(3, 2, 4),
+(4, 3, 5),
+(5, 5, 6);
 
 -- --------------------------------------------------------
 
@@ -189,6 +204,29 @@ INSERT INTO `comment_post` (`id`, `post_id`, `comment_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `images`
+--
+
+CREATE TABLE IF NOT EXISTS `images` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `image` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `author` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `images`
+--
+
+INSERT INTO `images` (`id`, `title`, `image`, `created_at`, `updated_at`, `author`) VALUES
+(2, 'Is it gone?', 'uploads/images/media/605daafe_f0g12wx.jpeg', '2014-04-23 10:31:24', '2014-04-23 10:31:24', '');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `migrations`
 --
 
@@ -221,7 +259,9 @@ INSERT INTO `migrations` (`migration`, `batch`) VALUES
 ('2014_04_17_081301_create_cases_table', 13),
 ('2014_04_17_145719_create_workshops_table', 14),
 ('2014_04_18_151556_create_categorie_workshop_table', 15),
-('2014_04_18_151917_create_tag_workshop_table', 16);
+('2014_04_18_151917_create_tag_workshop_table', 16),
+('2014_04_23_114307_create_images_table', 17),
+('2014_04_23_143652_create_bureas_table', 18);
 
 -- --------------------------------------------------------
 
@@ -303,7 +343,7 @@ INSERT INTO `posts` (`id`, `title`, `body`, `author`, `slug`, `image`, `metatitl
 (4, 'Seizoensgebonden omslagfoto''s', 'Henkie henk henk henkie henkie kom bie mie', '1', 'seizoensgebonden-omslagfotos', 'uploads/images/posts/1011859_713904245290700_1141923045_n.jpg', '', '', '', '', '', '', '', 'uploads/images/posts/1011859_713904245290700_1141923045_n.jpg', '', '2014-04-18 12:35:31', '2014-04-18 10:35:31'),
 (5, 'Hey hallo', 'Funx radio oin the air!', '1', 'hey-hallo', '/uploads/images/posts/0ddontime01.jpg', '', '', '', '', '', '', '', '/uploads/images/posts/0ddontime01.jpg', '', '2014-04-16 14:43:22', '2014-04-16 12:43:22'),
 (6, 'ksjdkjasdhaskjhdkjas', 'kjsdhfksdhjgsdgusdgodfijcnvkcnvd\r\nPLAATJE TOEGEOVED?!?!\r\nfjgdsflsdjaklfjxcklvsdfs\r\nef\r\nsdfdgsdgdaghdfghdfghd\r\naghdfgdgdsfasvvbdcxzAFDCSXJaxjczkc xkvsdjfwsdasxsa<br />\r\n\r\nsdasjdfsjfsdkgjdgjsdfkjasdfskfksdgksdgs', '1', 'ksjdkjasdhaskjhdkjas', '/uploads/images/posts/omslagfoto 2014.png', '', '', '', '', '', '', '', '/uploads/images/posts/omslagfoto 2014.png', '', '2014-04-15 15:27:59', '2014-04-15 13:27:59'),
-(7, '10 redenen waarom je geen like share en win actie moet doen!', '<p><b>De waarheid over LIKE SHARE EN WIN acties!</b>\r\n\r\nBen je van plan om een LIKE SHARE EN WIN actie te lanceren? Lees dan het eerste deel van dit artikel! Ben je opzoek naar een manier om je Facebook pagina een boost te geven? Lees dan het hele artikel en ontdek wat je kunt doen om op sociale wijze in contact te komen met meer Facebook gebruikers.\r\n\r\n \r\n<h2>Hier 10 redenen:</h2>\r\n<ul>\r\n<li>1. Je bereikt veel meer niet geïnteresseerde gebruikers dan wel geïnteresseerde gebruikers. Als ik het heb over niet geïnteresseerde gebruikers, heb ik het over gebruikers die niet geïnteresseerd zijn in jouw bedrijf, product en/of dienst.</li>\r\n\r\n<li>2. De meeste gebruikers die mee doen aan LIKE SHARE EN WIN acties, zijn alleen geïnteresseerd in de prijs, niet in jouw bedrijf. Als de winnaar(s) bekend worden gemaakt, zijn er zelfs gebruikers die je Facebook pagina weer dis-liken. Dislikes hebben negatieve invloed op het (organische/gratis) bereik van toekomstige berichten.</li>\r\n\r\n<li>3. Gebruikers die zich ergeren aan berichten, kunnen deze verbergen en/of markeren als SPAM. Dit heeft ook negatieve invloed op de het (organische/gratis) bereik van toekomstige berichten!</li>\r\n\r\n<li>4. LIKE SHARE EN WIN acties zijn niet sociaal. Geloof het of niet, er zijn zelfs mensen die een apart Facebook account aanmaken om deel te nemen aan LIKE SHARE EN WIN acties.</li>\r\n\r\n<li>5. Je wordt echt niet serieus genomen! Gebruikers weten ondertussen ook dat het doel van een LIKE SHARE EN WIN actie is om meer likes te krijgen.</li>\r\n\r\n<li>6. Naamsbekendheid of irritatie? Er zijn veel gebruikers die zich irriteren aan LIKE SHARE EN WIN acties zonder dat je het weet! Dit kan negatieve invloed hebben op het imago van je bedrijf.</li>\r\n\r\n<li>7. Het is niet toegestaan om gebruikers te vragen je bericht te delen en deze hiervoor te belonen. De kans bestaat dat je pagina wordt opgeheven door Facebook (deze kans is wel heel erg klein).</li>\r\n\r\n<li>8. Je kunt advertenties richten op je fans of op vrienden van fans. Binnen deze doelgroep(en) scoren advertenties vele malen beter dan bij een onbekend publiek en brengen hierdoor lagere kosten met zich mee. Als jouw Facebook fans geen klanten of geïnteresseerde gebruikers zijn, vallen er een aantal effectieve advertentie strategieën, die je in de toekomst zeker wil toepassen, af.</li>\r\n\r\n<li>9. Facebook gaat over interactie, de meeste gebruikers die je pagina liken om iets te winnen, zullen nooit meer reageren op je berichten en zullen na een tijdje jouw berichten ook niet meer in hun nieuwsoverzicht te zien krijgen!</li>\r\n\r\n<li>10. De meeste gebruikers die deelnemen aan LIKE SHARE EN WIN acties zijn niet van plan ooit geld uit te geven aan één van jouw producten en/of diensten.</li>\r\n</ul>\r\n\r\n<h2>3 Nadelen voor gebruikers die deelnemen aan LIKE SHARE en WIN acties.</h2>\r\n\r\n<ul>\r\n<li>1. Niet alle gebruikers die een bericht delen, kunnen worden achterhaald. Alleen gebruikers die de Facebook privacy instellingen van berichten op openbaar hebben ingesteld, zijn te achterhalen.</li>\r\n\r\n<li>2. Je vraagt gebruikers om je pagina te liken. Helaas zijn niet alle gebruikers die je pagina geliked hebben, te achterhalen. Het overzicht van Facebook waar je kunt achterhalen wie je pagina heeft geliked, geeft alleen de laatste 300 tot 400 fans weer.</li>\r\n\r\n<li>3. Facebook vrienden van gebruikers die dit soort berichten delen, ergeren zich aan aan de LIKE SHARE EN WIN acties. Ook dit kan negatieve invloed hebben op het imago van je bedrijf.</li>\r\n</ul>\r\n\r\n<div class="extra"><p>\r\nIk ben benieuwd hoe jij denkt over Facebook LIKE SHARE EN WIN acties.. Ik heb zelf een hekel aan Like, share & win acties en markeer ze bijna altijd als spam, tenzij ik het bedrijf of de eigenaar ken, dan stuur ik vaak een bericht.\r\n</p></div>\r\n\r\n \r\n<h2><b>GEEN</b> LIKE SHARE EN WIN acties?? Wat dan wel?</h2>\r\n\r\n<p>Tijdlijn acties! Facebook heeft in maart 2013 de beleidsregels aangepast. Vóór maart 2013 was het niet toegestaan om acties te voeren via de tijdlijn. Acties mochten alleen gevoerd worden via Facebook tab apps en winnaars moesten op de hoogte worden gebracht via e-mail.</p>\r\n\r\n<h2>Wat is een tijdlijn actie?</h2>\r\n\r\n<p>Een tijdlijn actie is een bericht waarbij gebruikers wordt gevraagd om een actie uit te voeren op het bericht om kans te maken op een prijs. Verderop leg ik uit wat wel en niet is toegestaan. Het belangrijkste doel van een tijdlijn actie is interactie (reacties, likes op bericht) waardoor een bericht viraal (pietje heeft gereageerd op de foto van ….) meer Facebook gebruikers bereikt. Hieronder enkele voorbeelden:</p>\r\n\r\n<a href="#">Anytime Fitness Goor</a>\r\n<div id="fb-root"></div> <script>(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_US/all.js#xfbml=1"; fjs.parentNode.insertBefore(js, fjs); }(document, ''script'', ''facebook-jssdk''));</script>\r\n<div class="fb-post" data-href="https://www.facebook.com/photo.php?fbid=220590068065222&set=a.170312373092992.5934.169961639794732&type=1" data-width="466"><div class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/photo.php?fbid=220590068065222&set=a.170312373092992.5934.169961639794732&type=1">Post</a> by <a href="https://www.facebook.com/AnytimeFitnessGoor">Anytime Fitness Goor</a>.</div></div>\r\n<hr>\r\n\r\n<a href="#">Horecapersoneel.biz</a>\r\n<div id="fb-root"></div> <script>(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_US/all.js#xfbml=1"; fjs.parentNode.insertBefore(js, fjs); }(document, ''script'', ''facebook-jssdk''));</script>\r\n<div class="fb-post" data-href="https://www.facebook.com/HorecaPersoneel.biz/photos/a.185835371553932.44588.182203155250487/345570048913796/?type=1" data-width="466"><div class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/HorecaPersoneel.biz/photos/a.185835371553932.44588.182203155250487/345570048913796/?type=1">Post</a> by <a href="https://www.facebook.com/HorecaPersoneel.biz">Horecapersoneel.biz</a>.</div></div>\r\n\r\n<hr>\r\n<a href="#">Kings Wok</a>\r\n<div id="fb-root"></div> <script>(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_US/all.js#xfbml=1"; fjs.parentNode.insertBefore(js, fjs); }(document, ''script'', ''facebook-jssdk''));</script>\r\n<div class="fb-post" data-href="https://www.facebook.com/photo.php?fbid=614302008606469&set=a.441059495930722.77934272.416793005024038&type=1" data-width="466"><div class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/photo.php?fbid=614302008606469&set=a.441059495930722.77934272.416793005024038&type=1">Post</a> by <a href="https://www.facebook.com/KingsWokBeckum">Kings Wok</a>.</div></div>\r\n\r\n<hr>\r\n<h2>Wat mag wel en wat mag niet?</h2>\r\n\r\n<b>Je mag:</b>\r\n<ul>\r\n<li>- Vragen om een reactie op een bericht (Laat in de reacties hieronder weten waarom jij zou moeten winnen).</li>\r\n<li>- Vragen om een like op een bericht (Like dit bericht en maak kans op ___).</li>\r\n<li>- Vragen om een like op een reactie (De reactie met de meeste/minste stemmen/likes wint).</li>\r\n<li>- Vragen om een bericht op de tijdlijn van je pagina te plaatsen.</li>\r\n<li>- Winnaars bekend maken via je Facebook pagina.</li>\r\n</ul>\r\n\r\n<b>Je mag niet:</b>\r\n<ul>\r\n<li>- Vragen om je pagina te liken (het is niet mogelijk om alle fans te achterhalen).</li>\r\n<li>- Vragen om een bericht of je pagina te delen (Het is niet altijd mogelijk om te achterhalen wie het bericht heeft gedeeld).</li>\r\n<li>- Vragen om zichzelf of anderen te taggen.</li>\r\n</ul>\r\n<i>(LET OP: bovenstaande mag je wel vragen maar niet als voorwaarde stellen om iets te winnen).</i>\r\n\r\n<p>Bekijk hier de <a href="https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-ash3/851577_158705844322839_2031667568_n.pdf" target="_blank">officiële richtlijnen van Facebook</a>.</p>\r\n\r\n<h2>Wat wil je bereiken met de tijdlijn actie?</h2>\r\n\r\n<p>Voordat je een tijdlijn actie opzet is het belangrijk om van te voren één of meerdere doelen te stellen. Zoals:</p>\r\n<ul>\r\n<li>- Betrokkenheid met Facebook fans/gebruikers vergroten.</li>\r\n<li>- (nieuw)Product/dienst onder de aandacht brengen.</li>\r\n<li>- In contact komen met vrienden van fans/klanten.</li>\r\n<li>- Bereik vergroten.</li>\r\n<li>- Feedback over een product of dienst verzamelen.</li>\r\n</ul>\r\n\r\n<h2>Wat moet er in je tijdlijn actie staan?</h2>\r\n\r\n<ul>\r\n<li>- Wat gebruikers kunnen winnen.</li>\r\n<li>- Wat je moet doen om deel te nemen.</li>\r\n<li>- Hoe de winnaar wordt gekozen.</li>\r\n<li>- Hoe/waar/wanneer de winnaar(s) bekend wordt gemaakt.</li>\r\n<li>- Vrijwaring van Facebook:</li>\r\n</ul>\r\n<p>\r\n“Deze promotie is op geen enkele manier verbonden met Facebook en is op geen enkele wijze gesponsord, ondersteund of georganiseerd door Facebook.”</p>\r\n\r\n<div class="extra">\r\n<p><b>Extra</b>: Als je de moeite doet om een zo kort en eenvoudig mogelijke tijdlijn actie te schrijven, zodat het gehele bericht in één keer leesbaar is zonder dat gebruikers op ‘lees meer’ hoeven te klikken, is het jammer om dit te laten verpesten door de Facebook vrijwaring. Afhankelijk van de grootte van de pagina zou ik overwegen om dit toe te voegen. Het is een officiële regel maar zolang LIKE SHARE EN WIN acties niet worden bestraft maak ik me geen zorgen ;).\r\n\r\nTIP: Een oplossing hiervoor is om de voorwaarden op je website te plaatsen en een link naar de pagina te verwerken in het bericht. Voorwaarden: www.website.nl/voorwaarden of http://bit.ly/K93KJD\r\n</p>\r\n</div>\r\n\r\n \r\n<h2>TIPS voor een succesvolle tijdlijn actie!</h2>\r\n\r\n<ul>\r\n<li>- Bepaal je doel(en).</li>\r\n<li>- Houd het zo kort en simpel mogelijk.</li>\r\n<li>- Bedenk een actie die gerelateerd is aan jouw merk.</li>\r\n<li>- Bedenk een relevante prijs voor je fans/doelgroep.</li>\r\n<li>- Maak het gebruikers zo eenvoudig mogelijk om deel te nemen.</li>\r\n<li>- Geef gebruikers voldoende tijd om deel te nemen (minimaal 1 week).</li>\r\n<li>- Maak gebruik van Facebook advertenties.</li>\r\n<li>- Beperk de looptijd van de actie om irritatie te voorkomen, zeker als je gebruik maakt van Facebook advertenties. Niemand zit er op te wachten om 10 keer het zelfde bericht te zien.</li>\r\n<li>- Testen, testen en testen. Test verschillende tijdlijn acties om er achter te komen wat bij jouw fans het beste werkt.</li>\r\n</ul>\r\n\r\n<h2>Wat kost het om een tijdlijn actie te promoten?</h2>\r\n\r\nWat kost de gemiddelde tijdlijn actie?\r\n<img src="">\r\n</li>', '1', '10-redenen-waarom-je-geen-like-share-en-win-actie-moet-doen', 'uploads/images/posts/begging-for-likes.jpg', '', '', '', '', '', '', '', 'uploads/images/posts/begging-for-likes.jpg', '', '2014-04-22 15:52:17', '2014-04-22 13:52:17');
+(7, '10 redenen waarom je geen like share en win actie moet doen!', '<b>De waarheid over LIKE SHARE EN WIN acties!</b>\n\nBen je van plan om een LIKE SHARE EN WIN actie te lanceren? Lees dan het eerste deel van dit artikel! Ben je opzoek naar een manier om je Facebook pagina een boost te geven? Lees dan het hele artikel en ontdek wat je kunt doen om op sociale wijze in contact te komen met meer Facebook gebruikers.\n\n \n<h2>Hier 10 redenen:</h2>\n<ul>\n<li>1. Je bereikt veel meer niet geïnteresseerde gebruikers dan wel geïnteresseerde gebruikers. Als ik het heb over niet geïnteresseerde gebruikers, heb ik het over gebruikers die niet geïnteresseerd zijn in jouw bedrijf, product en/of dienst.</li>\n\n<li>2. De meeste gebruikers die mee doen aan LIKE SHARE EN WIN acties, zijn alleen geïnteresseerd in de prijs, niet in jouw bedrijf. Als de winnaar(s) bekend worden gemaakt, zijn er zelfs gebruikers die je Facebook pagina weer dis-liken. Dislikes hebben negatieve invloed op het (organische/gratis) bereik van toekomstige berichten.</li>\n\n<li>3. Gebruikers die zich ergeren aan berichten, kunnen deze verbergen en/of markeren als SPAM. Dit heeft ook negatieve invloed op de het (organische/gratis) bereik van toekomstige berichten!</li>\n\n<li>4. LIKE SHARE EN WIN acties zijn niet sociaal. Geloof het of niet, er zijn zelfs mensen die een apart Facebook account aanmaken om deel te nemen aan LIKE SHARE EN WIN acties.</li>\n\n<li>5. Je wordt echt niet serieus genomen! Gebruikers weten ondertussen ook dat het doel van een LIKE SHARE EN WIN actie is om meer likes te krijgen.</li>\n\n<li>6. Naamsbekendheid of irritatie? Er zijn veel gebruikers die zich irriteren aan LIKE SHARE EN WIN acties zonder dat je het weet! Dit kan negatieve invloed hebben op het imago van je bedrijf.</li>\n\n<li>7. Het is niet toegestaan om gebruikers te vragen je bericht te delen en deze hiervoor te belonen. De kans bestaat dat je pagina wordt opgeheven door Facebook (deze kans is wel heel erg klein).</li>\n\n<li>8. Je kunt advertenties richten op je fans of op vrienden van fans. Binnen deze doelgroep(en) scoren advertenties vele malen beter dan bij een onbekend publiek en brengen hierdoor lagere kosten met zich mee. Als jouw Facebook fans geen klanten of geïnteresseerde gebruikers zijn, vallen er een aantal effectieve advertentie strategieën, die je in de toekomst zeker wil toepassen, af.</li>\n\n<li>9. Facebook gaat over interactie, de meeste gebruikers die je pagina liken om iets te winnen, zullen nooit meer reageren op je berichten en zullen na een tijdje jouw berichten ook niet meer in hun nieuwsoverzicht te zien krijgen!</li>\n\n<li>10. De meeste gebruikers die deelnemen aan LIKE SHARE EN WIN acties zijn niet van plan ooit geld uit te geven aan één van jouw producten en/of diensten.</li>\n</ul>\n\n<h2>3 Nadelen voor gebruikers die deelnemen aan LIKE SHARE en WIN acties.</h2>\n\n<ul>\n<li>1. Niet alle gebruikers die een bericht delen, kunnen worden achterhaald. Alleen gebruikers die de Facebook privacy instellingen van berichten op openbaar hebben ingesteld, zijn te achterhalen.</li>\n\n<li>2. Je vraagt gebruikers om je pagina te liken. Helaas zijn niet alle gebruikers die je pagina geliked hebben, te achterhalen. Het overzicht van Facebook waar je kunt achterhalen wie je pagina heeft geliked, geeft alleen de laatste 300 tot 400 fans weer.</li>\n\n<li>3. Facebook vrienden van gebruikers die dit soort berichten delen, ergeren zich aan aan de LIKE SHARE EN WIN acties. Ook dit kan negatieve invloed hebben op het imago van je bedrijf.</li>\n</ul>\n\n<div class="extra"><p>\nIk ben benieuwd hoe jij denkt over Facebook LIKE SHARE EN WIN acties.. Ik heb zelf een hekel aan Like, share & win acties en markeer ze bijna altijd als spam, tenzij ik het bedrijf of de eigenaar ken, dan stuur ik vaak een bericht.\n</p></div>\n\n \n<h2><b>GEEN</b> LIKE SHARE EN WIN acties?? Wat dan wel?</h2>\n\n<p>Tijdlijn acties! Facebook heeft in maart 2013 de beleidsregels aangepast. Vóór maart 2013 was het niet toegestaan om acties te voeren via de tijdlijn. Acties mochten alleen gevoerd worden via Facebook tab apps en winnaars moesten op de hoogte worden gebracht via e-mail.</p>\n\n<h2>Wat is een tijdlijn actie?</h2>\n\n<p>Een tijdlijn actie is een bericht waarbij gebruikers wordt gevraagd om een actie uit te voeren op het bericht om kans te maken op een prijs. Verderop leg ik uit wat wel en niet is toegestaan. Het belangrijkste doel van een tijdlijn actie is interactie (reacties, likes op bericht) waardoor een bericht viraal (pietje heeft gereageerd op de foto van ….) meer Facebook gebruikers bereikt. Hieronder enkele voorbeelden:</p>\n\n<a href="#">Anytime Fitness Goor</a>\n<div id="fb-root"></div> <script>(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_US/all.js#xfbml=1"; fjs.parentNode.insertBefore(js, fjs); }(document, ''script'', ''facebook-jssdk''));</script>\n<div class="fb-post" data-href="https://www.facebook.com/photo.php?fbid=220590068065222&set=a.170312373092992.5934.169961639794732&type=1" data-width="466"><div class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/photo.php?fbid=220590068065222&set=a.170312373092992.5934.169961639794732&type=1">Post</a> by <a href="https://www.facebook.com/AnytimeFitnessGoor">Anytime Fitness Goor</a>.</div></div>\n<hr>\n\n<a href="#">Horecapersoneel.biz</a>\n<div id="fb-root"></div> <script>(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_US/all.js#xfbml=1"; fjs.parentNode.insertBefore(js, fjs); }(document, ''script'', ''facebook-jssdk''));</script>\n<div class="fb-post" data-href="https://www.facebook.com/HorecaPersoneel.biz/photos/a.185835371553932.44588.182203155250487/345570048913796/?type=1" data-width="466"><div class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/HorecaPersoneel.biz/photos/a.185835371553932.44588.182203155250487/345570048913796/?type=1">Post</a> by <a href="https://www.facebook.com/HorecaPersoneel.biz">Horecapersoneel.biz</a>.</div></div>\n\n<hr>\n<a href="#">Kings Wok</a>\n<div id="fb-root"></div> <script>(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_US/all.js#xfbml=1"; fjs.parentNode.insertBefore(js, fjs); }(document, ''script'', ''facebook-jssdk''));</script>\n<div class="fb-post" data-href="https://www.facebook.com/photo.php?fbid=614302008606469&set=a.441059495930722.77934272.416793005024038&type=1" data-width="466"><div class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/photo.php?fbid=614302008606469&set=a.441059495930722.77934272.416793005024038&type=1">Post</a> by <a href="https://www.facebook.com/KingsWokBeckum">Kings Wok</a>.</div></div>\n\n<hr>\n<h2>Wat mag wel en wat mag niet?</h2>\n\n<b>Je mag:</b>\n<ul>\n<li>- Vragen om een reactie op een bericht (Laat in de reacties hieronder weten waarom jij zou moeten winnen).</li>\n<li>- Vragen om een like op een bericht (Like dit bericht en maak kans op ___).</li>\n<li>- Vragen om een like op een reactie (De reactie met de meeste/minste stemmen/likes wint).</li>\n<li>- Vragen om een bericht op de tijdlijn van je pagina te plaatsen.</li>\n<li>- Winnaars bekend maken via je Facebook pagina.</li>\n</ul>\n\n<b>Je mag niet:</b>\n<ul>\n<li>- Vragen om je pagina te liken (het is niet mogelijk om alle fans te achterhalen).</li>\n<li>- Vragen om een bericht of je pagina te delen (Het is niet altijd mogelijk om te achterhalen wie het bericht heeft gedeeld).</li>\n<li>- Vragen om zichzelf of anderen te taggen.</li>\n</ul>\n<i>(LET OP: bovenstaande mag je wel vragen maar niet als voorwaarde stellen om iets te winnen).</i>\n\n<p>Bekijk hier de <a href="https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-ash3/851577_158705844322839_2031667568_n.pdf" target="_blank">officiële richtlijnen van Facebook</a>.</p>\n\n<h2>Wat wil je bereiken met de tijdlijn actie?</h2>\n\n<p>Voordat je een tijdlijn actie opzet is het belangrijk om van te voren één of meerdere doelen te stellen. Zoals:</p>\n<ul>\n<li>- Betrokkenheid met Facebook fans/gebruikers vergroten.</li>\n<li>- (nieuw)Product/dienst onder de aandacht brengen.</li>\n<li>- In contact komen met vrienden van fans/klanten.</li>\n<li>- Bereik vergroten.</li>\n<li>- Feedback over een product of dienst verzamelen.</li>\n</ul>\n\n<h2>Wat moet er in je tijdlijn actie staan?</h2>\n\n<ul>\n<li>- Wat gebruikers kunnen winnen.</li>\n<li>- Wat je moet doen om deel te nemen.</li>\n<li>- Hoe de winnaar wordt gekozen.</li>\n<li>- Hoe/waar/wanneer de winnaar(s) bekend wordt gemaakt.</li>\n<li>- Vrijwaring van Facebook:</li>\n</ul>\n<p>\n“Deze promotie is op geen enkele manier verbonden met Facebook en is op geen enkele wijze gesponsord, ondersteund of georganiseerd door Facebook.”</p>\n\n<div class="extra">\n<p><b>Extra</b>: Als je de moeite doet om een zo kort en eenvoudig mogelijke tijdlijn actie te schrijven, zodat het gehele bericht in één keer leesbaar is zonder dat gebruikers op ‘lees meer’ hoeven te klikken, is het jammer om dit te laten verpesten door de Facebook vrijwaring. Afhankelijk van de grootte van de pagina zou ik overwegen om dit toe te voegen. Het is een officiële regel maar zolang LIKE SHARE EN WIN acties niet worden bestraft maak ik me geen zorgen ;).\n\nTIP: Een oplossing hiervoor is om de voorwaarden op je website te plaatsen en een link naar de pagina te verwerken in het bericht. Voorwaarden: www.website.nl/voorwaarden of http://bit.ly/K93KJD\n</p>\n</div>\n\n \n<h2>TIPS voor een succesvolle tijdlijn actie!</h2>\n\n<ul>\n<li>- Bepaal je doel(en).</li>\n<li>- Houd het zo kort en simpel mogelijk.</li>\n<li>- Bedenk een actie die gerelateerd is aan jouw merk.</li>\n<li>- Bedenk een relevante prijs voor je fans/doelgroep.</li>\n<li>- Maak het gebruikers zo eenvoudig mogelijk om deel te nemen.</li>\n<li>- Geef gebruikers voldoende tijd om deel te nemen (minimaal 1 week).</li>\n<li>- Maak gebruik van Facebook advertenties.</li>\n<li>- Beperk de looptijd van de actie om irritatie te voorkomen, zeker als je gebruik maakt van Facebook advertenties. Niemand zit er op te wachten om 10 keer het zelfde bericht te zien.</li>\n<li>- Testen, testen en testen. Test verschillende tijdlijn acties om er achter te komen wat bij jouw fans het beste werkt.</li>\n</ul>\n\n<h2>Wat kost het om een tijdlijn actie te promoten?</h2>\n\nWat kost de gemiddelde tijdlijn actie?\n<img src="">', '1', '10-redenen-waarom-je-geen-like-share-en-win-actie-moet-doen', 'uploads/images/posts/begging-for-likes.jpg', '', '', '', '', '', '', '', 'uploads/images/posts/begging-for-likes.jpg', '', '2014-04-23 11:15:19', '2014-04-22 13:52:17');
 
 -- --------------------------------------------------------
 
@@ -552,9 +592,12 @@ INSERT INTO `users` (`id`, `image`, `username`, `firstname`, `lastname`, `email`
 
 CREATE TABLE IF NOT EXISTS `workshops` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `belangrijk` text COLLATE utf8_unicode_ci NOT NULL,
   `title` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `body` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `slug` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `datum` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `locatie` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `author` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `image` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
@@ -566,11 +609,11 @@ CREATE TABLE IF NOT EXISTS `workshops` (
 -- Dumping data for table `workshops`
 --
 
-INSERT INTO `workshops` (`id`, `title`, `body`, `slug`, `author`, `image`, `created_at`, `updated_at`) VALUES
-(3, 'Interactie met je fans', 'In deze workshop wordt uitgebreid uitgelegd hoe je het beste de interactie aan kan gaan met je fans EN hoe je dit het beste kan onderhouden!', 'interactie-met-je-fans', '1', 'uploads/images/workshops/285246_589106511118565_551419949_n.jpg', '2014-04-18 13:21:49', '2014-04-18 13:21:49'),
-(4, 'Maak je niet dik', 'Maak je niet al te veel zorgen over wat je fans doen.', 'maak-je-niet-dik', '1', 'uploads/images/workshops/1604593_568561753231315_294890017_n.png', '2014-04-18 13:28:57', '2014-04-18 13:28:57'),
-(5, 'Adverteren', 'De basis van het adverteren op Facebook wordt hier uitgelegd. ', 'adverteren', '1', 'uploads/images/workshops/BURN.jpeg', '2014-04-18 13:30:31', '2014-04-18 13:30:31'),
-(6, 'Succesvol op Facebook', 'Yallahland', 'succesvol-op-facebook', '1', 'uploads/images/workshops/smiling mantis.jpg', '2014-04-18 13:31:42', '2014-04-18 13:31:42');
+INSERT INTO `workshops` (`id`, `belangrijk`, `title`, `body`, `slug`, `datum`, `locatie`, `author`, `image`, `created_at`, `updated_at`) VALUES
+(3, 'Ja', 'Interactie met je fans', 'In deze workshop wordt uitgebreid uitgelegd hoe je het beste de interactie aan kan gaan met je fans EN hoe je dit het beste kan onderhouden!', 'interactie-met-je-fans', '24-07-2015', 'Industriestraat 215A, Hengelo (ov)', '1', 'uploads/images/workshops/285246_589106511118565_551419949_n.jpg', '2014-04-18 13:21:49', '2014-04-18 13:21:49'),
+(4, '', 'Maak je niet dik', 'Maak je niet al te veel zorgen over wat je fans doen.', 'maak-je-niet-dik', '16-09-2020', 'Industriestraat 215A, Hengelo (ov)', '1', 'uploads/images/workshops/1604593_568561753231315_294890017_n.png', '2014-04-18 13:28:57', '2014-04-18 13:28:57'),
+(5, 'Ja', 'Adverteren', 'De basis van het adverteren op Facebook wordt hier uitgelegd. ', 'adverteren', '01-01-1990', 'Industriestraat 215A, Hengelo (ov)', '1', 'uploads/images/workshops/BURN.jpeg', '2014-04-18 13:30:31', '2014-04-18 13:30:31'),
+(6, '', 'Succesvol op Facebook', 'Yallahland', 'succesvol-op-facebook', '01-01-2000', 'Industriestraat 215A, Hengelo (ov)', '1', 'uploads/images/workshops/smiling mantis.jpg', '2014-04-18 13:31:42', '2014-04-18 13:31:42');
 
 --
 -- Constraints for dumped tables

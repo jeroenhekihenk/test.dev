@@ -1,9 +1,14 @@
 {{ Form::open(array('action'=>'admin.workshops.store', 'files'=>true)) }}
 {{ Form::hidden('author', $loggedUser->id) }}
-<div class="form-group">
+<div class="form-group col-6">
 	{{ Form::label('file', 'Workshop Image') }}
 	{{ $errors->first('file') }}
 	{{ Form::file('file', '', array('class'=>'form-control')) }}
+</div>
+<div class="form-group col-6">
+	{{ Form::label('datum', 'Workshop datum') }}
+	{{ $errors->first('datum') }}
+	{{ Form::input('date', 'datum', '', array('class'=>'form-control')) }}
 </div>
 <div class="form-group">
 	{{ Form::label('title', 'Workshop Title') }}

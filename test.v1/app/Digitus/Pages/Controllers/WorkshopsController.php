@@ -2,6 +2,7 @@
 
 use Digitus\Base\Controllers\BaseController,
 Digitus\Base\Model\Page,
+Digitus\Base\Model\User,
 Digitus\Base\Model\Workshop,
 Response,
 View;

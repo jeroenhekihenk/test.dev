@@ -9,6 +9,7 @@
 		<div class="feed">
 			<div class="col-12">
 				<div class="col-6 page-welcome">
+						
 					<h3 class="text-center page-heading">Een bedrijf is als een <span class="black">goed verhaal</span>: inspirerend, pakkend en meeslepend. Digitus zorgt ervoor dat jouw verhaal wordt vertelt. Dit met de juiste contentstrategie, ondersteund door gerichte social media marketing en slimme apps.</h3>
 				</div>
 			</div>
@@ -16,15 +17,21 @@
 			<div class="feed">
 				<div class="b-roll">
 					@foreach($workshops as $workshop)
+			
 						<div class="blok workshop workshop-{{$workshop->id}}">
 							<a href="{{ URL::route('workshops.show',$workshop->slug) }}" target="_blank" alt="{{$workshop->title}}" title="{{$workshop->title}}" class="title">
 								<figure class="workshop-img" style="background-image: url('{{ URL::to($workshop->image)}}')">
+									@if($workshop->belangrijk === 'Ja')
+										<div class="workshop-label">
+										</div>
+									@endif
 									<div class="overlay">
 										<h3>
 											@foreach($workshop->categories as $categorie)
 												{{$categorie->name}}
 											@endforeach
 										</h3>
+										<i><span class="glyphicon glyphicon-calendar"></span> {{$workshop->datum}}</i><br />
 									</div>
 								</figure>
 								<h2>{{ $workshop->title }}</h2>

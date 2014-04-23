@@ -41,11 +41,13 @@ class AdminWorkshopsController extends BaseController {
 	public function store()
 	{
 		
+		if(Input::get('file'))
+		{
 		$file 				= Input::file('file');
 	    $destinationPath 	= 'uploads/images/workshops/';
 	    $filename 			= $file->getClientOriginalName();
 	    $upload_success 	= $file->move($destinationPath, $filename);
-			
+		}
 
 		$new_workshop = array(
 			'title'		=> Input::get('title'),
@@ -53,10 +55,12 @@ class AdminWorkshopsController extends BaseController {
 			'author'	=> Input::get('author'),
 			'slug'		=> Str::slug(Input::get('title')),
 			'image'		=> str_replace('\\', '/', $upload_success),
+			'datum'		=> Input::get('datum'),
 		);
 		$rules = array(
 			'title'		=> 'required|min:3|max:255',
 			'body'		=> 'required|min:10',
+			'datum'		=> 'required',
 		);
 
 		// $new_tags = array();
