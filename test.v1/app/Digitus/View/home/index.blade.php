@@ -26,4 +26,5 @@
 
 @section('footer')
 	@include('layouts.front.footer.main')
+	{{ HTML::script('/js/calculate.js') }}
 @stop

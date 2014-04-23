@@ -19,9 +19,9 @@
 					    </ul>
 					</nav><!-- /nav -->
 				</div><!-- /toggler -->
-				<figure class="togglemenu">
-					<div class="menu-up"></div>
-				</figure>
+				<div class="togglemenu">
+					<figure class="menu-up"></figure>
+				</div>
 			</div><!-- /floater -->
 		</div><!-- /inner -->
 	</div><!-- /container -->

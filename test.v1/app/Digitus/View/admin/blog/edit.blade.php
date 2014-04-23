@@ -17,7 +17,7 @@
 
 @section('content')
 @if($loggedUser->roles->first()->name === 'Admin')
-<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+<div class="col-10">
 	{{ Form::open(array('method'=>'PUT','files'=>true,'action'=>array('admin.insides.update',$post->slug))) }}
 	<div class="sidebar2" style="max-width:230px">
 			Uitgelichte afbeelding:<br/>
@@ -25,11 +25,11 @@
 		{{ Form::file('file') }}
 			
 	</div>
-	<div class="blogroll col-sm-8 col-md-8 col-xs-8 col-lg-8">
+	<div class="blogroll col-8">
 
 		
 
-			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 panel panel-info post-{{$post->id}}">
+			<div class="col-12 panel panel-info post-{{$post->id}}">
 				
 
 				<div class="form-group">
@@ -48,17 +48,17 @@
 				</div>
 				<hr>
 				
-					<p class="col-xs-6 col-sm-6 col-md-6 col-lg-6">Bestaande categories:<br />
+					<p class="col-6">Bestaande categories:<br />
 						@foreach($categories as $categorie)
 							<span class="label label-warning" style="line-height:2.25">{{$categorie->name}}</span>
 						@endforeach
 					</p>
-					<p class="col-xs-6 col-sm-6 col-md-6 col-lg-6">Gekoppelde categories:<br />
+					<p class="col-6">Gekoppelde categories:<br />
 						@foreach($post->categories as $categorie)
 								<span class="label label-success" style="line-height:2.25">{{ $categorie->name }}</span>
 						@endforeach
 					</p>
-				<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<div class="form-group col-12">
 					{{ Form::label('addcategorie', 'Voeg een categorie toe:') }}
 					<input type="text" name="addcategorie" class="form-control">
 					{{ Form::label('delcategorie', 'Delete een categorie:') }}
@@ -66,17 +66,17 @@
 				</div>
 				<hr>
 				<hr>
-					<p class="col-xs-6 col-sm-6 col-md-6 col-lg-6">Bestaande tags:
+					<p class="col-6">Bestaande tags:
 						@foreach($tags as $tag)
 							<span class="label label-warning" style="line-height:2.25">{{$tag->name}}</span>
 						@endforeach
 					</p>
-					<p class="col-xs-6 col-sm-6 col-md-6 col-lg-6">Gekoppelde tags:<br />
+					<p class="col-6">Gekoppelde tags:<br />
 						@foreach($post->tags as $tag)
 							<span class="label label-success" style="line-height:2.25">{{ $tag->name }}</span>
 						@endforeach
 					</p>
-				<div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<div class="form-group col-12">
 					{{ Form::label('addtag', 'Voeg een tag toe:') }}
 					<input type="text" name="addtag" class="form-control">
 					{{ Form::label('deltag', 'Delete een tag:') }}

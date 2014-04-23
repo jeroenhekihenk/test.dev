@@ -11,7 +11,7 @@ jQuery(function($) {
 
 	$(".prev").on("click", function () {
         $(".prev").animate({
-            left: "-1.65%"
+            left: "-2.25%"
         }, 300)
         .animate({
             left: "-1.85%"
@@ -19,7 +19,7 @@ jQuery(function($) {
     });
     $(".next").on("click", function () {
         $(".next").animate({
-            right: "-1.65%"
+            right: "-2.25%"
         }, 300)
         .animate({
             right: "-1.85%"

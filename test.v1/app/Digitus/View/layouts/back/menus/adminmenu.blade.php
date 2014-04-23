@@ -1,4 +1,4 @@
-<div id="sidebar" class="sidebar" role="sidebar">
+<div id="sidebar" class="sidebar col-2" role="sidebar">
 	<ul class="nav nav-sidebar nav-pills nav-stacked">
 		<li><a href="{{{ URL::route('admin.index') }}}" title="Admin">Admin</a></li>
 		<li><a href="{{{ URL::route('admin.pages.index') }}}" title="Pages">Pages</a></li>

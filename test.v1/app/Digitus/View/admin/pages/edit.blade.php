@@ -1,4 +1,4 @@
-@extends('layouts.back.main')
+@extends('layouts.back.admin')
 
 @section('title')
 	{{ $page->title }}
@@ -14,9 +14,9 @@
 
 @section('content')
 @if($loggedUser->roles->first()->name === 'Admin')
-<div class="blogroll container col-sm-offset-2 col-md-offset-2 col-xs-offset-2 col-lg-offset-2">
+<div class="col-7">
 
-		<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 pull-left col-xs-offset-1 col-md-offset-1 col-sm-offset-1 col-lg-offset-1 panel panel-info page-{{$page->id}}">
+		
 			
 			{{ Form::open(array('method'=>'PUT','action'=>array('admin.pages.update',$page->slug))) }}
 {{ Form::label('layout', 'Selecteer layout:') }}
@@ -63,7 +63,7 @@
 
 			{{ Form::close() }}
 			
-		</div>
+		
 
 </div>
 @endif

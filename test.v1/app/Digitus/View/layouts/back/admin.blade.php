@@ -25,9 +25,11 @@
 
 	<div class="container-fluid">
 		<div class="row">
-			@yield('sidebar')
-			@yield('content')
-			@yield('sidebar2')
+			<div class="col-12">
+				@yield('sidebar')
+				@yield('content')
+				@yield('sidebar2')
+			</div>
 		</div>
 	</div>
 

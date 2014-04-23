@@ -6,6 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Digitus Marketing | @yield('title')</title>
+	{{ HTML::script('/js/jquery.js') }}
 	{{ HTML::style('/css/reset.css') }}
 	{{ HTML::style('/css/main.css') }}
 	{{ HTML::style('//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css') }}
@@ -34,7 +35,7 @@
 
 	@yield('footer')
 
-	{{ HTML::script('//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js') }}
+	
 	{{ HTML::script('//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js') }}
 	{{ HTML::script('/js/main.js') }}
 </body>

@@ -157,6 +157,80 @@ div.container div.inner div.feed > div.feed {
 
 /*
 |-----------------------------------------------------------------------
+| INTRO STUFF
+|-----------------------------------------------------------------------
+*/
+
+section#intro div.intro div.content div.intro-div {
+    border: 1px solid #FFFFFF;
+    height: 190px;
+    margin: 40px;
+    padding: 15px;
+    position: absolute;
+    transform: rotate(45deg);
+    width: 190px;
+}
+section#intro div.intro div.content div.intro-div.social {
+    left: 38%;
+    top: 37%;
+}
+section#intro div.intro div.content div.intro-div.statistics {
+	padding: 40px;
+    left: 58%;
+    top: 27%;
+}
+section#intro div.intro div.content div.intro-div.email {
+	padding: 50px;
+    left: 18%;
+    top: 60%;
+}
+section#intro div.intro div.content div.intro-div.responsive {
+
+    left: 55%;
+    top: 60%;
+}
+section#intro div.intro div.content div.intro-div.cart {
+	padding: 50px;
+    left: 23%;
+    top: 18%;
+}
+section#intro div.intro div.content div.intro-div.cart:after {
+    content: "";
+    display: block;
+    border-left: 1px solid #fff;
+    position: absolute;
+    height: 100px;
+    left: 50%;
+    right: 0px;
+}
+section#intro div.intro div.content div.intro-div figure {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 100%;
+    width: 100%;
+    transform: rotate(-45deg);
+}
+section#intro div.intro div.content div.intro-div figure.statistics {
+	background-image: url('../images/site/statistieken.png');
+}
+section#intro div.intro div.content div.intro-div figure.email {
+	background-image: url('../images/site/email.png');
+}
+section#intro div.intro div.content div.intro-div figure.responsive {
+	background-image: url('../images/site/responsive.png');
+}
+section#intro div.intro div.content div.intro-div figure.social {
+	background-image: url('../images/site/social share.png');
+}
+section#intro div.intro div.content div.intro-div figure.cart {
+	background-image: url('../images/site/shopping.png');
+}
+
+
+
+/*
+|-----------------------------------------------------------------------
 | NAV STUFF
 |-----------------------------------------------------------------------
 */
@@ -217,15 +291,18 @@ header nav ul li > a {
     padding: 0.8em;
 }
 .menu-up {
-    border-bottom: 10px solid #FFFFFF;
-    border-left: 10px solid rgba(0, 0, 0, 0);
-    border-right: 10px solid rgba(0, 0, 0, 0);
+	background-image: url('../images/site/menu-up.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
     margin: 0 auto;
-    width: 10px;
+    width: 20px;
+    height: 10px;
 }
 .menu-up.down {
-    border-bottom: 0 none;
-    border-top: 10px solid #FFFFFF;
+    background-image: url('../images/site/menu-down.png');
+    width: 20px;
+    height: 10px;
 }
 
 /*
@@ -434,22 +511,18 @@ div.prev, div.next {
     z-index: 100;
 }
 div.prev {
-    border-bottom: 20px solid rgba(0, 0, 0, 0);
-    border-right: 20px solid #000000;
-    border-top: 20px solid rgba(0, 0, 0, 0);
+    background-image: url('../images/site/prev.png');
     left: -1.85%;
     position: absolute;
     width: 20px;
-    height: 30px;
+    height: 40px;
 }
 div.next {
-    border-bottom: 20px solid rgba(0, 0, 0, 0);
-    border-left: 20px solid #000000;
-    border-top: 20px solid rgba(0, 0, 0, 0);
+	background-image: url('../images/site/next.png');
     position: absolute;
     right: -1.85%;
     width: 20px;
-    height: 30px;
+    height: 40px;
 }
 /* Blogroll */
 
@@ -866,7 +939,6 @@ div.blok.workshop:hover > a {
 #notification {
     position: absolute;
     right: 15px;
-    top: 49px;
     z-index: 10;
 }
 .notification {
@@ -1135,14 +1207,14 @@ footer#footer{
   margin:0;
   padding:0;
 }
-.footer-brief form > input[type="email"].emailbrief {
+.footer-brief form > input[type="email"] {
   float:left;
   min-width: 190px;
   max-width: 200px;
   margin-right: 10px;
   padding:0 10px;
 }
-.footer-brief form > input[type="submit"].emailbrief {
+.footer-brief form > input[type="submit"] {
   float: right;
   min-width: 190px;
   max-width: 200px;
