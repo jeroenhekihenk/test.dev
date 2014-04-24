@@ -16,7 +16,8 @@
   {{ HTML::style('css/reset.css') }}
   {{ HTML::style('css/main.css') }}
   {{ HTML::style('//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css') }}
-
+  {{ HTML::script('/js/jquery.js') }}
+  
 </head>
 <body>
 
@@ -39,9 +40,7 @@
     </div>
   </section>
   @yield('footer')
-  {{ HTML::script('//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js') }}
   {{ HTML::script('//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js') }}
   {{ HTML::script('/js/main.js') }}
-  {{ Html::script('/js/calculate.js') }}
 </body>
 </html>

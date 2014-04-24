@@ -19,8 +19,6 @@
 			<th>id</th>
 			<th>titel</th>
 			<th>body</th>
-			<th>subbody</th>
-			<th>link</th>
 			<th>Edit</th>
 			<th>View</th>
 			<th>Delete</th>
@@ -30,9 +28,7 @@
 			<tr>
 				<td>{{$blok->id}}</td>
 				<td>{{$blok->title}}</td>
-				<td>{{$blok->body}}</td>
-				<td>{{$blok->subbody}}</td>
-				<td>{{$blok->link}}</td>
+				<td class="body">{{$blok->body}}</td>
 				<td><a href="{{ URL::route('admin.bureau.edit',[$blok->id]) }}" class="btn btn-primary">Edit</a></td>
 				<td><a href="{{ URL::route('bureau.index') }}" class="btn btn-info">View</a></td>
 				<td> {{ Form::open(array('method'=>'DELETE','action'=>array('admin.bureau.destroy',$blok->id)))}}

@@ -5,6 +5,7 @@ Digitus\Base\Model\Project,
 Digitus\Base\Model\User,
 Digitus\Base\Model\Categorie,
 Digitus\Base\Model\Page,
+Digitus\Base\Model\Recensie,
 Response,
 View;
 
@@ -18,13 +19,9 @@ class CasesController extends BaseController {
 			return Response::view('errors.404');
 		}
 		$cases = Project::all();
-
-		$facebook = '';
-		$twitter = '';
-		$tel = '';
-		$email = '';
+		$recensies = Recensie::all();
 		return View::make('pages.cases.index')
-		->with(['page'=>$currpage, 'cases'=>$cases, 'facebook'=>$facebook, 'twitter'=>$twitter, 'tel'=>$tel, 'email'=>$email]);
+		->with(['page'=>$currpage, 'cases'=>$cases, 'recensies'=>$recensies]);
 	}
 	public function show($slug)
 	{

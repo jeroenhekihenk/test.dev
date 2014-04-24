@@ -43,7 +43,7 @@
 				</div>
 			</div>
 			<div class="col-4">
-				@include('forms.ons-bureau.contact')
+				@include('forms.kennismaken.contact')
 			</div>
 		</div>
 	</div>

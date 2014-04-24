@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 23, 2014 at 06:13 PM
+-- Generation Time: Apr 24, 2014 at 05:52 PM
 -- Server version: 5.5.24-log
 -- PHP Version: 5.4.24
 
@@ -28,14 +28,22 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `bureaus` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `author` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `body` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `subbody` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `link` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data for table `bureaus`
+--
+
+INSERT INTO `bureaus` (`id`, `author`, `title`, `body`, `created_at`, `updated_at`) VALUES
+(4, '', 'Kernwaarden:', 'FUN, Sociaal, Actueel, Creatief, Behulpzaam, Flexibel en Enthousiast.', '2014-04-24 09:44:16', '2014-04-24 10:00:31'),
+(5, '', 'Missie:', 'Ondernemers van midden- en kleinbedrijven voorzien van de benodigde kennis op het gebied van Facebook marketing en alles wat hier bij komt kijken om een succesvolle internet marketing strategie uit te voeren.', '2014-04-24 09:44:41', '2014-04-24 09:44:41'),
+(6, '', 'Visie:', 'Je doelgroep ECHT leren kennen en inspelen op behoeftes en interesses, is in het internet tijdperk waarin we allemaal actief zijn op social media, de sleutel tot succes!', '2014-04-24 09:44:54', '2014-04-24 09:44:54');
 
 -- --------------------------------------------------------
 
@@ -291,19 +299,18 @@ CREATE TABLE IF NOT EXISTS `pages` (
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=18 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=19 ;
 
 --
 -- Dumping data for table `pages`
 --
 
 INSERT INTO `pages` (`id`, `layout`, `menu`, `footer`, `title`, `body`, `author`, `slug`, `image`, `metatitle`, `metadescription`, `robots`, `ogtitle`, `ogdescription`, `ogsitename`, `ogurl`, `ogimage`, `ogtype`, `created_at`, `updated_at`) VALUES
-(1, 'front.page', '', '', 'Eerste page', 'De bodytekst van de Eerste Page', '1', 'eerste_page', '', '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(12, 'front.page', 'front.menus.digimenu', 'front.footer.main', 'TESTEN', 'hey hallo ik wil graag testen of het mogelijk is om een palatje toe te voegen aan deze pagina, waaromd oet hij het hier wel en bij de posts niet?\r\n\r\n', '1', 'testen', '/uploads/images/pages/idee-offer-foto.png', 'TESTEN', 'hey hallo ik wil graag testen of het mogelijk is om een palatje toe te voegen aan deze pagina, waaromd oet hij het hier wel en bij de posts niet?\r\n\r\n', 'noindex, nofollow', 'TESTEN', 'hey hallo ik wil graag testen of het mogelijk is om een palatje toe te voegen aan deze pagina, waaromd oet hij het hier wel en bij de posts niet?\r\n\r\n', 'Digitus Marketing', '', '/uploads/images/pages/idee offer foto.png', 'Article', '2014-04-15 10:47:13', '2014-04-15 10:47:13'),
 (13, 'front.page', 'front.menus.digimenu', 'front.footer.main', 'Kennismaken', 'een stukje text erbij dan maar?', '1', 'kennismaken', '', 'Kennismaken', 'een stukje text erbij dan maar?', 'noindex, nofollow', 'Kennismaken', 'een stukje text erbij dan maar?', 'Digitus Marketing', '', '', 'Article', '2014-04-16 08:55:33', '2014-04-16 08:55:33'),
 (15, 'front.page', 'front.menus.digimenu', 'front.footer.main', 'Insides', 'Pagina met blogberichten', '1', 'insides', '', 'Insides', 'Pagina met blogberichten', 'noindex, nofollow', 'Insides', 'Pagina met blogberichten', 'Digitus Marketing', '', '', 'Article', '2014-04-16 09:44:26', '2014-04-16 10:09:34'),
 (16, 'front.page', 'front.menus.digimenu', 'front.footer.main', 'Cases', 'Body tekst voor cases pagina', '1', 'cases', '', 'Cases', 'Body tekst voor cases pagina', 'noindex, nofollow', 'Cases', 'Body tekst voor cases pagina', 'Digitus Marketing', '', '', 'Article', '2014-04-16 13:16:48', '2014-04-16 13:16:48'),
-(17, 'front.page', 'front.menus.digimenu', 'front.footer.main', 'Workshops', 'Body text voor workshops', '1', 'workshops', '', 'Workshops', 'Body text voor workshops', 'noindex, nofollow', 'Workshops', 'Body text voor workshops', 'Digitus Marketing', '', '', 'Article', '2014-04-18 12:16:57', '2014-04-18 12:16:57');
+(17, 'front.page', 'front.menus.digimenu', 'front.footer.main', 'Workshops', 'Body text voor workshops', '1', 'workshops', '', 'Workshops', 'Body text voor workshops', 'noindex, nofollow', 'Workshops', 'Body text voor workshops', 'Digitus Marketing', '', '', 'Article', '2014-04-18 12:16:57', '2014-04-18 12:16:57'),
+(18, 'front.page', 'front.menus.digimenu', 'front.footer.main', 'Ons Bureau', 'Body text voor Ons Bureau', '1', 'ons-bureau', '', 'Ons Bureau', 'Body text voor Ons Bureau', 'index, follow', 'Ons Bureau', 'Body text voor Ons Bureau', 'Digitus Marketing', '', '', 'Article', '2014-04-24 07:16:53', '2014-04-24 07:16:53');
 
 -- --------------------------------------------------------
 
@@ -436,6 +443,32 @@ INSERT INTO `project_tag` (`id`, `tag_id`, `project_id`) VALUES
 (4, 1, 5),
 (5, 12, 5),
 (6, 7, 5);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `recensies`
+--
+
+CREATE TABLE IF NOT EXISTS `recensies` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `klantnaam` varchar(100) NOT NULL,
+  `klantbedrijf` varchar(100) NOT NULL,
+  `klanturl` varchar(100) NOT NULL,
+  `tekst` varchar(500) NOT NULL,
+  `author` varchar(2) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `recensies`
+--
+
+INSERT INTO `recensies` (`id`, `klantnaam`, `klantbedrijf`, `klanturl`, `tekst`, `author`, `created_at`, `updated_at`) VALUES
+(1, 'Robin (Lei Hong)', 'ChinThai Hengelo', 'http://www.chinthai.nl', 'Wij zijn zeer tevreden over de service van Digitus Marketing. Wij zijn blij verrast over de manier waarop zij hun creativiteit met onze wensen hebben gecombineerd. Na het aanleveren van alle nodige documenten stonden we binnen een mum van tijd compleet op Facebook. <br/> <br /> Dit bedrijf weet waar waar de ondernemer van deze tijd naar op zoek is; professionele service en kwaliteit tegen scherpe prijzen.', '1', '2014-04-24 13:45:36', '0000-00-00 00:00:00'),
+(2, 'FRANKIE (Honger ig)', 'ChinThai Hengelo', 'http://www.chinthai.nl', 'Wij zijn zeer tevreden over de service van Digitus Marketing. Wij zijn blij verrast over de manier waarop zij hun creativiteit met onze wensen hebben gecombineerd. Na het aanleveren van alle nodige documenten stonden we binnen een mum van tijd compleet op Facebook. <br/> <br /> Dit bedrijf weet waar waar de ondernemer van deze tijd naar op zoek is; professionele service en kwaliteit tegen scherpe prijzen.', '1', '2014-04-24 13:45:36', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
